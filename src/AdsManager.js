@@ -20,7 +20,7 @@ const { CTKNativeAdManager: NativeAdManager } = NativeModules;
  */
 class AdsManager {
   /** Initial value of the native ads manager. True, if ads are available straight away **/
-  isValid: Boolean = NativeAdManager.isValid;
+  isValid: boolean = NativeAdManager.isValid;
 
   /**
    * Called for the first time ads are loaded. Native manager will keep calling the

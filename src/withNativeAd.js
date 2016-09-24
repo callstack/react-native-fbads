@@ -10,6 +10,7 @@
 
 import React from 'react';
 import AdsManager from './AdsManager';
+import type { NativeAd } from './types';
 import {
   requireNativeComponent,
   View,
@@ -17,7 +18,12 @@ import {
   NativeAppEventEmitter,
 } from 'react-native';
 
-const NativeAd = requireNativeComponent('CTKNativeAd', null);
+const NativeAdLoader = requireNativeComponent('CTKNativeAd', null);
+
+type NativeAdWrapperState = {
+  ad: ?NativeAd,
+  canRequestAds: boolean,
+};
 
 /**
  * Higher order function for injecting Facebook Native Ads into a given Component.
@@ -32,11 +38,13 @@ const NativeAd = requireNativeComponent('CTKNativeAd', null);
  * Second component can be provided to be used as a placeholder for a missing or
  * not yet loaded ad.
  */
-export default (Component, EmptyComponent = View) => class NativeAdWrapper extends React.Component {
-  state = {
+export default (Component: Function, EmptyComponent: Function = View) => class NativeAdWrapper extends React.Component {
+  state: NativeAdWrapperState = {
     ad: null,
     canRequestAds: false,
   };
+
+  removeSubscription: Function;
 
   componentDidMount() {
     this.removeSubscription = AdsManager.onAdsLoaded(() => this.setState({ canRequestAds: true }));
@@ -46,7 +54,7 @@ export default (Component, EmptyComponent = View) => class NativeAdWrapper exten
     this.removeSubscription();
   }
 
-  onAdLoaded = (e) => {
+  onAdLoaded = (e: Object) => {
     this.setState({ ad: e.nativeEvent });
   };
 
@@ -60,9 +68,9 @@ export default (Component, EmptyComponent = View) => class NativeAdWrapper exten
     }
 
     return (
-      <NativeAd onAdLoaded={this.onAdLoaded}>
+      <NativeAdLoader onAdLoaded={this.onAdLoaded}>
         {children}
-      </NativeAd>
+      </NativeAdLoader>
     );
   }
 };
