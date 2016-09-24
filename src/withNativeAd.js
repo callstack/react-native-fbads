@@ -35,11 +35,11 @@ const NativeAd = requireNativeComponent('CTKNativeAd', null);
 export default (Component, EmptyComponent = View) => class NativeAdWrapper extends React.Component {
   state = {
     ad: null,
-    adsLoaded: false,
+    canRequestAds: false,
   };
 
   componentDidMount() {
-    this.removeSubscription = AdsManager.onAdsLoaded(() => this.setState({ adsLoaded: true }));
+    this.removeSubscription = AdsManager.onAdsLoaded(() => this.setState({ canRequestAds: true }));
   }
 
   componentWillUnmount() {
@@ -55,7 +55,7 @@ export default (Component, EmptyComponent = View) => class NativeAdWrapper exten
       ? <Component nativeAd={this.state.ad} />
       : <EmptyComponent />;
 
-    if (!this.state.adsLoaded) {
+    if (!this.state.canRequestAds) {
       return <EmptyComponent />;
     }
 
