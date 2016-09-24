@@ -1,13 +1,13 @@
 //
-//  CTKNativeAdManager.h
+//  CTKNativeAdManager.m
 //  rn-fbads
 //
-//  Created by Michał Grabowski on 24/09/16.
-//  Copyright © 2016 callstack. All rights reserved.
+//  Created by Mike Grabowski on 24/09/16.
+//  Copyright © 2016 Callstack.io. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "RCTViewManager.h"
 
-@interface CTKNativeAdManager : NSObject
+@interface CTKNativeAdManager : RCTViewManager
 
 @end
