@@ -68,3 +68,7 @@ class AdComponent extends React.Component {
 
 export default withNativeAd(AdComponent);
 ```
+
+### 2. FBNativeAdManager
+
+> Public API allowing you to control cache policy and more coming soon. Contributions welcome.
