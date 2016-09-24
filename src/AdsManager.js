@@ -17,14 +17,15 @@ const { CTKNativeAdManager: NativeAdManager } = NativeModules;
  * Proxy to `FBNativeAdsManager`
  */
 class AdsManager {
-
-  // Initial value of the native ads manager. True, if ads are available straight away
+  /** Initial value of the native ads manager. True, if ads are available straight away **/
   isValid: Boolean = NativeAdManager.isValid;
 
-  // Called for the first time ads are loaded. Native manager will keep calling the
-  // below event for every chunk of native ads loaded, however we are only
-  // interested in the first part. This function will automatically deregister itself
-  // after its first invocation.
+  /**
+   * Called for the first time ads are loaded. Native manager will keep calling the
+   * below event for every chunk of native ads loaded, however we are only
+   * interested in the first part. This function will automatically deregister itself
+   * after its first invocation
+   */
   onAdsLoaded = (func: () => void) => {
     const sub = NativeAppEventEmitter.addListener('CTKNativeAdManagerDidLoad', () => {
       func();
