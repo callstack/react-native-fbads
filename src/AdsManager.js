@@ -4,6 +4,8 @@
  *
  * Created by Mike Grabowski on 24/09/16.
  * Copyright © 2016 Callstack.io. All rights reserved.
+ *
+ * @flow
  */
 
 import {
