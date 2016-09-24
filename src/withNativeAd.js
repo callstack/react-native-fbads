@@ -17,15 +17,20 @@ import {
   NativeAppEventEmitter,
 } from 'react-native';
 
-
 const NativeAd = requireNativeComponent('CTKNativeAd', null);
 
 /**
- * Higher order function for injecting Facebook Native Ads into a component,
- * wrap any view with it and use `nativeAd` prop to render custom template.
+ * Higher order function for injecting Facebook Native Ads into a given Component.
  *
- * Provide second component to be used as a placeholder when ad is either missing
- * or still loading.
+ * Usage:
+ * ```js
+ * const MyAdComponent = withNativeAd(({ nativeAd}) => (
+ *  <Text>{nativeAd.description}</Text>
+ * ));
+ * ```
+ *
+ * Second component can be provided to be used as a placeholder for a missing or
+ * not yet loaded ad.
  */
 export default (Component, EmptyComponent = View) => class NativeAdWrapper extends React.Component {
   state = {

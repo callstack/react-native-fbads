@@ -28,7 +28,7 @@ class AdsManager {
    * interested in the first part. This function will automatically deregister itself
    * after its first invocation
    */
-  onAdsLoaded = (func: () => void) => {
+  onAdsLoaded = (func: () => void): Function => {
     const sub = NativeAppEventEmitter.addListener('CTKNativeAdManagerDidLoad', () => {
       func();
       sub.remove();
@@ -40,8 +40,6 @@ class AdsManager {
 
 const inst = new AdsManager();
 
-inst.onAdsLoaded(() => {
-  inst.isValid = true;
-});
+inst.onAdsLoaded(() => void (inst.isValid = true));
 
 export default inst;
