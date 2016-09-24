@@ -12,7 +12,7 @@
 #import "RCTUtils.h"
 #import "RCTBridge.h"
 
-@interface CTKNativeAdManager () <FBNativeAdDelegate, FBNativeAdsManagerDelegate>
+@interface CTKNativeAdManager () <FBNativeAdsManagerDelegate>
 
 // FBNativeAdsManager instance that abstracts away the logic required for loading ads
 // on a device
