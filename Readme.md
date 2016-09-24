@@ -1,4 +1,4 @@
-react-native-fbads
+react-native-fbads <img src="https://david-dm.org/callstack-io/react-native-fbads.svg" /> <img src="https://david-dm.org/callstack-io/react-native-fbads/dev-status.svg" />
 ============
 
 > Native Facebook Ads integration for React Native
