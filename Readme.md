@@ -25,7 +25,10 @@ $ react-native install react-native-fbads
 
 #### 3.1 iOS
 
-The react-native-fbads has been automatically linked for you, the next step will be downloading and linking the native Facebook SDK for iOS. Make sure you have the latest Xcode installed. Open the .xcodeproj in Xcode found in the ios subfolder from your project's root directory. Now, follow all the steps in the Getting Started Guide for Facebook SDK for iOS. Along with FBSDKCoreKit.framework, don't forget to import FBSDKAudienceNetwork.framework.
+The react-native-fbads has been automatically linked for you, the next step will be downloading and linking the native Facebook SDK for iOS. Make sure you have the latest Xcode installed. Open the .xcodeproj in Xcode found in the ios subfolder from your project's root directory. Now, follow all the steps in the [Getting Started Guide for Facebook SDK](https://developers.facebook.com/docs/ios/getting-started) for iOS. Along with FBSDKCoreKit.framework, don't forget to import FBAudienceNetwork.framework.
+
+Next, follow Step 1 & Step 3 from the [Getting Started Guide for Facebook Audience](https://developers.facebook.com/docs/audience-network/getting-started). Once you have created the placement id, please put it into your
+`Info.plist` under `FacebookAdsPlacementID` key as in [the example](https://github.com/callstack-io/react-native-fbads/blob/master/example/ios/example/Info.plist#L32-L33).
 
 #### 3.2. Android
 
