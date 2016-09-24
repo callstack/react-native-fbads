@@ -31,10 +31,10 @@ RCT_EXPORT_MODULE()
   self = [super init];
   if (self) {
     _fbAdManager = [[FBNativeAdsManager alloc] initWithPlacementID:[self placementId] forNumAdsRequested:10];
-    
+
     __weak typeof(self) weakSelf = self;
     [_fbAdManager setDelegate:weakSelf];
-    
+
     [_fbAdManager loadAds];
   }
   return self;
@@ -72,6 +72,5 @@ RCT_EXPORT_MODULE()
 }
 
 RCT_EXPORT_VIEW_PROPERTY(onAdLoaded, RCTBubblingEventBlock)
-RCT_EXPORT_VIEW_PROPERTY(onAdFailed, RCTBubblingEventBlock)
 
 @end
