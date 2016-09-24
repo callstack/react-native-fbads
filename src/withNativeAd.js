@@ -50,7 +50,7 @@ export default (Component, EmptyComponent = View) => class NativeAdWrapper exten
   };
 
   render() {
-    const children = Boolean(this.state.ad)
+    const children = this.state.ad
       ? <Component nativeAd={this.state.ad} />
       : <EmptyComponent />;
 
