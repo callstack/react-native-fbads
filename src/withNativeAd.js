@@ -18,7 +18,7 @@ const NativeAd = requireNativeComponent('CTKNativeAd', null);
  * Provide second component to be used as a placeholder when ad is either missing
  * or still loading.
  */
-module.exports = (Component, EmptyComponent = View) => class NativeAdWrapper extends React.Component {
+export default (Component, EmptyComponent = View) => class NativeAdWrapper extends React.Component {
   state = {
     ad: null,
   };
