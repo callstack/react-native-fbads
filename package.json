@@ -6,6 +6,9 @@
   "directories": {
     "example": "example"
   },
+  "scripts": {
+    "test": "flow ./src",
+  },
   "author": "Mike Grabowski <grabbou@gmail.com>",
   "license": "MIT",
   "devDependencies": {
