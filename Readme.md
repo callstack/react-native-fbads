@@ -64,3 +64,26 @@ For full details on the `nativeAd` object, please check flowtype definitions [he
 ### 2. FBNativeAdManager
 
 > Public API allowing you to control cache policy and more coming soon. Contributions welcome.
+
+## Running example
+
+### 1. Install dependencies
+
+```bash
+$ npm install
+```
+
+### 2. Start packager
+
+Because of the way example project is set up (custom packager arguments), you'll
+have to start it explicitly before any other command
+
+```bash
+$ cd ./example && npm start
+```
+
+### 3. Run it on iOS / Android
+
+```bash
+$ react-native run-ios
+```
