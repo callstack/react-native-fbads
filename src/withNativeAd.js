@@ -4,11 +4,19 @@
  *
  * Created by Mike Grabowski on 24/09/16.
  * Copyright © 2016 Callstack.io. All rights reserved.
+ *
+ * @flow
  */
 
 import React from 'react';
-import { requireNativeComponent, View, NativeModules, NativeAppEventEmitter } from 'react-native';
 import AdsManager from './AdsManager';
+import {
+  requireNativeComponent,
+  View,
+  NativeModules,
+  NativeAppEventEmitter,
+} from 'react-native';
+
 
 const NativeAd = requireNativeComponent('CTKNativeAd', null);
 
