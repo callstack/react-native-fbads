@@ -1,17 +1,16 @@
 {
   "name": "react-native-fbads",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Native Facebook Ads for React Native",
+  "main": "src/index.js",
   "directories": {
     "example": "example"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Mike Grabowski <grabbou@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "react": "15.3.2",
+    "react-native": "^0.34.0",
     "babel-eslint": "~6.1.2",
     "eslint": "~3.5.0",
     "eslint-config-airbnb": "~11.1.0",
