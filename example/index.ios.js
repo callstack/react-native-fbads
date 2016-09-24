@@ -50,4 +50,4 @@ const styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('example', () => MainApp);
+AppRegistry.registerComponent('MainApp', () => MainApp);
