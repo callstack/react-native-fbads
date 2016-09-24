@@ -1,11 +1,19 @@
 react-native-fbads [![npm version](https://badge.fury.io/js/react-native-fbads.svg)](https://badge.fury.io/js/react-native-fbads) <img src="https://david-dm.org/callstack-io/react-native-fbads.svg" /> <img src="https://david-dm.org/callstack-io/react-native-fbads/dev-status.svg?v=1" />
 ============
 
-> Native Facebook Ads integration for React Native
+### Native Facebook Ads integration for React Native
 
-<img src="https://cloud.githubusercontent.com/assets/2464966/18811079/52c99932-829e-11e6-9a3d-218569d71a6d.png" height="500" />
+##### Maximize revenue with ads from Facebook's 3 million advertisers
+
+[![Facebook Ads](http://i.imgur.com/XCkGzp9.png)](https://developers.facebook.com/products/app-monetization)
+
+- Monetize Your App
+- Leverage the Facebook Audience Network in your app
 
 ## Table of Contents
+
+
+<img src="https://cloud.githubusercontent.com/assets/2464966/18811079/52c99932-829e-11e6-9a3d-218569d71a6d.png" height="500" />
 
 - [Installation](#installation)
   - [Create React Native project](#1-create-react-native-project)
