@@ -43,16 +43,6 @@ For detailed usage please check `examples` folder.
 withNativeAd wrapper passes `nativeAd` to a wrapped component through props as
 soon as it's been loaded.
 
-NativeAd may contain any of the following:
-- `title`
-- `subtitle`
-- `description`
-- `callToActionText`
-- `coverImage`
-- `icon`
-
-For details on presence of the above elements, please check official Facebook Audience docs.
-
 ```javascript
 import { withNativeAd } from 'react-native-fbads';
 
@@ -68,6 +58,8 @@ class AdComponent extends React.Component {
 
 export default withNativeAd(AdComponent);
 ```
+
+For full details on the `nativeAd` object, please check flowtype definitions [here](https://github.com/callstack-io/react-native-fbads/blob/master/src/types.js)
 
 ### 2. FBNativeAdManager
 
