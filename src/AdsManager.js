@@ -29,6 +29,11 @@ class AdsManager {
    * after its first invocation
    */
   onAdsLoaded = (func: () => void): Function => {
+    if (this.isValid) {
+      setTimeout(() => func());
+      return () => {};
+    }
+
     const sub = NativeAppEventEmitter.addListener('CTKNativeAdManagerDidLoad', () => {
       func();
       sub.remove();
