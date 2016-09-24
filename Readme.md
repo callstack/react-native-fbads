@@ -5,19 +5,19 @@ react-native-fbads
 
 ## Table of Contents
 
-* [Installation](#installation)
- * 1. [Create React Native project](#1-create-react-native-project)
- * 2. [Install Javascript packages](#2-install-javascript-packages)
- * 3. [Configure native projects](#3-configure-native-projects)
-  * 3.1 [iOS](#31-ios)
-  * 3.2. [Android](#32-android)
-* [Usage](#usage)
- * 1. [withNativeAd](#1-withnativead)
- * 2. [FBNativeAdManager](#2-fbnativeadmanager)
-* [Running example](#running-example)
- * 1. [Install dependencies](#1-install-dependencies)
- * 2. [Start packager](#2-start-packager)
- * 3. [Run it on iOS / Android](#3-run-it-on-ios-android)
+- [Installation](#installation)
+  - [Create React Native project](#1-create-react-native-project)
+  - [Install Javascript packages](#2-install-javascript-packages)
+  - [Configure native projects](#3-configure-native-projects)
+    - [iOS](#31-ios)
+    - [Android](#32-android)
+- [Usage](#usage)
+   - [withNativeAd](#1-withnativead)
+   - [FBNativeAdManager](#2-fbnativeadmanager)
+- [Running example](#running-example)
+   - [Install dependencies](#1-install-dependencies)
+   - [Start packager](#2-start-packager)
+   - [Run it on iOS / Android](#3-run-it-on-ios--android)
 
 ## Installation
 
