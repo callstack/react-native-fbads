@@ -7,7 +7,8 @@
  */
 
 import React from 'react';
-import { requireNativeComponent, View } from 'react-native';
+import { requireNativeComponent, View, NativeModules, NativeAppEventEmitter } from 'react-native';
+import AdsManager from './AdsManager';
 
 const NativeAd = requireNativeComponent('CTKNativeAd', null);
 
@@ -21,7 +22,20 @@ const NativeAd = requireNativeComponent('CTKNativeAd', null);
 export default (Component, EmptyComponent = View) => class NativeAdWrapper extends React.Component {
   state = {
     ad: null,
+    adsLoaded: AdsManager.isValid,
   };
+
+  componentDidMount() {
+    if (this.state.adsLoaded) {
+      return;
+    }
+
+    this.subscription = AdsManager.onAdsLoaded(() => this.setState({ adsLoaded: true }));
+  }
+
+  componentWillUnmount() {
+    this.subscription.remove();
+  }
 
   onAdLoaded = (e) => {
     this.setState({ ad: e.nativeEvent });
@@ -31,6 +45,10 @@ export default (Component, EmptyComponent = View) => class NativeAdWrapper exten
     const children = Boolean(this.state.ad)
       ? <Component nativeAd={this.state.ad} />
       : <EmptyComponent />;
+
+    if (!this.state.adsLoaded) {
+      return <EmptyComponent />;
+    }
 
     return (
       <NativeAd onAdLoaded={this.onAdLoaded}>

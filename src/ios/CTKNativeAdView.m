@@ -41,19 +41,16 @@
 
   _sentAdEventToJS = YES;
 
-  if (_nativeAd) {
-    _onAdLoaded(@{
-      @"title": _nativeAd.title,
-      @"subtitle": _nativeAd.subtitle,
-      @"description": _nativeAd.body,
-      @"callToActionText": _nativeAd.callToAction,
-      @"coverImage": [_nativeAd.coverImage.url absoluteString],
-      @"icon": [_nativeAd.icon.url absoluteString],
-    });
-    [_nativeAd registerViewForInteraction:self withViewController:RCTKeyWindow().rootViewController];
-  } else {
-    _onAdFailed(@{});
-  }
+  _onAdLoaded(@{
+    @"title": _nativeAd.title,
+    @"subtitle": _nativeAd.subtitle,
+    @"description": _nativeAd.body,
+    @"callToActionText": _nativeAd.callToAction,
+    @"coverImage": [_nativeAd.coverImage.url absoluteString],
+    @"icon": [_nativeAd.icon.url absoluteString],
+  });
+  
+  [_nativeAd registerViewForInteraction:self withViewController:RCTKeyWindow().rootViewController];
 }
 
 @end

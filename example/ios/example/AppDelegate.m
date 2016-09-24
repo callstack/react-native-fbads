@@ -8,17 +8,19 @@
  */
 
 #import "AppDelegate.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 #import "RCTBundleURLProvider.h"
 #import "RCTRootView.h"
 
 @implementation AppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-  NSURL *jsCodeLocation;
-
-  jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"example/index.ios" fallbackResource:nil];
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  // Setup Facebook SDK
+  [[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
+  
+  // React Native Setup
+  NSURL *jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"example/index.ios" fallbackResource:nil];
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"MainApp"
@@ -31,6 +33,7 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+  
   return YES;
 }
 

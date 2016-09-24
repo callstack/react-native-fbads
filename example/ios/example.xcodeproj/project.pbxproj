@@ -22,6 +22,9 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		ADB9FA481D96E42400B69AB7 /* librn-fbads.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADB9FA471D96E41900B69AB7 /* librn-fbads.a */; };
+		ADB9FA4C1D96F46D00B69AB7 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADB9FA491D96F46D00B69AB7 /* Bolts.framework */; };
+		ADB9FA4D1D96F46D00B69AB7 /* FBAudienceNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADB9FA4A1D96F46D00B69AB7 /* FBAudienceNetwork.framework */; };
+		ADB9FA4E1D96F46D00B69AB7 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADB9FA4B1D96F46D00B69AB7 /* FBSDKCoreKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +128,9 @@
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		ADB9FA421D96E41900B69AB7 /* rn-fbads.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "rn-fbads.xcodeproj"; path = "../../src/ios/rn-fbads.xcodeproj"; sourceTree = "<group>"; };
+		ADB9FA491D96F46D00B69AB7 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = ../../../../../Documents/FacebookSDK/Bolts.framework; sourceTree = "<group>"; };
+		ADB9FA4A1D96F46D00B69AB7 /* FBAudienceNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBAudienceNetwork.framework; path = ../../../../../Documents/FacebookSDK/FBAudienceNetwork.framework; sourceTree = "<group>"; };
+		ADB9FA4B1D96F46D00B69AB7 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../../../Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +138,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADB9FA4C1D96F46D00B69AB7 /* Bolts.framework in Frameworks */,
+				ADB9FA4D1D96F46D00B69AB7 /* FBAudienceNetwork.framework in Frameworks */,
+				ADB9FA4E1D96F46D00B69AB7 /* FBSDKCoreKit.framework in Frameworks */,
 				ADB9FA481D96E42400B69AB7 /* librn-fbads.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
@@ -254,6 +263,9 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				ADB9FA491D96F46D00B69AB7 /* Bolts.framework */,
+				ADB9FA4A1D96F46D00B69AB7 /* FBAudienceNetwork.framework */,
+				ADB9FA4B1D96F46D00B69AB7 /* FBSDKCoreKit.framework */,
 				ADB9FA421D96E41900B69AB7 /* rn-fbads.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
@@ -332,7 +344,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = Facebook;
 			};
 			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "example" */;
@@ -539,6 +551,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
+				FRAMEWORK_SEARCH_PATHS = "~/Documents/FacebookSDK/**";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -551,6 +564,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = example;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -561,6 +575,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = "~/Documents/FacebookSDK/**";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -573,6 +588,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = example;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -598,6 +614,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;

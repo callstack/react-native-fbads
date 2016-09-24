@@ -9,3 +9,4 @@
  */
 
 export { default as withNativeAd } from './withNativeAd';
+export { default as default } from './AdsManager';
