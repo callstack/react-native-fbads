@@ -8,7 +8,7 @@
  * @flow
  */
 
-export type NativeAd {
+export type NativeAd = {
   icon: ?string,
   coverImage: ?string,
   title: ?string,
