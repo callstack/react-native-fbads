@@ -3,6 +3,8 @@ react-native-fbads
 
 > Native Facebook Ads integration for React Native
 
+<img src="https://cloud.githubusercontent.com/assets/2464966/18811079/52c99932-829e-11e6-9a3d-218569d71a6d.png" height="500" />
+
 ## Table of Contents
 
 - [Installation](#installation)
