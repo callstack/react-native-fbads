@@ -12,7 +12,6 @@ import {
   View
 } from 'react-native';
 
-import TextAd from './components/TextAd';
 import FullAd from './components/FullAd';
 
 class MainApp extends React.Component {
@@ -22,7 +21,11 @@ class MainApp extends React.Component {
         <Text style={styles.welcome}>
           Welcome to React Native!
         </Text>
-        <TextAd />
+        <Text style={styles.p}>
+          One of the coolest features about native ads
+          is that they nicely integrate with the general
+          app look & feel
+        </Text>
         <FullAd />
       </View>
     );
@@ -35,6 +38,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+  },
+  p: {
+    marginBottom: 10,
+    marginHorizontal: 40,
+    textAlign: 'center',
   },
   welcome: {
     fontSize: 20,
