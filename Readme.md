@@ -143,6 +143,8 @@ Sets the native ads manager caching policy. This controls which media from the n
 adsManager.setMediaCachePolicy('none' | 'icon' | 'image' | 'all');
 ```
 
+**Note:** This method is a noop on Android
+
 ## Running example
 
 ### 1. Install dependencies
