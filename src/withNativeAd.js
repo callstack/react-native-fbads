@@ -9,14 +9,9 @@
  */
 
 import React from 'react';
+import { requireNativeComponent } from 'react-native';
 import AdsManager from './NativeAdsManager';
 import type { NativeAd } from './types';
-import {
-  requireNativeComponent,
-  View,
-  NativeModules,
-  NativeAppEventEmitter,
-} from 'react-native';
 
 const NativeAdView = requireNativeComponent('CTKNativeAd', null);
 
@@ -41,6 +36,8 @@ export default (Component: Function) => class NativeAdWrapper extends React.Comp
     canRequestAds: false,
   };
 
+  props: NativeAdWrapperProps;
+
   /** @{Function} to call for removing adsManager subscriptions **/
   removeSubscription: Function;
 
@@ -49,7 +46,9 @@ export default (Component: Function) => class NativeAdWrapper extends React.Comp
    * available for accessing
    */
   componentDidMount() {
-    this.removeSubscription = this.props.adsManager.onAdsLoaded(() => this.setState({ canRequestAds: true }));
+    this.removeSubscription = this.props.adsManager.onAdsLoaded(
+      () => this.setState({ canRequestAds: true })
+    );
   }
 
   /**
@@ -60,7 +59,7 @@ export default (Component: Function) => class NativeAdWrapper extends React.Comp
   }
 
   render() {
-    const { adsManager, ...props} = this.props;
+    const { adsManager, ...props } = this.props;
 
     if (!this.state.canRequestAds) {
       return null;

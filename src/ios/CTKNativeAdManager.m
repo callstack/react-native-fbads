@@ -17,7 +17,7 @@
 @implementation RCTConvert (CTKNativeAdView)
 
 RCT_ENUM_CONVERTER(FBNativeAdsCachePolicy, (@{
-  @"none": @( FBNativeAdsCachePolicyNone),
+  @"none": @(FBNativeAdsCachePolicyNone),
   @"icon": @(FBNativeAdsCachePolicyIcon),
   @"image": @(FBNativeAdsCachePolicyCoverImage),
   @"all": @(FBNativeAdsCachePolicyAll),
