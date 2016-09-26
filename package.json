@@ -1,0 +1,27 @@
+{
+  "name": "react-native-fbads",
+  "version": "2.0.1",
+  "description": "Native Facebook Ads for React Native",
+  "main": "src/index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "flow ./src"
+  },
+  "author": "Mike Grabowski <grabbou@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "react": "15.3.2",
+    "react-native": "^0.34.0",
+    "babel-eslint": "~6.1.2",
+    "eslint": "~3.6.0",
+    "eslint-config-airbnb": "~11.2.0",
+    "eslint-plugin-import": "~1.16.0",
+    "eslint-plugin-jsx-a11y": "^2.2.2",
+    "eslint-plugin-react": "~6.3.0"
+  },
+  "dependencies": {
+    "eventemitter3": "^2.0.0"
+  }
+}

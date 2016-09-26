@@ -1,0 +1,6 @@
+rootProject.name = 'example'
+
+include ':app'
+
+include ':react-native-fbads'
+project(':react-native-fbads').projectDir = new File(rootProject.projectDir, '../../src/android')
