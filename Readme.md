@@ -26,6 +26,8 @@ Features:
     - [NativeAdsManager](#nativeadsmanager)
       - [disableAutoRefresh](#disableautorefresh)
       - [setMediaCachePolicy](#setmediacachepolicy)
+    - [AdSettings](#adsettings)
+      - [addTestDevice](#addtestdevice)
 - [Running example](#running-example)
    - [Install dependencies](#1-install-dependencies)
    - [Start packager](#2-start-packager)
@@ -144,6 +146,26 @@ adsManager.setMediaCachePolicy('none' | 'icon' | 'image' | 'all');
 ```
 
 **Note:** This method is a noop on Android
+
+### AdSettings
+
+```js
+import { AdSettings } from 'react-native-fbads';
+```
+
+AdSettings contains global settings for all ad controls.
+
+#### addTestDevice
+
+Registers given device to receive test ads. When you run app on simulator, it automatically gets added. Use it
+to receive test ads in development mode on a standalone phone. Hash of the current device can be obtained from a
+debug log.
+
+All devices should be specified before any other action takes place, like [`AdsManager`](#nativeadsmanager) gets created.
+
+```js
+AdSettings.addTestDevice('hash');
+```
 
 ## Running example
 
