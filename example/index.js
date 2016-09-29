@@ -15,8 +15,8 @@ const adsManager = new NativeAdsManager('1912255062335197_1912257885668248');
 class MainApp extends React.Component {
   showFullScreenAd = () => {
     InterstitialAdManager.showAd('1912255062335197_1912257885668248')
-      .then(response => {
-        console.log(response);
+      .then(didClick => {
+        console.log(didClick);
       })
       .catch(err => {
         console.log(err);
