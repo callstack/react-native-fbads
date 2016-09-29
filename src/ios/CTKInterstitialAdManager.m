@@ -15,6 +15,7 @@
 @property (nonatomic, strong) RCTPromiseResolveBlock resolve;
 @property (nonatomic, strong) RCTPromiseRejectBlock reject;
 @property (nonatomic, strong) FBInterstitialAd *interstitialAd;
+@property (nonatomic) bool didClick;
 
 @end
 
@@ -50,16 +51,12 @@ RCT_EXPORT_METHOD(
 }
 
 - (void)interstitialAdDidClick:(FBInterstitialAd *)interstitialAd {
-  _resolve(@{
-    @"reason": @"didClick",
-  });
-  
-  [self cleanUpPromise];
+  _didClick = true;
 }
 
 - (void)interstitialAdDidClose:(FBInterstitialAd *)interstitialAd {
   _resolve(@{
-    @"reason": @"didClose",
+    @"didClick": @(_didClick),
   });
   
   [self cleanUpPromise];
@@ -69,6 +66,7 @@ RCT_EXPORT_METHOD(
   _reject = nil;
   _resolve = nil;
   _interstitialAd = nil;
+  _didClick = false;
 }
 
 @end

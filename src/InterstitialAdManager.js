@@ -13,7 +13,7 @@ import { NativeModules } from 'react-native';
 const { CTKInterstitialAdManager } = NativeModules;
 
 type ShowAdResponse = {
-  reason: 'didClick' | 'didClose',
+  didClick: boolean,
 };
 
 export default {

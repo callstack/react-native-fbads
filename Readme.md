@@ -179,11 +179,11 @@ InterstitialAdManager.showAd('placementId')
 Returns a promise that resolves with an object:
 ```js
 const response = {
-  reason: 'didClick' | 'didClose',
+  didClick: true,,
 };
 ```
 
-where reason describes type of interaction that resulted in an ad being closed (either closed manually or click).
+where boolean `didClick` describes whether an ad was interacted with before closing.
 
 Promise will be rejected when there's an error loading ads from Facebook Audience network.
 
