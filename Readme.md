@@ -181,6 +181,7 @@ Returns a promise that resolves with an object:
 const response = {
   reason: 'didClick' | 'didClose',
 };
+```
 
 where reason describes type of interaction that resulted in an ad being closed (either closed manually or click).
 
