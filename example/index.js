@@ -5,12 +5,7 @@
  */
 
 import React from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import { AppRegistry, StyleSheet, Text, View } from 'react-native';
 
 import FullAd from './components/FullAd';
 import { NativeAdsManager } from '../';

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		ADDCECB11D96B85500C511E0 /* CTKNativeAdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDCECB01D96B85500C511E0 /* CTKNativeAdManager.m */; };
 		ADDCECB41D96B85E00C511E0 /* CTKNativeAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDCECB31D96B85E00C511E0 /* CTKNativeAdView.m */; };
+		ADE502341D9C7A3400A44A63 /* CTKAdSettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE502331D9C7A3400A44A63 /* CTKAdSettingsManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,6 +30,8 @@
 		ADDCECB01D96B85500C511E0 /* CTKNativeAdManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTKNativeAdManager.m; sourceTree = "<group>"; };
 		ADDCECB21D96B85E00C511E0 /* CTKNativeAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTKNativeAdView.h; sourceTree = "<group>"; };
 		ADDCECB31D96B85E00C511E0 /* CTKNativeAdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTKNativeAdView.m; sourceTree = "<group>"; };
+		ADE502321D9C7A3400A44A63 /* CTKAdSettingsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTKAdSettingsManager.h; sourceTree = "<group>"; };
+		ADE502331D9C7A3400A44A63 /* CTKAdSettingsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTKAdSettingsManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +48,8 @@
 		ADDCEC9A1D96B7DD00C511E0 = {
 			isa = PBXGroup;
 			children = (
+				ADE502321D9C7A3400A44A63 /* CTKAdSettingsManager.h */,
+				ADE502331D9C7A3400A44A63 /* CTKAdSettingsManager.m */,
 				ADDCECB21D96B85E00C511E0 /* CTKNativeAdView.h */,
 				ADDCECB31D96B85E00C511E0 /* CTKNativeAdView.m */,
 				ADDCECAF1D96B85500C511E0 /* CTKNativeAdManager.h */,
@@ -118,6 +123,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADDCECB11D96B85500C511E0 /* CTKNativeAdManager.m in Sources */,
+				ADE502341D9C7A3400A44A63 /* CTKAdSettingsManager.m in Sources */,
 				ADDCECB41D96B85E00C511E0 /* CTKNativeAdView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

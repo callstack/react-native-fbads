@@ -26,10 +26,18 @@ Features:
     - [NativeAdsManager](#nativeadsmanager)
       - [disableAutoRefresh](#disableautorefresh)
       - [setMediaCachePolicy](#setmediacachepolicy)
+    - [AdSettings](#adsettings)
+      - [addTestDevice](#addtestdevice)
+      - [clearTestDevices](#cleartestdevices)
+      - [setLogLevel](#setloglevel)
+      - [setIsChildDirected](#setischilddirected)
+      - [setMediationService](#setmediationservice)
+      - [setUrlPrefix](#seturlprefix)
 - [Running example](#running-example)
    - [Install dependencies](#1-install-dependencies)
    - [Start packager](#2-start-packager)
    - [Run it on iOS / Android](#3-run-it-on-ios--android)
+- [Credits](#credits)
 
 ## Installation
 
@@ -145,6 +153,71 @@ adsManager.setMediaCachePolicy('none' | 'icon' | 'image' | 'all');
 
 **Note:** This method is a noop on Android
 
+### AdSettings
+
+```js
+import { AdSettings } from 'react-native-fbads';
+```
+
+AdSettings contains global settings for all ad controls.
+
+#### addTestDevice
+
+Registers given device to receive test ads. When you run app on simulator, it automatically gets added. Use it
+to receive test ads in development mode on a standalone phone. Hash of the current device can be obtained from a
+debug log.
+
+All devices should be specified before any other action takes place, like [`AdsManager`](#nativeadsmanager) gets created.
+
+```js
+AdSettings.addTestDevice('hash');
+```
+
+#### clearTestDevices
+
+Clears all previously set test devices. If you want your ads to respect newly set config, you'll have to destroy and create
+an instance of AdsManager once again.
+
+```js
+AdSettings.clearTestDevices();
+```
+
+#### setLogLevel
+
+Sets current SDK log level. 
+
+```js
+AdSettings.setLogLevel('none' | 'debug' | 'verbose' | 'warning' | 'error' | 'notification');
+```
+
+**Note:** This method is a noop on Android.
+
+#### setIsChildDirected
+
+Configures the ad control for treatment as child-directed.
+
+```js
+AdSettings.setIsChildDirected(true | false);
+```
+
+#### setMediationService
+
+If an ad provided service is mediating Audience Network in their sdk, it is required to set the name of the mediation service
+
+```js
+AdSettings.setMediationService('foobar');
+```
+
+#### setUrlPrefix
+
+Sets the url prefix to use when making ad requests.
+
+```js
+AdSettings.setUrlPrefix('...');
+```
+
+**Note:** This method should never be used in production
+
 ## Running example
 
 ### 1. Install dependencies
@@ -168,3 +241,7 @@ $ cd ./example && npm start
 $ cd ./example && npm run ios
 $ cd ./examples && npm run android
 ```
+
+### Credits
+
+Some of the API explanations where borrowed from Facebook SDK documentation.
