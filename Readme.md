@@ -28,10 +28,17 @@ Features:
       - [setMediaCachePolicy](#setmediacachepolicy)
     - [AdSettings](#adsettings)
       - [addTestDevice](#addtestdevice)
+      - [clearTestDevices](#cleartestdevices)
+      - [getLogLevel](#getloglevel)
+      - [setLogLevel](#setloglevel)
+      - [setIsChildDirected](#setischilddirected)
+      - [setMediationService](#setmediationservice)
+      - [setURLPrefix](#seturlprefix)
 - [Running example](#running-example)
    - [Install dependencies](#1-install-dependencies)
    - [Start packager](#2-start-packager)
    - [Run it on iOS / Android](#3-run-it-on-ios--android)
+- [Credits](#credits)
 
 ## Installation
 
@@ -167,6 +174,57 @@ All devices should be specified before any other action takes place, like [`AdsM
 AdSettings.addTestDevice('hash');
 ```
 
+#### clearTestDevices
+
+Clears all previously set test devices. If you want your ads to respect newly set config, you'll have to destroy and create
+an instance of AdsManager once again.
+
+```js
+AdSettings.clearTestDevices();
+```
+
+#### getLogLevel
+
+Returns the current SDK log level
+
+```js
+AdSettings.getLogLevel();
+```
+
+#### setLogLevel
+
+Sets current SDK log level. 
+
+```js
+AdSettings.setLogLevel('none' | 'debug' | 'verbose' | 'warning' | 'error' | 'notification');
+```
+
+#### setIsChildDirected
+
+Configures the ad control for treatment as child-directed.
+
+```js
+AdSettings.setIsChildDirected(true | false);
+```
+
+#### setMediationService
+
+If an ad provided service is mediating Audience Network in their sdk, it is required to set the name of the mediation service
+
+```js
+AdSettings.setMediationService('foobar');
+```
+
+#### setUrlPrefix
+
+Sets the url prefix to use when making ad requests.
+
+```js
+AdSettings.setUrlPrefix('...');
+```
+
+**Note:** This method should never be used in production
+
 ## Running example
 
 ### 1. Install dependencies
@@ -190,3 +248,7 @@ $ cd ./example && npm start
 $ cd ./example && npm run ios
 $ cd ./examples && npm run android
 ```
+
+### Credits
+
+Some of the API explanations where borrowed from Facebook SDK documentation.

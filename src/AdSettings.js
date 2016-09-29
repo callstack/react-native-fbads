@@ -12,11 +12,55 @@ import { NativeModules } from 'react-native';
 
 const { CTKAdSettingsManager } = NativeModules;
 
+type SDKLogLevel = 'none' | 'debug' | 'verbose' | 'warning' | 'error' | 'notification';
+
 export default {
   /**
    * Registers given device with `deviceHash` to receive test Facebook ads.
    */
   addTestDevice(deviceHash: string) {
     CTKAdSettingsManager.addTestDevice(deviceHash);
+  },
+
+  /**
+   * Clears previously set test devices
+   */
+  clearTestDevices() {
+    CTKAdSettingsManager.clearTestDevices();
+  },
+
+  /**
+   * Gets current SDK log level
+   */
+  getLogLevel(): Promise<SDKLogLevel> {
+    return CTKAdSettingsManager.getLogLevel();
+  },
+
+  /**
+   * Sets current SDK log level
+   */
+  setLogLevel(logLevel: SDKLogLevel) {
+    CTKAdSettingsManager.setLogLevel(logLevel);
+  },
+
+  /**
+   * Specifies whether ads are treated as child-directed
+   */
+  setIsChildDirected(isDirected: boolean) {
+    CTKAdSettingsManager.setIsChildDirected(isDirected);
+  },
+
+  /**
+   * Sets mediation service name
+   */
+  setMediationService(mediationService: string) {
+    CTKAdSettingsManager.setMediationService(mediationService);
+  },
+
+  /**
+   * Sets URL prefix
+   */
+  setURLPrefix(urlPrefix: string) {
+    CTKAdSettingsManager.setURLPrefix(urlPrefix);
   },
 };
