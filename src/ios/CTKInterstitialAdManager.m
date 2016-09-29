@@ -55,9 +55,7 @@ RCT_EXPORT_METHOD(
 }
 
 - (void)interstitialAdDidClose:(FBInterstitialAd *)interstitialAd {
-  _resolve(@{
-    @"didClick": @(_didClick),
-  });
+  _resolve(@(_didClick));
   
   [self cleanUpPromise];
 }

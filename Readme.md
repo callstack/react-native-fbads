@@ -170,20 +170,11 @@ controller.
 
 ```js
 InterstitialAdManager.showAd('placementId')
-  .then(response => {
-    console.log(response.reason);
+  .then(didClick => {
+    
   })
   .catch(err => console.log(err));
 ```
-
-Returns a promise that resolves with an object:
-```js
-const response = {
-  didClick: true,,
-};
-```
-
-where boolean `didClick` describes whether an ad was interacted with before closing.
 
 Promise will be rejected when there's an error loading ads from Facebook Audience network.
 
