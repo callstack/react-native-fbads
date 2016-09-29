@@ -14,6 +14,7 @@
 
 @property (nonatomic, strong) RCTPromiseResolveBlock resolve;
 @property (nonatomic, strong) RCTPromiseRejectBlock reject;
+@property (nonatomic, strong) FBInterstitialAd *interstitialAd;
 
 @end
 
@@ -31,9 +32,9 @@ RCT_EXPORT_METHOD(
   _resolve = resolve;
   _reject = reject;
   
-  FBInterstitialAd *interstitialAd = [[FBInterstitialAd alloc] initWithPlacementID:placementId];
-  interstitialAd.delegate = self;
-  [interstitialAd loadAd];
+  _interstitialAd = [[FBInterstitialAd alloc] initWithPlacementID:placementId];
+  _interstitialAd.delegate = self;
+  [_interstitialAd loadAd];
 }
 
 #pragma mark - FBInterstitialAdDelegate
@@ -67,6 +68,7 @@ RCT_EXPORT_METHOD(
 - (void)cleanUpPromise {
   _reject = nil;
   _resolve = nil;
+  _interstitialAd = nil;
 }
 
 @end
