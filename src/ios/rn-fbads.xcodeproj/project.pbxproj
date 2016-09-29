@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ADBC7F081D9D5CB900D1CC4D /* CTKInterstitialAdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBC7F071D9D5CB900D1CC4D /* CTKInterstitialAdManager.m */; };
 		ADDCECB11D96B85500C511E0 /* CTKNativeAdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDCECB01D96B85500C511E0 /* CTKNativeAdManager.m */; };
 		ADDCECB41D96B85E00C511E0 /* CTKNativeAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDCECB31D96B85E00C511E0 /* CTKNativeAdView.m */; };
 		ADE502341D9C7A3400A44A63 /* CTKAdSettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE502331D9C7A3400A44A63 /* CTKAdSettingsManager.m */; };
@@ -25,6 +26,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		ADBC7F061D9D5CB900D1CC4D /* CTKInterstitialAdManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTKInterstitialAdManager.h; sourceTree = "<group>"; };
+		ADBC7F071D9D5CB900D1CC4D /* CTKInterstitialAdManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTKInterstitialAdManager.m; sourceTree = "<group>"; };
 		ADDCECA31D96B7DD00C511E0 /* librn-fbads.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "librn-fbads.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADDCECAF1D96B85500C511E0 /* CTKNativeAdManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTKNativeAdManager.h; sourceTree = "<group>"; };
 		ADDCECB01D96B85500C511E0 /* CTKNativeAdManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTKNativeAdManager.m; sourceTree = "<group>"; };
@@ -48,6 +51,8 @@
 		ADDCEC9A1D96B7DD00C511E0 = {
 			isa = PBXGroup;
 			children = (
+				ADBC7F061D9D5CB900D1CC4D /* CTKInterstitialAdManager.h */,
+				ADBC7F071D9D5CB900D1CC4D /* CTKInterstitialAdManager.m */,
 				ADE502321D9C7A3400A44A63 /* CTKAdSettingsManager.h */,
 				ADE502331D9C7A3400A44A63 /* CTKAdSettingsManager.m */,
 				ADDCECB21D96B85E00C511E0 /* CTKNativeAdView.h */,
@@ -125,6 +130,7 @@
 				ADDCECB11D96B85500C511E0 /* CTKNativeAdManager.m in Sources */,
 				ADE502341D9C7A3400A44A63 /* CTKAdSettingsManager.m in Sources */,
 				ADDCECB41D96B85E00C511E0 /* CTKNativeAdView.m in Sources */,
+				ADBC7F081D9D5CB900D1CC4D /* CTKInterstitialAdManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

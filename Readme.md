@@ -26,6 +26,8 @@ Features:
     - [NativeAdsManager](#nativeadsmanager)
       - [disableAutoRefresh](#disableautorefresh)
       - [setMediaCachePolicy](#setmediacachepolicy)
+    - [InterstitialAdManager](#interstitialadmanager)
+      - [showAd](#showad)
     - [AdSettings](#adsettings)
       - [addTestDevice](#addtestdevice)
       - [clearTestDevices](#cleartestdevices)
@@ -152,6 +154,30 @@ adsManager.setMediaCachePolicy('none' | 'icon' | 'image' | 'all');
 ```
 
 **Note:** This method is a noop on Android
+
+### InterstitialAdManager
+
+```js
+import { InterstitialAdManager } from 'react-native-fbads';
+```
+
+InterstitialAdManager is a manager that allows you to display interstitial ads within your app with a single call.
+
+#### showAd
+
+Loads an interstitial ad asynchronously and shows it full screen by attaching a view onto the current root view
+controller. 
+
+```js
+InterstitialAdManager.showAd('placementId')
+  .then(...)
+  .catch(...);
+```
+
+Promise will be rejected when there's an error loading ads from Facebook Audience network. It will resolve with a 
+`boolean` indicating whether user didClick an ad or not.
+
+**Note:** There can be only one `showAd` call being performed at a time. Otherwise, an error will be thrown.
 
 ### AdSettings
 
