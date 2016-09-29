@@ -28,7 +28,7 @@ export default {
   clearTestDevices() {
     CTKAdSettingsManager.clearTestDevices();
   },
-  
+
   /**
    * Sets current SDK log level
    */
@@ -53,7 +53,7 @@ export default {
   /**
    * Sets URL prefix
    */
-  setURLPrefix(urlPrefix: string) {
-    CTKAdSettingsManager.setURLPrefix(urlPrefix);
+  setUrlPrefix(urlPrefix: string) {
+    CTKAdSettingsManager.setUrlPrefix(urlPrefix);
   },
 };

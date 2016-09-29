@@ -32,7 +32,7 @@ Features:
       - [setLogLevel](#setloglevel)
       - [setIsChildDirected](#setischilddirected)
       - [setMediationService](#setmediationservice)
-      - [setURLPrefix](#seturlprefix)
+      - [setUrlPrefix](#seturlprefix)
 - [Running example](#running-example)
    - [Install dependencies](#1-install-dependencies)
    - [Start packager](#2-start-packager)

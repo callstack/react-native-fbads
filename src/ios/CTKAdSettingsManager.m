@@ -48,7 +48,7 @@ RCT_EXPORT_METHOD(setMediationService:(NSString *)mediationService) {
   [FBAdSettings setMediationService:mediationService];
 }
 
-RCT_EXPORT_METHOD(setURLPrefix:(NSString *)urlPrefix) {
+RCT_EXPORT_METHOD(setUrlPrefix:(NSString *)urlPrefix) {
   [FBAdSettings setUrlPrefix:urlPrefix];
 }
 
