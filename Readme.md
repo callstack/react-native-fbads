@@ -190,6 +190,8 @@ Sets current SDK log level.
 AdSettings.setLogLevel('none' | 'debug' | 'verbose' | 'warning' | 'error' | 'notification');
 ```
 
+**Note:** This method is a noop on Android.
+
 #### setIsChildDirected
 
 Configures the ad control for treatment as child-directed.
