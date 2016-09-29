@@ -5,14 +5,24 @@
  */
 
 import React from 'react';
-import { AppRegistry, StyleSheet, Text, View } from 'react-native';
+import { AppRegistry, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import FullAd from './components/FullAd';
-import { NativeAdsManager } from '../';
+import { NativeAdsManager, InterstitialAdManager } from '../';
 
 const adsManager = new NativeAdsManager('1912255062335197_1912257885668248');
 
 class MainApp extends React.Component {
+  showFullScreenAd = () => {
+    InterstitialAdManager.showAd('1912255062335197_1912257885668248')
+      .then(response => {
+        console.log(response);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   render() {
     return (
       <View style={styles.container}>
@@ -25,6 +35,9 @@ class MainApp extends React.Component {
           app look & feel
         </Text>
         <FullAd adsManager={adsManager} />
+        <TouchableOpacity onPress={this.showFullScreenAd}>
+          <Text>Show interstitial ad</Text>
+        </TouchableOpacity>
       </View>
     );
   }
