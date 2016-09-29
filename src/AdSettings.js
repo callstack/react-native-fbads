@@ -28,14 +28,7 @@ export default {
   clearTestDevices() {
     CTKAdSettingsManager.clearTestDevices();
   },
-
-  /**
-   * Gets current SDK log level
-   */
-  getLogLevel(): Promise<SDKLogLevel> {
-    return CTKAdSettingsManager.getLogLevel();
-  },
-
+  
   /**
    * Sets current SDK log level
    */

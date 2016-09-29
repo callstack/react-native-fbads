@@ -29,7 +29,6 @@ Features:
     - [AdSettings](#adsettings)
       - [addTestDevice](#addtestdevice)
       - [clearTestDevices](#cleartestdevices)
-      - [getLogLevel](#getloglevel)
       - [setLogLevel](#setloglevel)
       - [setIsChildDirected](#setischilddirected)
       - [setMediationService](#setmediationservice)
@@ -181,14 +180,6 @@ an instance of AdsManager once again.
 
 ```js
 AdSettings.clearTestDevices();
-```
-
-#### getLogLevel
-
-Returns the current SDK log level
-
-```js
-AdSettings.getLogLevel();
 ```
 
 #### setLogLevel

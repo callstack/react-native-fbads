@@ -36,10 +36,6 @@ RCT_EXPORT_METHOD(clearTestDevices) {
   [FBAdSettings clearTestDevices];
 }
 
-RCT_EXPORT_METHOD(getLogLevel:(RCTPromiseResolveBlock)resolve rejecter:(__unused RCTPromiseRejectBlock)reject) {
-  resolve(@([FBAdSettings getLogLevel]));
-}
-
 RCT_EXPORT_METHOD(setLogLevel:(FBAdLogLevel)logLevel) {
   [FBAdSettings setLogLevel:logLevel];
 }
@@ -52,7 +48,7 @@ RCT_EXPORT_METHOD(setMediationService:(NSString *)mediationService) {
   [FBAdSettings setMediationService:mediationService];
 }
 
-RCT_EXPORT_METHOD(setUrlPrefix:(NSString *)urlPrefix) {
+RCT_EXPORT_METHOD(setURLPrefix:(NSString *)urlPrefix) {
   [FBAdSettings setUrlPrefix:urlPrefix];
 }
 
