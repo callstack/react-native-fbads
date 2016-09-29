@@ -101,7 +101,7 @@ class AdComponent extends React.Component {
   render() {
     return (
       <View>
-        <Text>{nativeAd.description}</Text>
+        <Text>{this.props.nativeAd.description}</Text>
       </View>
     );
   }
