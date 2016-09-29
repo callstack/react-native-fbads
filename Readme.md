@@ -170,13 +170,12 @@ controller.
 
 ```js
 InterstitialAdManager.showAd('placementId')
-  .then(didClick => {
-    
-  })
-  .catch(err => console.log(err));
+  .then(...)
+  .catch(...);
 ```
 
-Promise will be rejected when there's an error loading ads from Facebook Audience network.
+Promise will be rejected when there's an error loading ads from Facebook Audience network. It will resolve with a 
+`boolean` indicating whether user didClick an ad or not.
 
 **Note:** There can be only one `showAd` call being performed at a time. Otherwise, an error will be thrown.
 
