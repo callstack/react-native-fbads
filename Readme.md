@@ -266,7 +266,7 @@ $ cd ./example && npm start
 ### 3. Run it on iOS / Android
 
 ```bash
-$ cd ./example && npm run ios
+$ cd ./examples && npm run ios
 $ cd ./examples && npm run android
 ```
 
