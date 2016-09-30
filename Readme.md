@@ -246,6 +246,8 @@ AdSettings.setUrlPrefix('...');
 
 ## Running example
 
+In order to see ads you will have to create your own `placementId` and use it instead of the one provided in the examples. This is our internal set up that doesn't work for any developers outside of Callstack.io organisation. This is because of Facebook not showing test ads to outside collaborators in the development mode.
+
 ### 1. Install dependencies
 
 ```bash
