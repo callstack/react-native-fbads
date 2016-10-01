@@ -7,7 +7,7 @@ react-native-fbads [![npm version](https://badge.fury.io/js/react-native-fbads.s
 
 Features:
 - [X] Native Ads
-- [ ] Interstitial Ads
+- [X] Interstitial Ads (iOS only)
 - [ ] Banner Ads
 
 ## Table of Contents
@@ -18,6 +18,8 @@ Features:
     - [iOS](#21-ios)
     - [Android](#22-android)
 - [Usage](#usage)
+   - [Interstitial Ads](#interstitial-ads)
+      - [1. Showing ad](#1-showing-ad)
    - [Native Ads](#native-ads)
       - [1. Creating AdsManager](#1-creating-adsmanager)
       - [2. Making ad component](#2-making-ad-component)
@@ -68,6 +70,28 @@ If you are using [`react-native-fbsdk`](https://github.com/facebook/react-native
 ## Usage
 
 For detailed usage please check `examples` folder.
+
+### Interstitial Ads
+
+Interstitial Ad is a type of an ad that displays full screen with media content. It has a dismiss button as well as the clickable area that takes user outside of your app.
+
+<img src="https://cloud.githubusercontent.com/assets/2464966/19014517/3cea1da2-87ef-11e6-9f5a-6f3dbccc18a2.png" height="500">
+
+They are displayed over your root view with a single, imperative call.
+
+#### 1. Showing ad
+
+In order to show an ad, you have to import `InterstitialAdManager` and call `showAd` on it supplying it a placementId identifier, as in the below example:
+
+```js
+import { InterstitialAdManager } from 'react-native-fbads';
+
+InterstitialAdManager.showAd(placementId)
+  .then(didClick => {})
+  .catch(error => {})
+```
+
+Method returns a promise that will be rejected when an error occurs during a call (e.g. no fill from ad server or network error) and resolve when user either dimisses or interacts with the displayed ad.
 
 ### Native Ads
 
