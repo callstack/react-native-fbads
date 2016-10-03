@@ -1,14 +1,23 @@
 import { PropTypes } from 'react';
 import { requireNativeComponent, View } from 'react-native';
 
-var banner = {
+
+const BANNER_HEIGHT_50 = { width: -1, height: 50 };
+const BANNER_HEIGHT_90 = { width: -1, height: 90 };
+const RECTANGLE_HEIGHT_250 = { width: -1, height: 250 };
+
+const banner = {
   name: 'BannerView',
   propTypes: {
     placementId: PropTypes.string,
-    size: PropTypes.object,
-    // resizeMode: PropTypes.oneOf(['cover', 'contain', 'stretch']),
-    ...View.propTypes // include the default view properties
+    size: PropTypes.oneOf([BANNER_HEIGHT_50, BANNER_HEIGHT_90, RECTANGLE_HEIGHT_250]),
+    ...View.propTypes
   },
 };
 
-module.exports = requireNativeComponent('CTKBannerView', banner);
+const BannerView = requireNativeComponent('CTKBannerView', banner);
+BannerView.BANNER_HEIGHT_50 = BANNER_HEIGHT_50;
+BannerView.BANNER_HEIGHT_90 = BANNER_HEIGHT_90;
+BannerView.RECTANGLE_HEIGHT_250 = RECTANGLE_HEIGHT_250;
+
+module.exports = BannerView;

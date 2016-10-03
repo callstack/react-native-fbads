@@ -8,7 +8,7 @@ import React from 'react';
 import { AppRegistry, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import FullAd from './components/FullAd';
-import { NativeAdsManager, InterstitialAdManager, BannerViewManager } from '../';
+import { NativeAdsManager, InterstitialAdManager, BannerView } from '../';
 
 const adsManager = new NativeAdsManager('1912255062335197_1912257885668248');
 
@@ -38,10 +38,10 @@ class MainApp extends React.Component {
         <TouchableOpacity onPress={this.showFullScreenAd}>
           <Text>Show interstitial ad</Text>
         </TouchableOpacity>
-        <BannerViewManager
+        <BannerView
           style={styles.banner}
           placementId="1912255062335197_1915775421983161"
-          size={{width:-1, height:50}}
+          size={BannerView.BANNER_HEIGHT_50}
         />
       </View>
     );
@@ -62,12 +62,12 @@ const styles = StyleSheet.create({
   },
   welcome: {
     fontSize: 20,
-    textAlign: "center",
+    textAlign: 'center',
     margin: 10,
   },
   banner: {
-    alignSelf: "stretch",
-    height: 50,
+    alignSelf: 'stretch',
+    height: 250,
   },
 });
 

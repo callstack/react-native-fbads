@@ -12,4 +12,4 @@ export { default as withNativeAd } from './withNativeAd';
 export { default as AdSettings } from './AdSettings';
 export { default as NativeAdsManager } from './NativeAdsManager';
 export { default as InterstitialAdManager } from './InterstitialAdManager';
-export { default as BannerViewManager } from './BannerViewManager';
+export { default as BannerView } from './BannerViewManager';

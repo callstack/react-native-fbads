@@ -4,7 +4,6 @@ import android.content.res.Resources;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
-import android.widget.LinearLayout;
 
 import com.facebook.ads.Ad;
 import com.facebook.ads.AdError;
@@ -14,8 +13,6 @@ import com.facebook.ads.AdView;
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.views.view.ReactViewGroup;
-
-import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 
 
 public class BannerView extends ReactViewGroup implements AdListener {
@@ -34,21 +31,6 @@ public class BannerView extends ReactViewGroup implements AdListener {
   public void setSize(AdSize s) {
     size = s;
     createAdViewIfCan();
-  }
-
-  private ReactContext context;
-  private AdView adView;
-  private String placementId;
-  private AdSize size;
-
-  private void createAdViewIfCan() {
-//    context.getBaseContext()
-    if (adView == null && placementId != null && size != null) {
-      adView = new AdView(this.getContext(), placementId, size);
-      adView.setAdListener(this);
-
-      adView.loadAd();
-    }
   }
 
   @Override
@@ -77,6 +59,20 @@ public class BannerView extends ReactViewGroup implements AdListener {
   @Override
   public void onAdClicked(Ad ad) {
     Log.d(TAG, "Banner ad clicked");
+  }
+
+  private ReactContext context;
+  private AdView adView;
+  private String placementId;
+  private AdSize size;
+
+  private void createAdViewIfCan() {
+    if (adView == null && placementId != null && size != null) {
+      adView = new AdView(this.getContext(), placementId, size);
+      adView.setAdListener(this);
+
+      adView.loadAd();
+    }
   }
 
   private int dp2px(int dp, DisplayMetrics dm) {
