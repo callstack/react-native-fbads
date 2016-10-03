@@ -1,12 +1,9 @@
 package io.callstack.react.fbads;
 
-import com.facebook.ads.AbstractAdListener;
 import com.facebook.ads.Ad;
 import com.facebook.ads.AdError;
-import com.facebook.ads.AdListener;
 import com.facebook.ads.InterstitialAd;
 import com.facebook.ads.InterstitialAdListener;
-import com.facebook.react.bridge.AssertionException;
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
@@ -14,22 +11,25 @@ import com.facebook.react.bridge.ReactMethod;
 
 public class InterstitialAdManager extends ReactContextBaseJavaModule implements InterstitialAdListener {
 
+  private Promise mPromise;
+  private boolean mDidClick = false;
+  private InterstitialAd mInterstitial;
+
   public InterstitialAdManager(ReactApplicationContext reactContext) {
     super(reactContext);
   }
 
   @ReactMethod
   public void showAd(String placementId, Promise p) {
-    if(promise != null) {
+    if (mPromise != null) {
       return;
     }
-
     ReactApplicationContext reactContext = this.getReactApplicationContext();
 
-    promise = p;
-    interstitial = new InterstitialAd(reactContext, placementId);
-    interstitial.setAdListener(this);
-    interstitial.loadAd();
+    mPromise = p;
+    mInterstitial = new InterstitialAd(reactContext, placementId);
+    mInterstitial.setAdListener(this);
+    mInterstitial.loadAd();
   }
 
   @Override
@@ -39,24 +39,26 @@ public class InterstitialAdManager extends ReactContextBaseJavaModule implements
 
   @Override
   public void onError(Ad ad, AdError adError) {
-    promise.reject("" + adError.getErrorCode(), adError.getErrorMessage());
+    mPromise.reject("E_FAILED_TO_LOAD", adError.getErrorMessage());
+    cleanUp();
   }
 
   @Override
   public void onAdLoaded(Ad ad) {
-    if (ad == interstitial) {
-      interstitial.show();
+    if (ad == mInterstitial) {
+      mInterstitial.show();
     }
   }
 
   @Override
   public void onAdClicked(Ad ad) {
-    resolveAndCleanUp(true);
+    mDidClick = true;
   }
 
   @Override
   public void onInterstitialDismissed(Ad ad) {
-    resolveAndCleanUp(false);
+    mPromise.resolve(mDidClick);
+    cleanUp();
   }
 
   @Override
@@ -64,14 +66,8 @@ public class InterstitialAdManager extends ReactContextBaseJavaModule implements
 
   }
 
-  private void resolveAndCleanUp(boolean result) {
-    if(promise != null) {
-      promise.resolve(result);
-    }
-
-    promise = null;
+  private void cleanUp() {
+    mPromise = null;
+    mDidClick = false;
   }
-
-  private Promise promise;
-  private InterstitialAd interstitial;
 }
