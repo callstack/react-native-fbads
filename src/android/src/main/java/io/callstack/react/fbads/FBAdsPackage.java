@@ -25,7 +25,8 @@ public class FBAdsPackage implements ReactPackage {
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
         return Arrays.<NativeModule>asList(
            new NativeAdManager(reactContext),
-           new AdSettingsManager(reactContext)
+           new AdSettingsManager(reactContext),
+           new InterstitialAdManager(reactContext)
         );
     }
 

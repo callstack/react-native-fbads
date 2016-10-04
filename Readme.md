@@ -190,7 +190,7 @@ InterstitialAdManager is a manager that allows you to display interstitial ads w
 #### showAd
 
 Loads an interstitial ad asynchronously and shows it full screen by attaching a view onto the current root view
-controller. 
+controller.
 
 ```js
 InterstitialAdManager.showAd('placementId')
@@ -198,8 +198,15 @@ InterstitialAdManager.showAd('placementId')
   .catch(...);
 ```
 
-Promise will be rejected when there's an error loading ads from Facebook Audience network. It will resolve with a 
+Promise will be rejected when there's an error loading ads from Facebook Audience network. It will resolve with a
 `boolean` indicating whether user didClick an ad or not.
+
+On Android you have to add following activity to *AndroidManifest.xml*
+```xml
+<activity
+  android:name="com.facebook.ads.InterstitialAdActivity"
+  android:configChanges="keyboardHidden|orientation" />
+```
 
 **Note:** There can be only one `showAd` call being performed at a time. Otherwise, an error will be thrown.
 
@@ -234,7 +241,7 @@ AdSettings.clearTestDevices();
 
 #### setLogLevel
 
-Sets current SDK log level. 
+Sets current SDK log level.
 
 ```js
 AdSettings.setLogLevel('none' | 'debug' | 'verbose' | 'warning' | 'error' | 'notification');
