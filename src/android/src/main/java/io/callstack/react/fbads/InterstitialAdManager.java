@@ -74,8 +74,8 @@ public class InterstitialAdManager extends ReactContextBaseJavaModule implements
 
     if (mInterstitial != null) {
       mInterstitial.destroy();
+      mInterstitial = null;
     }
-    mInterstitial = null;
   }
 
   @Override
