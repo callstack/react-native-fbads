@@ -71,6 +71,11 @@ public class InterstitialAdManager extends ReactContextBaseJavaModule implements
   private void cleanUp() {
     mPromise = null;
     mDidClick = false;
+
+    if (mInterstitial != null) {
+      mInterstitial.destroy();
+    }
+    mInterstitial = null;
   }
 
   @Override
@@ -85,9 +90,6 @@ public class InterstitialAdManager extends ReactContextBaseJavaModule implements
 
   @Override
   public void onHostDestroy() {
-    if (mInterstitial != null) {
-      mInterstitial.destroy();
-    }
-
+    cleanUp();
   }
 }
