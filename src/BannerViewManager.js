@@ -11,11 +11,16 @@ const banner = {
   propTypes: {
     placementId: PropTypes.string,
     size: PropTypes.oneOf([BANNER_HEIGHT_50, BANNER_HEIGHT_90, RECTANGLE_HEIGHT_250]),
-    ...View.propTypes
+    onAdClick: PropTypes.func,
+    onAdError: PropTypes.func,
+    ...View.propTypes,
   },
 };
 
-const BannerView = requireNativeComponent('CTKBannerView', banner);
+const BannerView = requireNativeComponent('CTKBannerView', banner, {
+  onAdClick: true,
+  onAdError: true,
+});
 BannerView.BANNER_HEIGHT_50 = BANNER_HEIGHT_50;
 BannerView.BANNER_HEIGHT_90 = BANNER_HEIGHT_90;
 BannerView.RECTANGLE_HEIGHT_250 = RECTANGLE_HEIGHT_250;

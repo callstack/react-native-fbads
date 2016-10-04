@@ -22,6 +22,8 @@ class MainApp extends React.Component {
         console.log(err);
       });
   };
+  onBannerClick = () => console.log('Ad clicked!');
+  onBannerAdError = (event) => console.log('Ad error :(', event.nativeEvent);
 
   render() {
     return (
@@ -42,6 +44,8 @@ class MainApp extends React.Component {
           style={styles.banner}
           placementId="1912255062335197_1915775421983161"
           size={BannerView.BANNER_HEIGHT_50}
+          onAdClick={this.onBannerClick}
+          onAdError={this.onBannerAdError}
         />
       </View>
     );

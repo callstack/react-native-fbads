@@ -2,7 +2,6 @@ package io.callstack.react.fbads;
 
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.TypedValue;
 
 import com.facebook.ads.Ad;
@@ -10,72 +9,101 @@ import com.facebook.ads.AdError;
 import com.facebook.ads.AdListener;
 import com.facebook.ads.AdSize;
 import com.facebook.ads.AdView;
+import com.facebook.react.bridge.Arguments;
+import com.facebook.react.bridge.LifecycleEventListener;
 import com.facebook.react.bridge.ReactContext;
+import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.uimanager.ThemedReactContext;
+import com.facebook.react.uimanager.events.RCTEventEmitter;
 import com.facebook.react.views.view.ReactViewGroup;
 
 
-public class BannerView extends ReactViewGroup implements AdListener {
+public class BannerView extends ReactViewGroup implements AdListener, LifecycleEventListener {
 
-  public static final String TAG = "BannerView";
-  public BannerView(ThemedReactContext c) {
-    super(c);
-    context = c;
+  private ReactContext mContext;
+  private AdView myAdView;
+  private String mPlacementId;
+  private AdSize mSize;
+  private RCTEventEmitter mEventEmitter;
+
+  public BannerView(ThemedReactContext context) {
+    super(context);
+    mContext = context;
+    mContext.addLifecycleEventListener(this);
+    mEventEmitter = mContext.getJSModule(RCTEventEmitter.class);
   }
 
-  public void setPlacementId(String p) {
-    placementId = p;
+  public void setPlacementId(String placementId) {
+    mPlacementId = placementId;
     createAdViewIfCan();
   }
 
-  public void setSize(AdSize s) {
-    size = s;
+  public void setSize(AdSize size) {
+    mSize = size;
     createAdViewIfCan();
   }
 
   @Override
   public void onError(Ad ad, AdError adError) {
-    Log.e(TAG, adError.getErrorMessage());
-    adView.destroy();
+    WritableMap event = Arguments.createMap();
+
+    event.putInt("errorCode", adError.getErrorCode());
+    event.putString("errorMessage", adError.getErrorMessage());
+    mEventEmitter.receiveEvent(getId(), "onAdError", event);
+
+    myAdView.destroy();
+    myAdView = null;
   }
 
   @Override
   public void onAdLoaded(Ad ad) {
-    Log.d(TAG, "Banner ad loaded");
     this.removeAllViews();
 
-    Resources r = context.getResources();
+    Resources r = mContext.getResources();
     DisplayMetrics dm = r.getDisplayMetrics();
-    int pxW = size.getWidth() > 0 ?
-      dp2px(size.getWidth(), dm)
+    int pxW = mSize.getWidth() > 0 ?
+      dp2px(mSize.getWidth(), dm)
       : r.getDisplayMetrics().widthPixels;
-    int pxH = dp2px(size.getHeight(), dm);
+    int pxH = dp2px(mSize.getHeight(), dm);
 
-    adView.measure(pxW, pxH);
-    adView.layout(0, 0, pxW, pxH);
-    this.addView(adView);
+    myAdView.measure(pxW, pxH);
+    myAdView.layout(0, 0, pxW, pxH);
+
+    addView(myAdView);
   }
 
   @Override
   public void onAdClicked(Ad ad) {
-    Log.d(TAG, "Banner ad clicked");
+    mEventEmitter.receiveEvent(getId(), "onAdClick", null);
   }
 
-  private ReactContext context;
-  private AdView adView;
-  private String placementId;
-  private AdSize size;
-
   private void createAdViewIfCan() {
-    if (adView == null && placementId != null && size != null) {
-      adView = new AdView(this.getContext(), placementId, size);
-      adView.setAdListener(this);
+    if (myAdView == null && mPlacementId != null && mSize != null) {
+      myAdView = new AdView(this.getContext(), mPlacementId, mSize);
+      myAdView.setAdListener(this);
 
-      adView.loadAd();
+      myAdView.loadAd();
     }
   }
 
   private int dp2px(int dp, DisplayMetrics dm) {
     return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, dm));
+  }
+
+  @Override
+  public void onHostResume() {
+
+  }
+
+  @Override
+  public void onHostPause() {
+
+  }
+
+  @Override
+  public void onHostDestroy() {
+    if (myAdView != null) {
+      myAdView.destroy();
+    }
   }
 }
