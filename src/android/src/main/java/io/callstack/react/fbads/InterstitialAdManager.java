@@ -4,12 +4,13 @@ import com.facebook.ads.Ad;
 import com.facebook.ads.AdError;
 import com.facebook.ads.InterstitialAd;
 import com.facebook.ads.InterstitialAdListener;
+import com.facebook.react.bridge.LifecycleEventListener;
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 
-public class InterstitialAdManager extends ReactContextBaseJavaModule implements InterstitialAdListener {
+public class InterstitialAdManager extends ReactContextBaseJavaModule implements InterstitialAdListener, LifecycleEventListener {
 
   private Promise mPromise;
   private boolean mDidClick = false;
@@ -17,6 +18,7 @@ public class InterstitialAdManager extends ReactContextBaseJavaModule implements
 
   public InterstitialAdManager(ReactApplicationContext reactContext) {
     super(reactContext);
+    reactContext.addLifecycleEventListener(this);
   }
 
   @ReactMethod
@@ -69,5 +71,23 @@ public class InterstitialAdManager extends ReactContextBaseJavaModule implements
   private void cleanUp() {
     mPromise = null;
     mDidClick = false;
+  }
+
+  @Override
+  public void onHostResume() {
+
+  }
+
+  @Override
+  public void onHostPause() {
+
+  }
+
+  @Override
+  public void onHostDestroy() {
+    if (mInterstitial != null) {
+      mInterstitial.destroy();
+    }
+
   }
 }
