@@ -16,16 +16,16 @@
     "react": "*"
   },
   "devDependencies": {
-    "babel-eslint": "~6.1.2",
-    "eslint": "~3.6.0",
-    "eslint-config-airbnb": "~12.0.0",
-    "eslint-plugin-import": "~1.16.0",
-    "eslint-plugin-jsx-a11y": "~2.2.2",
-    "eslint-plugin-react": "~6.3.0",
-    "react": "15.3.2",
-    "react-native": "^0.34.1"
+    "babel-eslint": "~7.1.1",
+    "eslint": "~3.12.0",
+    "eslint-config-airbnb": "~13.0.0",
+    "eslint-plugin-import": "~2.2.0",
+    "eslint-plugin-jsx-a11y": "~3.0.1",
+    "eslint-plugin-react": "~6.8.0",
+    "react": "15.4.1",
+    "react-native": "^0.39.1"
   },
   "dependencies": {
-    "eventemitter3": "^2.0.0"
+    "eventemitter3": "^2.0.2"
   }
 }
