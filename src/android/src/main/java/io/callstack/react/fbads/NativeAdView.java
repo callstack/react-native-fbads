@@ -7,7 +7,7 @@
  */
 package io.callstack.react.fbads;
 
-import android.view.View;
+import android.view.MotionEvent;
 
 import com.facebook.ads.NativeAd;
 import com.facebook.react.bridge.Arguments;
@@ -22,6 +22,12 @@ public class NativeAdView extends ReactViewGroup {
 
     /** @{RCTEventEmitter} instance used for sending events back to JS **/
     private RCTEventEmitter mEventEmitter;
+
+    /** @{float} x coordinate where the touch event started **/
+    private float startX;
+
+    /** @{float} y coordinate where the touche event started **/
+    private float startY;
 
     /**
      * Creates new NativeAdView instance and retrieves event emitter
@@ -72,5 +78,31 @@ public class NativeAdView extends ReactViewGroup {
         mEventEmitter.receiveEvent(getId(), "onAdLoaded", event);
 
         mNativeAd.registerViewForInteraction(this);
+    }
+
+    /**
+     * If touch event is a click, simulate native event so that `FBAds` can
+     * trigger its listener
+     *
+     * @param {MotionEvent} ev
+     *
+     * @return
+     */
+    @Override
+    public boolean onTouchEvent(MotionEvent ev) {
+        switch (ev.getActionMasked()) {
+            case MotionEvent.ACTION_DOWN:
+                startX = ev.getX();
+                startY = ev.getY();
+                break;
+            case MotionEvent.ACTION_UP:
+                float deltaX = Math.abs(startX - ev.getX());
+                float deltaY = Math.abs(startY - ev.getY());
+                if (deltaX < 200 & deltaY < 200) {
+                    performClick();
+                }
+                break;
+        }
+        return true;
     }
 }
