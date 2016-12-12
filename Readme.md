@@ -212,12 +212,12 @@ On Android you have to add following activity to *AndroidManifest.xml*
 
 ### BannerView
 BannerView is a component that allows you to display native banners (know as *AdView*). Banners are available in 3 sizes:
-- BANNER_HEIGHT_50
-- BANNER_HEIGHT_90
-- RECTANGLE_HEIGHT_250
+- standard (BANNER_HEIGHT_50)
+- large (BANNER_HEIGHT_90)
+- rectangle (RECTANGLE_HEIGHT_250)
 
 You can listen on events:
-- `onAdClick(() => { })`
+- `onAdPress(() => { })`
 - `onAdError(({ nativeEvent: { errorCode: Int, errorMessage: String }}) => { })`
 
 ```js
@@ -231,10 +231,10 @@ function ViewWithBanner(props) {
     <View>
       <BannerView
         placementId="YOUR_BANNER_PLACEMENT_ID"
-        size={
-          BannerView.BANNER_HEIGHT_50 |
-          BannerView.BANNER_HEIGHT_90 |
-          BannerView.RECTANGLE_HEIGHT_250
+        type={
+          'standard'|
+          'large' |
+          'rectangle' 
         }
         style={styles.banner}
         onAdClick={onAdClick}

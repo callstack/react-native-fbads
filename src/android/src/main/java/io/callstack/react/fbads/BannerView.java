@@ -74,7 +74,7 @@ public class BannerView extends ReactViewGroup implements AdListener, LifecycleE
 
   @Override
   public void onAdClicked(Ad ad) {
-    mEventEmitter.receiveEvent(getId(), "onAdClick", null);
+    mEventEmitter.receiveEvent(getId(), "onAdPress", null);
   }
 
   private void createAdViewIfCan() {

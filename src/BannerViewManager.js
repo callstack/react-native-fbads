@@ -1,4 +1,4 @@
-import { PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { requireNativeComponent, View } from 'react-native';
 
 
@@ -11,18 +11,37 @@ const banner = {
   propTypes: {
     placementId: PropTypes.string,
     size: PropTypes.oneOf([BANNER_HEIGHT_50, BANNER_HEIGHT_90, RECTANGLE_HEIGHT_250]),
-    onAdClick: PropTypes.func,
+    onAdPress: PropTypes.func,
     onAdError: PropTypes.func,
     ...View.propTypes,
   },
 };
 
-const BannerView = requireNativeComponent('CTKBannerView', banner, {
-  onAdClick: true,
+const CTKBannerView = requireNativeComponent('CTKBannerView', banner, {
+  onAdPress: true,
   onAdError: true,
 });
-BannerView.BANNER_HEIGHT_50 = BANNER_HEIGHT_50;
-BannerView.BANNER_HEIGHT_90 = BANNER_HEIGHT_90;
-BannerView.RECTANGLE_HEIGHT_250 = RECTANGLE_HEIGHT_250;
+
+const BannerView = (props) => {
+  const { type } = props;
+
+  let size = null;
+  switch (type) {
+    case 'large':
+      size = BANNER_HEIGHT_90;
+      break;
+    case 'rectangle':
+      size = RECTANGLE_HEIGHT_250;
+      break;
+    default:
+      size = BANNER_HEIGHT_50;
+  }
+
+  return (<CTKBannerView {...props} size={size} />);
+};
+
+BannerView.propTypes = {
+  type: PropTypes.oneOf(['standard', 'large', 'rectangle']),
+};
 
 module.exports = BannerView;

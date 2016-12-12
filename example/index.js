@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-import { AppRegistry, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { AppRegistry, StyleSheet, Text, TouchableOpacity, ScrollView } from 'react-native';
 
 import FullAd from './components/FullAd';
 import { NativeAdsManager, InterstitialAdManager, BannerView } from '../';
@@ -22,12 +22,12 @@ class MainApp extends React.Component {
         console.log(err);
       });
   };
-  onBannerClick = () => console.log('Ad clicked!');
-  onBannerAdError = (event) => console.log('Ad error :(', event.nativeEvent);
+  onBannerPress = () => console.log('Ad clicked!');
+  onBannerError = (event) => console.log('Ad error :(', event.nativeEvent);
 
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <Text style={styles.welcome}>
           Welcome to React Native!
         </Text>
@@ -41,13 +41,26 @@ class MainApp extends React.Component {
           <Text>Show interstitial ad</Text>
         </TouchableOpacity>
         <BannerView
-          style={styles.banner}
+          style={styles.banner50}
           placementId="1912255062335197_1915775421983161"
-          size={BannerView.BANNER_HEIGHT_50}
-          onAdClick={this.onBannerClick}
-          onAdError={this.onBannerAdError}
+          onAdPress={this.onBannerPress}
+          onAdError={this.onBannerError}
         />
-      </View>
+        <BannerView
+          type="large"
+          style={styles.banner90}
+          placementId="1912255062335197_1954647211429315"
+          onAdPress={this.onBannerPress}
+          onAdError={this.onBannerError}
+        />
+        <BannerView
+          type="rectangle"
+          style={styles.bannerRectangle}
+          placementId="1912255062335197_1954647484762621"
+          onAdPress={this.onBannerPress}
+          onAdError={this.onBannerError}
+        />
+      </ScrollView>
     );
   }
 }
@@ -55,8 +68,6 @@ class MainApp extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#F5FCFF'
   },
   p: {
@@ -69,7 +80,15 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     margin: 10,
   },
-  banner: {
+  banner50: {
+    alignSelf: 'stretch',
+    height: 50,
+  },
+  banner90: {
+    alignSelf: 'stretch',
+    height: 90,
+  },
+  bannerRectangle: {
     alignSelf: 'stretch',
     height: 250,
   },
