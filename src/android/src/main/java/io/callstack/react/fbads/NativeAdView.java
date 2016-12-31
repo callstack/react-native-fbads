@@ -105,4 +105,9 @@ public class NativeAdView extends ReactViewGroup {
         }
         return true;
     }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        return true;
+    }
 }
