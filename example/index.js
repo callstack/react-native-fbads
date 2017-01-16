@@ -43,22 +43,22 @@ class MainApp extends React.Component {
         <BannerView
           style={styles.banner50}
           placementId="1912255062335197_1915775421983161"
-          onAdPress={this.onBannerPress}
-          onAdError={this.onBannerError}
+          onPress={this.onBannerPress}
+          onError={this.onBannerError}
         />
         <BannerView
           type="large"
           style={styles.banner90}
           placementId="1912255062335197_1954647211429315"
-          onAdPress={this.onBannerPress}
-          onAdError={this.onBannerError}
+          onPress={this.onBannerPress}
+          onError={this.onBannerError}
         />
         <BannerView
           type="rectangle"
           style={styles.bannerRectangle}
           placementId="1912255062335197_1954647484762621"
-          onAdPress={this.onBannerPress}
-          onAdError={this.onBannerError}
+          onPress={this.onBannerPress}
+          onError={this.onBannerError}
         />
       </ScrollView>
     );

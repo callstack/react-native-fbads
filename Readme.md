@@ -217,8 +217,8 @@ BannerView is a component that allows you to display native banners (know as *Ad
 - rectangle (RECTANGLE_HEIGHT_250)
 
 You can listen on events:
-- `onAdPress(() => { })`
-- `onAdError(({ nativeEvent: { errorCode: Int, errorMessage: String }}) => { })`
+- `onPress(() => { })`
+- `onError(({ nativeEvent: { errorCode: Int, errorMessage: String }}) => { })`
 
 ```js
 import { View, StyleSheet } from 'react-native';
@@ -237,8 +237,8 @@ function ViewWithBanner(props) {
           'rectangle' 
         }
         style={styles.banner}
-        onAdClick={onAdClick}
-        onAdError={onAdError}
+        onClick={onAdClick}
+        onError={onAdError}
     </View>
   );
 }

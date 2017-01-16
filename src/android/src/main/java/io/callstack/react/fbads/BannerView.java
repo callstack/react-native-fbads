@@ -51,7 +51,6 @@ public class BannerView extends ReactViewGroup implements AdListener, LifecycleE
     event.putString("errorMessage", adError.getErrorMessage());
     mEventEmitter.receiveEvent(getId(), "onAdError", event);
 
-    myAdView.destroy();
     myAdView = null;
   }
 
