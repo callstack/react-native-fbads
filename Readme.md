@@ -8,7 +8,7 @@ react-native-fbads [![npm version](https://badge.fury.io/js/react-native-fbads.s
 Features:
 - [X] Native Ads
 - [X] Interstitial Ads
-- [ ] Banner Ads
+- [X] Banner Ads (Android only)
 
 ## Table of Contents
 
@@ -209,6 +209,47 @@ On Android you have to add following activity to *AndroidManifest.xml*
 ```
 
 **Note:** There can be only one `showAd` call being performed at a time. Otherwise, an error will be thrown.
+
+### BannerView
+BannerView is a component that allows you to display native banners (know as *AdView*). Banners are available in 3 sizes:
+- standard (BANNER_HEIGHT_50)
+- large (BANNER_HEIGHT_90)
+- rectangle (RECTANGLE_HEIGHT_250)
+
+You can listen on events:
+- `onPress(() => { })`
+- `onError(({ nativeEvent: { errorCode: Int, errorMessage: String }}) => { })`
+
+```js
+import { View, StyleSheet } from 'react-native';
+import { BannerView } from 'react-native-fbads';
+
+const onAdClick = () => console.log('Ad clicked!');
+const onAdError = (event) => console.log('Ad error :(', event.nativeEvent);
+function ViewWithBanner(props) {
+  return (
+    <View>
+      <BannerView
+        placementId="YOUR_BANNER_PLACEMENT_ID"
+        type={
+          'standard'|
+          'large' |
+          'rectangle' 
+        }
+        style={styles.banner}
+        onClick={onAdClick}
+        onError={onAdError}
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  banner: {
+    alignSelf: 'stretch',
+    height: 50 | 90 | 250,
+  },
+});
+```
 
 ### AdSettings
 

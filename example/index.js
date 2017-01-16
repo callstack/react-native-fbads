@@ -5,10 +5,10 @@
  */
 
 import React from 'react';
-import { AppRegistry, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { AppRegistry, StyleSheet, Text, TouchableOpacity, ScrollView } from 'react-native';
 
 import FullAd from './components/FullAd';
-import { NativeAdsManager, InterstitialAdManager } from '../';
+import { NativeAdsManager, InterstitialAdManager, BannerView } from '../';
 
 const adsManager = new NativeAdsManager('1912255062335197_1912257885668248');
 
@@ -22,10 +22,12 @@ class MainApp extends React.Component {
         console.log(err);
       });
   };
+  onBannerPress = () => console.log('Ad clicked!');
+  onBannerError = (event) => console.log('Ad error :(', event.nativeEvent);
 
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <Text style={styles.welcome}>
           Welcome to React Native!
         </Text>
@@ -38,7 +40,27 @@ class MainApp extends React.Component {
         <TouchableOpacity onPress={this.showFullScreenAd}>
           <Text>Show interstitial ad</Text>
         </TouchableOpacity>
-      </View>
+        <BannerView
+          style={styles.banner50}
+          placementId="1912255062335197_1915775421983161"
+          onPress={this.onBannerPress}
+          onError={this.onBannerError}
+        />
+        <BannerView
+          type="large"
+          style={styles.banner90}
+          placementId="1912255062335197_1954647211429315"
+          onPress={this.onBannerPress}
+          onError={this.onBannerError}
+        />
+        <BannerView
+          type="rectangle"
+          style={styles.bannerRectangle}
+          placementId="1912255062335197_1954647484762621"
+          onPress={this.onBannerPress}
+          onError={this.onBannerError}
+        />
+      </ScrollView>
     );
   }
 }
@@ -46,9 +68,7 @@ class MainApp extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#F5FCFF'
   },
   p: {
     marginBottom: 10,
@@ -57,8 +77,20 @@ const styles = StyleSheet.create({
   },
   welcome: {
     fontSize: 20,
-    textAlign: "center",
+    textAlign: 'center',
     margin: 10,
+  },
+  banner50: {
+    alignSelf: 'stretch',
+    height: 50,
+  },
+  banner90: {
+    alignSelf: 'stretch',
+    height: 90,
+  },
+  bannerRectangle: {
+    alignSelf: 'stretch',
+    height: 250,
   },
 });
 
