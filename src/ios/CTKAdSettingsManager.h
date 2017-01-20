@@ -6,7 +6,7 @@
 //  Copyright © 2016 Callstack.io. All rights reserved.
 //
 
-#import "RCTBridgeModule.h"
+#import "React/RCTBridgeModule.h"
 
 @interface CTKAdSettingsManager : NSObject <RCTBridgeModule>
 

@@ -8,7 +8,7 @@
 
 @import FBAudienceNetwork;
 #import "CTKNativeAdView.h"
-#import "RCTUtils.h"
+#import "React/RCTUtils.h"
 
 @interface CTKNativeAdView ()
 
