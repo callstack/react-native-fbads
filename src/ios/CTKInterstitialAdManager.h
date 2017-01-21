@@ -6,7 +6,7 @@
 //  Copyright © 2016 callstack. All rights reserved.
 //
 
-#import "React/RCTBridgeModule.h"
+#import <React/RCTBridgeModule.h>
 
 @interface CTKInterstitialAdManager : NSObject <RCTBridgeModule>
 

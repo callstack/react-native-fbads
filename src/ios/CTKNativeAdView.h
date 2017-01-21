@@ -7,8 +7,8 @@
 //
 
 #import <FBAudienceNetwork/FBNativeAd.h>
-#import "React/RCTView.h"
-#import "React/RCTComponent.h"
+#import <React/RCTView.h>
+#import <React/RCTComponent.h>
 
 @interface CTKNativeAdView : RCTView
 

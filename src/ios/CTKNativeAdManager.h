@@ -6,7 +6,7 @@
 //  Copyright © 2016 Callstack.io. All rights reserved.
 //
 
-#import "React/RCTViewManager.h"
+#import <React/RCTViewManager.h>
 
 @interface CTKNativeAdManager : RCTViewManager
 
