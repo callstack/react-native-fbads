@@ -32,8 +32,10 @@
     return;
   }
   
+  FBAdSize fbAdSize = [self fbAdSizeForHeight:_size];
+  
   FBAdView *adView = [[FBAdView alloc] initWithPlacementID:_placementId
-                                                    adSize:kFBAdSizeHeight50Banner
+                                                    adSize:fbAdSize
                                         rootViewController:RCTPresentedViewController()];
   
   adView.frame = CGRectMake(0, 20, adView.bounds.size.width, adView.bounds.size.height);
@@ -42,6 +44,18 @@
   [adView loadAd];
   
   [self addSubview:adView];
+}
+
+- (FBAdSize)fbAdSizeForHeight:(NSNumber *)height {
+  switch ([height intValue]) {
+    case 90:
+      return kFBAdSizeHeight90Banner;
+    case 250:
+      return kFBAdSizeHeight250Rectangle;
+    case 50:
+    default:
+      return kFBAdSizeHeight50Banner;
+  }
 }
 
 # pragma mark - FBAdViewDelegate
