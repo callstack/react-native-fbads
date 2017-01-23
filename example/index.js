@@ -22,8 +22,9 @@ class MainApp extends React.Component {
         console.log(err);
       });
   };
-  onBannerPress = () => console.log('Ad clicked!');
-  onBannerError = (event) => console.log('Ad error :(', event.nativeEvent);
+
+  onBannerAdPress = () => console.log('Ad clicked!');
+  onBannerAdError = (event) => console.log('Ad error :(', event.nativeEvent);
 
   render() {
     return (
@@ -43,22 +44,22 @@ class MainApp extends React.Component {
         <BannerView
           style={styles.banner50}
           placementId="1912255062335197_1915775421983161"
-          onPress={this.onBannerPress}
-          onError={this.onBannerError}
+          onPress={this.onBannerAdPress}
+          onError={this.onBannerAdError}
         />
         <BannerView
           type="large"
           style={styles.banner90}
           placementId="1912255062335197_1954647211429315"
-          onPress={this.onBannerPress}
-          onError={this.onBannerError}
+          onPress={this.onBannerAdPress}
+          onError={this.onBannerAdError}
         />
         <BannerView
           type="rectangle"
           style={styles.bannerRectangle}
           placementId="1912255062335197_1954647484762621"
-          onPress={this.onBannerPress}
-          onError={this.onBannerError}
+          onPress={this.onBannerAdPress}
+          onError={this.onBannerAdError}
         />
       </ScrollView>
     );
@@ -82,15 +83,12 @@ const styles = StyleSheet.create({
   },
   banner50: {
     alignSelf: 'stretch',
-    height: 50,
   },
   banner90: {
     alignSelf: 'stretch',
-    height: 90,
   },
   bannerRectangle: {
     alignSelf: 'stretch',
-    height: 250,
   },
 });
 

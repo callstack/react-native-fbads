@@ -22,7 +22,7 @@ const CTKBannerView = requireNativeComponent('CTKBannerView', banner, {
 });
 
 const BannerView = (props) => {
-  const { type, onPress, onError, ...restProps } = props;
+  const { type, onPress, onError, style, ...restProps } = props;
 
   let size = null;
   switch (type) {
@@ -41,6 +41,7 @@ const BannerView = (props) => {
       size={size}
       onAdPress={onPress}
       onAdError={onError}
+      style={[style, { height: size.height }]}
       {...restProps}
     />
   );
