@@ -18,8 +18,8 @@ const BANNER_HEIGHT_90 = { width: -1, height: 90 };
 const RECTANGLE_HEIGHT_250 = { width: -1, height: 250 };
 
 const CTKBannerView = requireNativeComponent('CTKBannerView', null, {
-  onAdPress: true,
-  onAdError: true,
+  onPress: true,
+  onError: true,
 });
 
 const sizeForType = {
@@ -46,8 +46,6 @@ const BannerView = (props: BannerViewProps) => {
   return (
     <CTKBannerView
       size={size}
-      onAdPress={onPress}
-      onAdError={onError}
       style={[style, { height: size.height }]}
       {...restProps}
     />

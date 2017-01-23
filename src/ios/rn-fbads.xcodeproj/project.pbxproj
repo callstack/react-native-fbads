@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD540C161E36734D00EB6B73 /* CTKBannerViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AD540C151E36734D00EB6B73 /* CTKBannerViewManager.m */; };
+		AD540C191E36739C00EB6B73 /* CTKBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD540C181E36739C00EB6B73 /* CTKBannerView.m */; };
 		ADBC7F081D9D5CB900D1CC4D /* CTKInterstitialAdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBC7F071D9D5CB900D1CC4D /* CTKInterstitialAdManager.m */; };
 		ADDCECB11D96B85500C511E0 /* CTKNativeAdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDCECB01D96B85500C511E0 /* CTKNativeAdManager.m */; };
 		ADDCECB41D96B85E00C511E0 /* CTKNativeAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDCECB31D96B85E00C511E0 /* CTKNativeAdView.m */; };
@@ -26,6 +28,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AD540C141E36734D00EB6B73 /* CTKBannerViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTKBannerViewManager.h; sourceTree = "<group>"; };
+		AD540C151E36734D00EB6B73 /* CTKBannerViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTKBannerViewManager.m; sourceTree = "<group>"; };
+		AD540C171E36739C00EB6B73 /* CTKBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTKBannerView.h; sourceTree = "<group>"; };
+		AD540C181E36739C00EB6B73 /* CTKBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTKBannerView.m; sourceTree = "<group>"; };
 		ADBC7F061D9D5CB900D1CC4D /* CTKInterstitialAdManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTKInterstitialAdManager.h; sourceTree = "<group>"; };
 		ADBC7F071D9D5CB900D1CC4D /* CTKInterstitialAdManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTKInterstitialAdManager.m; sourceTree = "<group>"; };
 		ADDCECA31D96B7DD00C511E0 /* librn-fbads.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "librn-fbads.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,6 +65,10 @@
 				ADDCECB31D96B85E00C511E0 /* CTKNativeAdView.m */,
 				ADDCECAF1D96B85500C511E0 /* CTKNativeAdManager.h */,
 				ADDCECB01D96B85500C511E0 /* CTKNativeAdManager.m */,
+				AD540C141E36734D00EB6B73 /* CTKBannerViewManager.h */,
+				AD540C151E36734D00EB6B73 /* CTKBannerViewManager.m */,
+				AD540C171E36739C00EB6B73 /* CTKBannerView.h */,
+				AD540C181E36739C00EB6B73 /* CTKBannerView.m */,
 				ADDCECA41D96B7DD00C511E0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -129,8 +139,10 @@
 			files = (
 				ADDCECB11D96B85500C511E0 /* CTKNativeAdManager.m in Sources */,
 				ADE502341D9C7A3400A44A63 /* CTKAdSettingsManager.m in Sources */,
+				AD540C161E36734D00EB6B73 /* CTKBannerViewManager.m in Sources */,
 				ADDCECB41D96B85E00C511E0 /* CTKNativeAdView.m in Sources */,
 				ADBC7F081D9D5CB900D1CC4D /* CTKInterstitialAdManager.m in Sources */,
+				AD540C191E36739C00EB6B73 /* CTKBannerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

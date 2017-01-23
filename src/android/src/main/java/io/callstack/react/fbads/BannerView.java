@@ -49,7 +49,7 @@ public class BannerView extends ReactViewGroup implements AdListener, LifecycleE
 
     event.putInt("errorCode", adError.getErrorCode());
     event.putString("errorMessage", adError.getErrorMessage());
-    mEventEmitter.receiveEvent(getId(), "onAdError", event);
+    mEventEmitter.receiveEvent(getId(), "onError", event);
 
     myAdView = null;
   }
@@ -73,7 +73,7 @@ public class BannerView extends ReactViewGroup implements AdListener, LifecycleE
 
   @Override
   public void onAdClicked(Ad ad) {
-    mEventEmitter.receiveEvent(getId(), "onAdPress", null);
+    mEventEmitter.receiveEvent(getId(), "onPress", null);
   }
 
   private void createAdViewIfCan() {
