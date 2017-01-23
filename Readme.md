@@ -8,7 +8,7 @@ react-native-fbads [![npm version](https://badge.fury.io/js/react-native-fbads.s
 Features:
 - [X] Native Ads
 - [X] Interstitial Ads
-- [X] Banner Ads (Android only)
+- [X] Banner Ads
 
 ## Table of Contents
 
@@ -234,7 +234,7 @@ function ViewWithBanner(props) {
         type={
           'standard'|
           'large' |
-          'rectangle' 
+          'rectangle'
         }
         style={styles.banner}
         onClick={onAdClick}
@@ -246,7 +246,6 @@ function ViewWithBanner(props) {
 const styles = StyleSheet.create({
   banner: {
     alignSelf: 'stretch',
-    height: 50 | 90 | 250,
   },
 });
 ```

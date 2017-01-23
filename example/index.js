@@ -42,22 +42,13 @@ class MainApp extends React.Component {
           <Text>Show interstitial ad</Text>
         </TouchableOpacity>
         <BannerView
-          style={styles.banner50}
           placementId="1912255062335197_1915775421983161"
           onPress={this.onBannerAdPress}
           onError={this.onBannerAdError}
         />
         <BannerView
           type="large"
-          style={styles.banner90}
           placementId="1912255062335197_1954647211429315"
-          onPress={this.onBannerAdPress}
-          onError={this.onBannerAdError}
-        />
-        <BannerView
-          type="rectangle"
-          style={styles.bannerRectangle}
-          placementId="1912255062335197_1954647484762621"
           onPress={this.onBannerAdPress}
           onError={this.onBannerAdError}
         />
@@ -80,15 +71,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
-  },
-  banner50: {
-    alignSelf: 'stretch',
-  },
-  banner90: {
-    alignSelf: 'stretch',
-  },
-  bannerRectangle: {
-    alignSelf: 'stretch',
   },
 });
 
