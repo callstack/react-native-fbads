@@ -19,6 +19,8 @@ RCT_EXPORT_MODULE()
   return [CTKBannerView new];
 }
 
+RCT_EXPORT_VIEW_PROPERTY(size, NSNumber)
+RCT_EXPORT_VIEW_PROPERTY(placementId, NSString)
 RCT_EXPORT_VIEW_PROPERTY(onPress, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onError, RCTBubblingEventBlock)
 
