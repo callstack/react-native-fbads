@@ -14,8 +14,8 @@ import { requireNativeComponent, View } from 'react-native';
 type AdType = 'large' | 'rectangle' | 'standard';
 
 const CTKBannerView = requireNativeComponent('CTKBannerView', null, {
-  onPress: true,
-  onError: true,
+  onAdPress: true,
+  onAdError: true,
 });
 
 const sizeForType = {
@@ -43,6 +43,8 @@ const BannerView = (props: BannerViewProps) => {
   return (
     <CTKBannerView
       size={size}
+      onAdPress={onPress}
+      onAdError={onError}
       style={[style, { height: size }]}
       {...restProps}
     />

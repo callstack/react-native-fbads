@@ -38,9 +38,9 @@ public class BannerViewManager extends SimpleViewManager<BannerView> {
   public @Nullable Map getExportedCustomDirectEventTypeConstants() {
     return MapBuilder.of(
       "onPress",
-      MapBuilder.of("registrationName", "onPress"),
+      MapBuilder.of("registrationName", "onAdPress"),
       "onError",
-      MapBuilder.of("registrationName", "onError")
+      MapBuilder.of("registrationName", "onAdError")
     );
   }
 

@@ -61,11 +61,11 @@
 # pragma mark - FBAdViewDelegate
 
 - (void)adViewDidClick:(FBAdView *)adView {
-  _onPress(nil);
+  _onAdPress(nil);
 }
 
 - (void)adView:(FBAdView *)adView didFailWithError:(NSError *)error {
-  _onError(RCTJSErrorFromNSError(error));
+  _onAdError(RCTJSErrorFromNSError(error));
 }
 
 - (void)adViewDidFinishHandlingClick:(FBAdView *)adView {}

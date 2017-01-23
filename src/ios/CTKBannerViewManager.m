@@ -21,7 +21,7 @@ RCT_EXPORT_MODULE()
 
 RCT_EXPORT_VIEW_PROPERTY(size, NSNumber)
 RCT_EXPORT_VIEW_PROPERTY(placementId, NSString)
-RCT_EXPORT_VIEW_PROPERTY(onPress, RCTBubblingEventBlock)
-RCT_EXPORT_VIEW_PROPERTY(onError, RCTBubblingEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onAdPress, RCTBubblingEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onAdError, RCTBubblingEventBlock)
 
 @end
