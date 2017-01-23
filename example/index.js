@@ -42,11 +42,6 @@ class MainApp extends React.Component {
           <Text>Show interstitial ad</Text>
         </TouchableOpacity>
         <BannerView
-          placementId="1912255062335197_1915775421983161"
-          onPress={this.onBannerAdPress}
-          onError={this.onBannerAdError}
-        />
-        <BannerView
           type="large"
           placementId="1912255062335197_1954647211429315"
           onPress={this.onBannerAdPress}
