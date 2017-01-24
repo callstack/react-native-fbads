@@ -24,8 +24,8 @@ Features:
       - [1. Creating AdsManager](#1-creating-adsmanager)
       - [2. Making ad component](#2-making-ad-component)
       - [3. Rendering an ad](#3-rendering-an-ad)
-   - [Banner View)(#bannerview)
-      - [1. Showing ad)(#1-showing-ad)
+   - [Banner View](#bannerview)
+      - [1. Showing ad](showing-an-ad)
 - [API](#api)
     - [NativeAdsManager](#nativeadsmanager)
       - [disableAutoRefresh](#disableautorefresh)
@@ -166,7 +166,7 @@ Banners are available in 3 sizes:
 - `large` (BANNER_HEIGHT_90)
 - `rectangle` (RECTANGLE_HEIGHT_250)
 
-#### Showing an ad
+#### 1. Showing ad
 
 In order to show an ad, you have to first import it `BannerView` from the package:
 
