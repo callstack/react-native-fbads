@@ -25,8 +25,19 @@ public class BannerViewManager extends SimpleViewManager<BannerView> {
   }
 
   @ReactProp(name = "size")
-  public void setSize(BannerView view, ReadableMap size) {
-    view.setSize(AdSize.fromWidthAndHeight(size.getInt("width"), size.getInt("height")));
+  public void setSize(BannerView view, int size) {
+    AdSize adSize = null;
+    switch (size) {
+      case 90:
+        adSize = AdSize.BANNER_HEIGHT_90;
+        break;
+      case 250:
+        adSize = AdSize.RECTANGLE_HEIGHT_250;
+      case 50:
+      default:
+        adSize = AdSize.BANNER_HEIGHT_50;
+    }
+    view.setSize(adSize);
   }
 
   @Override
