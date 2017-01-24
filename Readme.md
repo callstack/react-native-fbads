@@ -1,4 +1,4 @@
-react-native-fbads [![npm version](https://badge.fury.io/js/react-native-fbads.svg)](https://badge.fury.io/js/react-native-fbads)>
+react-native-fbads [![npm version](https://badge.fury.io/js/react-native-fbads.svg)](https://badge.fury.io/js/react-native-fbads)
 ============
 
 [![Facebook Ads](http://i.imgur.com/yH3s6rd.png)](https://developers.facebook.com/products/app-monetization)
