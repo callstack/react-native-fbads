@@ -339,4 +339,4 @@ $ cd ./examples && npm run android
 
 ### Credits
 
-Some of the API explanations where borrowed from Facebook SDK documentation.
+Some of the API explanations were borrowed from Facebook SDK documentation.
