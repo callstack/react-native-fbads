@@ -24,6 +24,8 @@ Features:
       - [1. Creating AdsManager](#1-creating-adsmanager)
       - [2. Making ad component](#2-making-ad-component)
       - [3. Rendering an ad](#3-rendering-an-ad)
+   - [Banner View)(#bannerview)
+      - [1. Showing ad)(#1-showing-ad)
 - [API](#api)
     - [NativeAdsManager](#nativeadsmanager)
       - [disableAutoRefresh](#disableautorefresh)
@@ -155,6 +157,40 @@ class MainApp extends React.Component {
 }
 ```
 
+### BannerView
+
+BannerView is a component that allows you to display native banners (know as *AdView*). 
+
+Banners are available in 3 sizes:
+- `standard` (BANNER_HEIGHT_50)
+- `large` (BANNER_HEIGHT_90)
+- `rectangle` (RECTANGLE_HEIGHT_250)
+
+#### Showing an ad
+
+In order to show an ad, you have to first import it `BannerView` from the package:
+
+```js
+import { BannerView } from 'react-native-fbads';
+```
+
+Later in your app, you can render it like below:
+
+```js
+function ViewWithBanner(props) {
+  return (
+    <View>
+      <BannerView
+        placementId="YOUR_BANNER_PLACEMENT_ID"
+        type="standard"
+        onClick={() => console.log('click')}
+        onError={(err) => console.log('error', err)}
+      />
+    </View>
+  );
+}
+```
+
 ## API
 
 ### NativeAdsManager
@@ -209,46 +245,6 @@ On Android you have to add following activity to *AndroidManifest.xml*
 ```
 
 **Note:** There can be only one `showAd` call being performed at a time. Otherwise, an error will be thrown.
-
-### BannerView
-BannerView is a component that allows you to display native banners (know as *AdView*). Banners are available in 3 sizes:
-- standard (BANNER_HEIGHT_50)
-- large (BANNER_HEIGHT_90)
-- rectangle (RECTANGLE_HEIGHT_250)
-
-You can listen on events:
-- `onPress(() => { })`
-- `onError(({ nativeEvent: { errorCode: Int, errorMessage: String }}) => { })`
-
-```js
-import { View, StyleSheet } from 'react-native';
-import { BannerView } from 'react-native-fbads';
-
-const onAdClick = () => console.log('Ad clicked!');
-const onAdError = (event) => console.log('Ad error :(', event.nativeEvent);
-function ViewWithBanner(props) {
-  return (
-    <View>
-      <BannerView
-        placementId="YOUR_BANNER_PLACEMENT_ID"
-        type={
-          'standard'|
-          'large' |
-          'rectangle'
-        }
-        style={styles.banner}
-        onClick={onAdClick}
-        onError={onAdError}
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  banner: {
-    alignSelf: 'stretch',
-  },
-});
-```
 
 ### AdSettings
 
