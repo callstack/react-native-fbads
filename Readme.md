@@ -3,12 +3,7 @@ react-native-fbads [![npm version](https://badge.fury.io/js/react-native-fbads.s
 
 [![Facebook Ads](http://i.imgur.com/yH3s6rd.png)](https://developers.facebook.com/products/app-monetization)
 
-**Facebook Audience SDK** integration for React Native, available on iOS and Android.
-
-Features:
-- [X] Native Ads
-- [X] Interstitial Ads
-- [X] Banner Ads
+**Facebook Audience SDK** integration for React Native, available on iOS and Android. Features native, interstitial and banner ads.
 
 ## Table of Contents
 
