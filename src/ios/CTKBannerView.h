@@ -6,8 +6,8 @@
 //  Copyright © 2017 callstack. All rights reserved.
 //
 
-#import "RCTView.h"
-#import "RCTComponent.h"
+#import <React/RCTView.h>
+#import <React/RCTComponent.h>
 @import UIKit;
 
 @interface CTKBannerView : UIView

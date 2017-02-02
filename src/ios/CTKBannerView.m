@@ -8,7 +8,7 @@
 
 @import FBAudienceNetwork;
 #import "CTKBannerView.h"
-#import "RCTUtils.h"
+#import <React/RCTUtils.h>
 
 @interface CTKBannerView () <FBAdViewDelegate>
 
