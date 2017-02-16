@@ -28,8 +28,8 @@ RCT_ENUM_CONVERTER(FBAdLogLevel, (@{
 
 RCT_EXPORT_MODULE()
 
-RCT_EXPORT_METHOD(addTestDevice) {
-  [FBAdSettings addTestDevice:[FBAdSettings testDeviceHash]];
+RCT_EXPORT_METHOD(addTestDevice:(NSString *)deviceHash) {
+  [FBAdSettings addTestDevice:deviceHash];
 }
 
 RCT_EXPORT_METHOD(clearTestDevices) {
@@ -52,5 +52,9 @@ RCT_EXPORT_METHOD(setUrlPrefix:(NSString *)urlPrefix) {
   [FBAdSettings setUrlPrefix:urlPrefix];
 }
 
+- (NSDictionary *)constantsToExport
+{
+  return @{ @"deviceHashedId": [FBAdSettings testDeviceHash] };
+}
 
 @end

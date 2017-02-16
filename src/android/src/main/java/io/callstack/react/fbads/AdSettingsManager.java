@@ -16,13 +16,13 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 
-public class AdSettingsManager extends ReactContextBaseJavaModule {
+import java.util.HashMap;
+import java.util.Map;
 
-    private Context context;
+public class AdSettingsManager extends ReactContextBaseJavaModule {
 
     public AdSettingsManager(ReactApplicationContext reactContext) {
         super(reactContext);
-        context = reactContext;
     }
 
     @Override
@@ -31,12 +31,8 @@ public class AdSettingsManager extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void addTestDevice() {
-        SharedPreferences sp = context.getSharedPreferences("FBAdPrefs", 0);
-        String deviceIdHash = sp.getString("deviceIdHash", null);
-        if (deviceIdHash != null) {
-            AdSettings.addTestDevice(deviceIdHash);
-        }
+    public void addTestDevice(String deviceHashedId) {
+        AdSettings.addTestDevice(deviceHashedId);
     }
 
     @ReactMethod
@@ -62,5 +58,16 @@ public class AdSettingsManager extends ReactContextBaseJavaModule {
     @ReactMethod
     public void setUrlPrefix(String urlPrefix) {
         AdSettings.setUrlPrefix(urlPrefix);
+    }
+
+    @Override
+    public Map<String, Object> getConstants() {
+        final Map<String, Object> constants = new HashMap<>();
+        SharedPreferences sp = getReactApplicationContext().getSharedPreferences("FBAdPrefs", 0);
+        String deviceHashedId = sp.getString("deviceIdHash", null);
+
+        constants.put("deviceHashedId", deviceHashedId);
+
+        return constants;
     }
 }
