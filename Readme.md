@@ -251,14 +251,13 @@ AdSettings contains global settings for all ad controls.
 
 #### addTestDevice
 
-Registers given device to receive test ads. When you run app on simulator, it automatically gets added. Use it
-to receive test ads in development mode on a standalone phone. Hash of the current device can be obtained from a
-debug log.
+Registers device to receive test ads. When you run app on simulator, it should automatically get added. Use it
+to receive test ads in development mode on a standalone phone.
 
-All devices should be specified before any other action takes place, like [`AdsManager`](#nativeadsmanager) gets created.
+Should be called before any other action takes place, like [`AdsManager`](#nativeadsmanager) gets created.
 
 ```js
-AdSettings.addTestDevice('hash');
+AdSettings.addTestDevice();
 ```
 
 #### clearTestDevices

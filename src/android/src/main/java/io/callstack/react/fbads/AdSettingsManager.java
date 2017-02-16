@@ -7,6 +7,8 @@
  */
 package io.callstack.react.fbads;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.facebook.ads.AdSettings;
@@ -15,8 +17,12 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 
 public class AdSettingsManager extends ReactContextBaseJavaModule {
+
+    private Context context;
+
     public AdSettingsManager(ReactApplicationContext reactContext) {
         super(reactContext);
+        context = reactContext;
     }
 
     @Override
@@ -25,8 +31,12 @@ public class AdSettingsManager extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void addTestDevice(String deviceHash) {
-        AdSettings.addTestDevice(deviceHash);
+    public void addTestDevice() {
+        SharedPreferences sp = context.getSharedPreferences("FBAdPrefs", 0);
+        String deviceIdHash = sp.getString("deviceIdHash", null);
+        if (deviceIdHash != null) {
+            AdSettings.addTestDevice(deviceIdHash);
+        }
     }
 
     @ReactMethod
