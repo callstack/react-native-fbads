@@ -12,19 +12,11 @@ import { NativeModules } from 'react-native';
 
 const { CTKInterstitialAdManager } = NativeModules;
 
-let pendingPromise: ?Promise<boolean> = null;
 export default {
   /**
    * Shows interstitial ad for a given placementId
    */
   showAd(placementId: string): Promise<boolean> {
-    if (pendingPromise === null) {
-      pendingPromise = CTKInterstitialAdManager.showAd(placementId);
-      pendingPromise
-        .then(() => pendingPromise = null)
-        .catch(() => pendingPromise = null);
-    }
-
-    return pendingPromise;
+    return CTKInterstitialAdManager.showAd(placementId);
   },
 };

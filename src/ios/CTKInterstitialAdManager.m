@@ -28,7 +28,11 @@ RCT_EXPORT_METHOD(
   resolver:(RCTPromiseResolveBlock)resolve
   rejecter:(RCTPromiseRejectBlock)reject
 ) {
-  RCTAssert(_resolve == nil && _reject == nil, @"Only one `showAd` can be called at once");
+  if (_resolve != nil && _reject != nil) {
+    NSError *error = [[NSError alloc] initWithDomain:NSURLErrorDomain code:errno userInfo:nil];
+    reject(@"E_FAILED_TO_SHOW", @"Only one `showAd` can be called at once", error);
+    return;
+  }
   
   _resolve = resolve;
   _reject = reject;
