@@ -29,10 +29,10 @@ RCT_EXPORT_METHOD(
   rejecter:(RCTPromiseRejectBlock)reject
 ) {
   RCTAssert(_resolve == nil && _reject == nil, @"Only one `showAd` can be called at once");
-  
+
   _resolve = resolve;
   _reject = reject;
-  
+
   _interstitialAd = [[FBInterstitialAd alloc] initWithPlacementID:placementId];
   _interstitialAd.delegate = self;
   [_interstitialAd loadAd];
@@ -46,7 +46,7 @@ RCT_EXPORT_METHOD(
 
 - (void)interstitialAd:(FBInterstitialAd *)interstitialAd didFailWithError:(NSError *)error {
   _reject(@"E_FAILED_TO_LOAD", [error localizedDescription], error);
-  
+
   [self cleanUpPromise];
 }
 
@@ -56,7 +56,7 @@ RCT_EXPORT_METHOD(
 
 - (void)interstitialAdDidClose:(FBInterstitialAd *)interstitialAd {
   _resolve(@(_didClick));
-  
+
   [self cleanUpPromise];
 }
 
