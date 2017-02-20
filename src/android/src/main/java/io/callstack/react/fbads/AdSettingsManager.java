@@ -66,7 +66,7 @@ public class AdSettingsManager extends ReactContextBaseJavaModule {
         SharedPreferences sp = getReactApplicationContext().getSharedPreferences("FBAdPrefs", 0);
         String deviceHashedId = sp.getString("deviceIdHash", null);
 
-        constants.put("currentDeviceHashId", deviceHashedId);
+        constants.put("currentDeviceHash", deviceHashedId);
 
         return constants;
     }
