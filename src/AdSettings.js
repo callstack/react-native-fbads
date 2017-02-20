@@ -17,9 +17,9 @@ type SDKLogLevel = 'none' | 'debug' | 'verbose' | 'warning' | 'error' | 'notific
 export default {
 
   /**
-   * Contains device `hash id`
+   * Contains hash of the device id
    */
-  currentDeviceHashId: CTKAdSettingsManager.currentDeviceHashId,
+  currentDeviceHash: CTKAdSettingsManager.currentDeviceHash,
 
   /**
    * Registers given device with `deviceHash` to receive test Facebook ads.
