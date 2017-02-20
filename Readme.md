@@ -28,6 +28,7 @@ react-native-fbads [![npm version](https://badge.fury.io/js/react-native-fbads.s
     - [InterstitialAdManager](#interstitialadmanager)
       - [showAd](#showad)
     - [AdSettings](#adsettings)
+      - [currentDeviceHashId](#currentdevicehashid)
       - [addTestDevice](#addtestdevice)
       - [clearTestDevices](#cleartestdevices)
       - [setLogLevel](#setloglevel)
@@ -249,11 +250,15 @@ import { AdSettings } from 'react-native-fbads';
 
 AdSettings contains global settings for all ad controls.
 
+#### currentDeviceHashId
+
+Constant which contains current device's hash id.
+
 #### addTestDevice
 
-Registers given device to receive test ads. When you run app on simulator, it automatically gets added. Use it
+Registers given device to receive test ads. When you run app on simulator, it should automatically get added. Use it
 to receive test ads in development mode on a standalone phone. Hash of the current device can be obtained from a
-debug log.
+debug log or `AdSettings.currentDeviceHashId` constant.
 
 All devices should be specified before any other action takes place, like [`AdsManager`](#nativeadsmanager) gets created.
 

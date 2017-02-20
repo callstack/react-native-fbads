@@ -8,8 +8,10 @@ import React from 'react';
 import { AppRegistry, StyleSheet, Text, TouchableOpacity, ScrollView } from 'react-native';
 
 import FullAd from './components/FullAd';
-import { NativeAdsManager, InterstitialAdManager, BannerView } from '../';
+import { NativeAdsManager, InterstitialAdManager, BannerView, AdSettings } from '../';
 
+AdSettings.addTestDevice(AdSettings.deviceHashedId);
+// AdSettings.clearTestDevices();
 const adsManager = new NativeAdsManager('1912255062335197_1912257885668248');
 
 class MainApp extends React.Component {

@@ -52,5 +52,9 @@ RCT_EXPORT_METHOD(setUrlPrefix:(NSString *)urlPrefix) {
   [FBAdSettings setUrlPrefix:urlPrefix];
 }
 
+- (NSDictionary *)constantsToExport
+{
+  return @{ @"currentDeviceHashId": [FBAdSettings testDeviceHash] };
+}
 
 @end

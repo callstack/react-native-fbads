@@ -15,6 +15,12 @@ const { CTKAdSettingsManager } = NativeModules;
 type SDKLogLevel = 'none' | 'debug' | 'verbose' | 'warning' | 'error' | 'notification';
 
 export default {
+
+  /**
+   * Contains device `hash id`
+   */
+  currentDeviceHashId: CTKAdSettingsManager.currentDeviceHashId,
+
   /**
    * Registers given device with `deviceHash` to receive test Facebook ads.
    */
