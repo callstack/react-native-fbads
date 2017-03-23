@@ -32,6 +32,7 @@ const getSizeForType = (type: AdType) => sizeForType[type] || sizeForType.standa
 type BannerViewProps = {
   type: AdType,
   placementId: string,
+  style: { [key: string]: any },
   onPress: Function,
   onError: Function,
 };
