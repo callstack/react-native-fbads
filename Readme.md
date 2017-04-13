@@ -44,11 +44,17 @@ react-native-fbads [![npm version](https://badge.fury.io/js/react-native-fbads.s
 ## Installation
 
 ### 1. Install Javascript packages
-
+##### RN >= 0.40
 Install JavaScript packages:
 
 ```bash
 $ react-native install react-native-fbads
+```
+##### RN < 0.40
+Install JavaScript packages:
+
+```bash
+$ react-native install react-native-fbads@3.1.1
 ```
 
 ### 2. Configure native projects
