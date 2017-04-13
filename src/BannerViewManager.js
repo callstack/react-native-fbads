@@ -9,7 +9,7 @@
  */
 
 import React, { PropTypes } from 'react';
-import { requireNativeComponent, View } from 'react-native';
+import { requireNativeComponent, StyleSheet, View } from 'react-native';
 
 type AdType = 'large' | 'rectangle' | 'standard';
 
@@ -32,6 +32,7 @@ const getSizeForType = (type: AdType) => sizeForType[type] || sizeForType.standa
 type BannerViewProps = {
   type: AdType,
   placementId: string,
+  style: number | StyleSheet.Styles | { [key: string]: string | number },
   onPress: Function,
   onError: Function,
 };
