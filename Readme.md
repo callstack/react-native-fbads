@@ -1,6 +1,8 @@
 react-native-fbads [![npm version](https://badge.fury.io/js/react-native-fbads.svg)](https://badge.fury.io/js/react-native-fbads)
 ============
 
+<a title="Join on Slack" href="slack.callstack.io"><img src="https://slack.callstack.io/badge.svg" /></a>
+
 [![Facebook Ads](http://i.imgur.com/yH3s6rd.png)](https://developers.facebook.com/products/app-monetization)
 
 **Facebook Audience SDK** integration for React Native, available on iOS and Android. Features native, interstitial and banner ads.
