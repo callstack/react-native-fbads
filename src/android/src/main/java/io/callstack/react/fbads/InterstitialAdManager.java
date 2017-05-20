@@ -69,6 +69,10 @@ public class InterstitialAdManager extends ReactContextBaseJavaModule implements
 
   }
 
+  @Override
+  public void onLoggingImpression(Ad ad) {
+  }
+
   private void cleanUp() {
     mPromise = null;
     mDidClick = false;
