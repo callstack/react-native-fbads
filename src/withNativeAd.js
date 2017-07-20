@@ -22,11 +22,6 @@ type NativeAdWrapperState = {
 
 type NativeAdWrapperProps = {
   adsManager: AdsManager,
-  onError?: () => void,
-};
-
-type NativeAdWrapperDefaultProps = {
-  onError: () => void,
 };
 
 /**
@@ -39,10 +34,6 @@ export default (Component: Function) => class NativeAdWrapper extends React.Comp
   state: NativeAdWrapperState = {
     ad: null,
     canRequestAds: false,
-  };
-
-  static defaultProps: NativeAdWrapperDefaultProps = {
-    onError: () => {},
   };
 
   props: NativeAdWrapperProps;
@@ -68,7 +59,7 @@ export default (Component: Function) => class NativeAdWrapper extends React.Comp
   }
 
   render() {
-    const { adsManager, onError, ...props } = this.props;
+    const { adsManager, ...props } = this.props;
 
     if (!this.state.canRequestAds) {
       return null;
@@ -78,7 +69,6 @@ export default (Component: Function) => class NativeAdWrapper extends React.Comp
       <NativeAdView
         adsManager={adsManager.toJSON()}
         onAdLoaded={(e) => this.setState({ ad: e.nativeEvent })}
-        onAdError={onError}
       >
         {this.state.ad && <Component nativeAd={this.state.ad} {...props} />}
       </NativeAdView>

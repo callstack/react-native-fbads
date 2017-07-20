@@ -19,7 +19,7 @@ export default {
   /**
    * Contains hash of the device id
    */
-  currentDeviceHash: CTKAdSettingsManager.currentDeviceHash,
+  currentDeviceHash: 'current',
 
   /**
    * Registers given device with `deviceHash` to receive test Facebook ads.
