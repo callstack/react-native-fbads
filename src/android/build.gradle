@@ -36,5 +36,5 @@ repositories {
 dependencies {
     compile 'com.facebook.react:react-native:+'
     compile 'com.android.support:appcompat-v7:23.1.0'
-    compile 'com.facebook.android:audience-network-sdk:4.22.1'
+    compile 'com.facebook.android:audience-network-sdk:4.24.0'
 }
