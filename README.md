@@ -163,7 +163,7 @@ class MainApp extends React.Component {
 
 ### BannerView
 
-BannerView is a component that allows you to display native banners (know as *AdView*). 
+BannerView is a component that allows you to display native banners (know as *AdView*).
 
 Banners are available in 3 sizes:
 - `standard` (BANNER_HEIGHT_50)
@@ -187,7 +187,7 @@ function ViewWithBanner(props) {
       <BannerView
         placementId="YOUR_BANNER_PLACEMENT_ID"
         type="standard"
-        onClick={() => console.log('click')}
+        onPress={() => console.log('click')}
         onError={(err) => console.log('error', err)}
       />
     </View>
