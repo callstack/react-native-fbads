@@ -32,6 +32,12 @@ public class AdSettingsManager extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void addTestDevice(String deviceHashedId) {
+        if (deviceHashedId === "current") {
+            SharedPreferences sp = getReactApplicationContext()
+                .getSharedPreferences("FBAdPrefs", 0);
+
+            deviceHashedId = sp.getString("deviceIdHash", null);
+        }
         AdSettings.addTestDevice(deviceHashedId);
     }
 
@@ -58,16 +64,5 @@ public class AdSettingsManager extends ReactContextBaseJavaModule {
     @ReactMethod
     public void setUrlPrefix(String urlPrefix) {
         AdSettings.setUrlPrefix(urlPrefix);
-    }
-
-    @Override
-    public Map<String, Object> getConstants() {
-        final Map<String, Object> constants = new HashMap<>();
-        SharedPreferences sp = getReactApplicationContext().getSharedPreferences("FBAdPrefs", 0);
-        String deviceHashedId = sp.getString("deviceIdHash", null);
-
-        constants.put("currentDeviceHash", deviceHashedId);
-
-        return constants;
     }
 }

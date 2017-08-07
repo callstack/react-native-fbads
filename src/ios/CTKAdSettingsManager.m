@@ -29,6 +29,10 @@ RCT_ENUM_CONVERTER(FBAdLogLevel, (@{
 RCT_EXPORT_MODULE()
 
 RCT_EXPORT_METHOD(addTestDevice:(NSString *)deviceHash) {
+  if ([deviceHash isEqualToString:@"current"]) {
+    deviceHash = [FBAdSettings testDeviceHash];
+  }
+  
   [FBAdSettings addTestDevice:deviceHash];
 }
 
@@ -50,11 +54,6 @@ RCT_EXPORT_METHOD(setMediationService:(NSString *)mediationService) {
 
 RCT_EXPORT_METHOD(setUrlPrefix:(NSString *)urlPrefix) {
   [FBAdSettings setUrlPrefix:urlPrefix];
-}
-
-- (NSDictionary *)constantsToExport
-{
-  return @{ @"currentDeviceHash": [FBAdSettings testDeviceHash] };
 }
 
 @end
