@@ -32,7 +32,7 @@ public class AdSettingsManager extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void addTestDevice(String deviceHashedId) {
-        if (deviceHashedId === "current") {
+        if (deviceHashedId == "current") {
             SharedPreferences sp = getReactApplicationContext()
                 .getSharedPreferences("FBAdPrefs", 0);
 
