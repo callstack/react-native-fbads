@@ -15,6 +15,7 @@ const { CTKNativeAdManager } = NativeModules;
 
 const EVENT_DID_BECOME_VALID = 'AdsManagerDidBecomeValid';
 const EVENT_DID_BECOME_INVALID = 'AdsManagerDidBecomeInvalid';
+const AD_MANAGER_ERROR = 'AdsManagerError';
 
 type AdManagerCachePolicy = 'none' | 'icon' | 'image' | 'all';
 
@@ -30,6 +31,9 @@ class NativeAdsManager {
 
   /** {@EventEmitter} used for sending out updates **/
   eventEmitter: EventEmitter = new EventEmitter();
+
+  /** Holds the last ad error in case received before event handler set */
+  lastError: object;
 
   /**
    * Creates an instance of AdsManager with a given placementId and adsToRequest.
@@ -65,6 +69,11 @@ class NativeAdsManager {
         this.isValid = isValidNew;
       }
     });
+
+    NativeAppEventEmitter.addListener('CTKNativeAdsManagersError', (error) => {
+      this.lastError = error;
+      this.eventEmitter.emit(AD_MANAGER_ERROR, error);
+    });
   }
 
   /**
@@ -82,6 +91,22 @@ class NativeAdsManager {
     this.eventEmitter.once(EVENT_DID_BECOME_VALID, func);
 
     return () => this.eventEmitter.removeListener(EVENT_DID_BECOME_VALID, func);
+  }
+
+  /**
+   * Used to listening for ad errors
+   *
+   */
+  onAdsError(func: Function): Function {
+    if (this.lastError) {
+      // Already had error
+      func(this.lastError);
+      this.lastError = null;
+      return () => {};
+    }
+    this.eventEmitter.once(AD_MANAGER_ERROR, func);
+
+    return () => this.eventEmitter.removeListener(AD_MANAGER_ERROR, func);
   }
 
   /**

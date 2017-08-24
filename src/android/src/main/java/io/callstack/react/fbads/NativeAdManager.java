@@ -100,6 +100,10 @@ public class NativeAdManager extends ReactContextBaseJavaModule implements Nativ
     @Override
     public void onAdError(AdError adError) {
         // @todo handle errors here
+        WritableMap error = Arguments.createMap();
+        error.putInt("code", adError.getErrorCode());
+        error.putString("message", adError.getErrorMessage());
+        sendAppEvent("CTKNativeAdsManagersError", error);
     }
 
     /**

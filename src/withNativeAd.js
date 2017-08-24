@@ -51,11 +51,22 @@ export default (Component: Function) => class NativeAdWrapper extends React.Comp
     );
   }
 
+  componentWillMount() {
+    this.removeErrorSubscription = this.props.adsManager.onAdsError(
+      (error) => {
+        if (this.props.onAdError) {
+          this.props.onAdError(error);
+        }
+      }
+    );
+  }
+
   /**
    * Clear subscription when component goes off screen
    */
   componentWillUnmount() {
     this.removeSubscription();
+    this.removeErrorSubscription();
   }
 
   render() {
