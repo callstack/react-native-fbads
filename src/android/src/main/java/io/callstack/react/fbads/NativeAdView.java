@@ -65,6 +65,8 @@ public class NativeAdView extends ReactViewGroup {
         event.putString("subtitle", nativeAd.getAdSubtitle());
         event.putString("description", nativeAd.getAdBody());
         event.putString("callToActionText", nativeAd.getAdCallToAction());
+        event.putString("adChoiceIconUrl", nativeAd.getAdChoicesIcon().getUrl());
+        event.putString("adChoiceLinkUrl", nativeAd.getAdChoicesLinkUrl());
 
         // Check as they might be null because of memory issues on low-end devices
         if (coverImage != null) {
