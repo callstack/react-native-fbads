@@ -7,7 +7,10 @@
  */
 package io.callstack.react.fbads;
 
+import android.util.Log;
 import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.facebook.ads.NativeAd;
 import com.facebook.react.bridge.Arguments;
@@ -15,6 +18,9 @@ import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
 import com.facebook.react.views.view.ReactViewGroup;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class NativeAdView extends ReactViewGroup {
     /** @{NativeAd} received from the ads manager **/
@@ -28,6 +34,12 @@ public class NativeAdView extends ReactViewGroup {
 
     /** @{float} y coordinate where the touche event started **/
     private float startY;
+
+    /** is clickable (Makes the whole view clickable */
+    private Boolean mClickable = false;
+
+    /** List of clickable views */
+    List<View> clickableViews = new ArrayList<>();
 
     /**
      * Creates new NativeAdView instance and retrieves event emitter
@@ -51,6 +63,7 @@ public class NativeAdView extends ReactViewGroup {
      */
     public void setNativeAd(NativeAd nativeAd) {
         mNativeAd = nativeAd;
+
 
         if (nativeAd == null) {
             mEventEmitter.receiveEvent(getId(), "onAdLoaded", null);
@@ -79,7 +92,17 @@ public class NativeAdView extends ReactViewGroup {
 
         mEventEmitter.receiveEvent(getId(), "onAdLoaded", event);
 
-        mNativeAd.registerViewForInteraction(this);
+        setAdClickable(mClickable);
+    }
+
+    /**
+     * Registers the view for interaction
+     */
+    public void setAdClickable(Boolean clickable) {
+        mClickable = clickable;
+        if (clickable && mNativeAd!=null) {
+            mNativeAd.registerViewForInteraction(this);
+        }
     }
 
     /**
@@ -105,11 +128,48 @@ public class NativeAdView extends ReactViewGroup {
                 }
                 break;
         }
-        return true;
+        return mClickable;
     }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        return true;
+        return mClickable;
+    }
+
+    /**
+     * Add a view to the clickable list
+     */
+    public List<View> addClickableView(View clickableView) {
+        this.extractClickableChildren(clickableViews, clickableView);
+        mNativeAd.registerViewForInteraction(clickableView, clickableViews);
+        return clickableViews;
+    }
+
+    /**
+     * Get all view children recursively to add to clickable list
+     */
+    private void extractClickableChildren(List<View> list, View clickableView) {
+        list.add(clickableView);
+        if(clickableView instanceof ViewGroup) {
+            ViewGroup var3 = (ViewGroup)clickableView;
+
+            for(int var4 = 0; var4 < var3.getChildCount(); ++var4) {
+                this.extractClickableChildren(list, var3.getChildAt(var4));
+            }
+        }
+    }
+
+    /**
+     * Get list of clickable views
+     */
+    public List<View> getClickableViews() {
+        return clickableViews;
+    }
+
+    /**
+     * Get the native ad
+     */
+    public NativeAd getNativeAd() {
+        return mNativeAd;
     }
 }

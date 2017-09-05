@@ -9,7 +9,7 @@
  */
 
 import React from 'react';
-import { requireNativeComponent } from 'react-native';
+import { requireNativeComponent, findNodeHandle } from 'react-native';
 import AdsManager from './NativeAdsManager';
 import type { NativeAd } from './types';
 
@@ -22,6 +22,7 @@ type NativeAdWrapperState = {
 
 type NativeAdWrapperProps = {
   adsManager: AdsManager,
+  clickable: boolean
 };
 
 /**
@@ -70,7 +71,7 @@ export default (Component: Function) => class NativeAdWrapper extends React.Comp
   }
 
   render() {
-    const { adsManager, ...props } = this.props;
+    const { adsManager, clickable, ...props } = this.props;
 
     if (!this.state.canRequestAds) {
       return null;
@@ -80,8 +81,10 @@ export default (Component: Function) => class NativeAdWrapper extends React.Comp
       <NativeAdView
         adsManager={adsManager.toJSON()}
         onAdLoaded={(e) => this.setState({ ad: e.nativeEvent })}
+        clickable={clickable}
+        ref={root => this.rootRef = findNodeHandle(root)}
       >
-        {this.state.ad && <Component nativeAd={this.state.ad} {...props} />}
+        {this.state.ad && <Component nativeAd={this.state.ad} {...props} nativeAdView={this.rootRef} />}
       </NativeAdView>
     );
   }
