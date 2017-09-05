@@ -10,6 +10,7 @@ package io.callstack.react.fbads;
 import android.util.Log;
 
 import com.facebook.ads.AdError;
+import com.facebook.ads.NativeAd;
 import com.facebook.ads.NativeAdsManager;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -25,6 +26,9 @@ import java.util.Map;
 public class NativeAdManager extends ReactContextBaseJavaModule implements NativeAdsManager.Listener {
     /** @{Map} with all registered fb ads managers **/
     private Map<String, NativeAdsManager> mAdsManagers = new HashMap<>();
+
+    /** @{Map} with latest NativeAd from all managers **/
+    private Map<String, NativeAd> mLatestAds = new HashMap<>();
 
     public NativeAdManager(ReactApplicationContext reactContext) {
         super(reactContext);
@@ -114,6 +118,35 @@ public class NativeAdManager extends ReactContextBaseJavaModule implements Nativ
      */
     public NativeAdsManager getFBAdsManager(String placementId) {
         return mAdsManagers.get(placementId);
+    }
+
+    /**
+     * Returns the next native ad for the given placement
+     *
+     * @param placementId
+     * @return
+     */
+    public NativeAd getNextNativeAd(String placementId) {
+        NativeAdsManager adsManager = this.getFBAdsManager(placementId);
+        NativeAd ad = adsManager.nextNativeAd();
+        mLatestAds.put(placementId, ad);
+        return ad;
+    }
+
+    /**
+     * Returns the latest native ad for the given placement
+     *
+     * @param placementId
+     * @return NativeAd
+     */
+    public NativeAd getLastNativeAd(String placementId) {
+        NativeAd ad;
+        if (mLatestAds.containsKey(placementId)) {
+            ad = mLatestAds.get(placementId);
+        } else {
+            ad = this.getNextNativeAd(placementId);
+        }
+        return ad;
     }
 
     /**
