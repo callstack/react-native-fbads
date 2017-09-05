@@ -1,5 +1,6 @@
 package io.callstack.react.fbads;
 
+import android.os.Handler;
 import android.view.Gravity;
 import android.view.View;
 
@@ -66,10 +67,16 @@ public class MediaViewManager extends SimpleViewManager<MediaView> {
                 NativeAdView v = (NativeAdView) nativeViewHierarchyManager.resolveView(tag);
                 NativeAd ad = v.getNativeAd();
                 view.setNativeAd(ad);
-                view.measure(
-                        View.MeasureSpec.makeMeasureSpec(view.getWidth(), View.MeasureSpec.EXACTLY),
-                        View.MeasureSpec.makeMeasureSpec(view.getHeight(), View.MeasureSpec.EXACTLY));
-                view.layout(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        view.measure(
+                                View.MeasureSpec.makeMeasureSpec(view.getWidth(), View.MeasureSpec.EXACTLY),
+                                View.MeasureSpec.makeMeasureSpec(view.getHeight(), View.MeasureSpec.EXACTLY));
+                        view.layout(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
+                    }
+                }, 3000);
             }
         });
     }

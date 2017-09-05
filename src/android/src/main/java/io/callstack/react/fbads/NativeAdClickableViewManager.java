@@ -74,18 +74,6 @@ public class NativeAdClickableViewManager extends ViewGroupManager<ReactViewGrou
         return view;
     }
 
-    @Override
-    public Class getShadowNodeClass() {
-        return LayoutShadowNode.class;
-    }
-
-    @Override
-    public LayoutShadowNode createShadowNodeInstance() {
-        shadowNode = new LayoutShadowNode();
-        shadowNode.setFlex(1.0f);
-        return shadowNode;
-    }
-
     /**
      * Set the root reference to get the native ad view manager
      */
