@@ -61,6 +61,7 @@ class NativeAdsManager {
 
       if (isValid !== isValidNew) {
         if (isValidNew) {
+          this.lastError = null;
           this.eventEmitter.emit(EVENT_DID_BECOME_VALID);
         } else {
           this.eventEmitter.emit(EVENT_DID_BECOME_INVALID);
@@ -101,7 +102,6 @@ class NativeAdsManager {
     if (this.lastError) {
       // Already had error
       func(this.lastError);
-      this.lastError = null;
       return () => {};
     }
     this.eventEmitter.once(AD_MANAGER_ERROR, func);
