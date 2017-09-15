@@ -49,6 +49,13 @@ class NativeAdsManager {
 
     CTKNativeAdManager.init(placementId, adsToRequest);
   }
+  
+    /**
+     * Reload ads
+     */
+    reloadAds() {
+      CTKNativeAdManager.reloadAds(this.placementId);
+    }
 
   /**
    * Listens for AdManager state changes and updates internal state. When it changes,

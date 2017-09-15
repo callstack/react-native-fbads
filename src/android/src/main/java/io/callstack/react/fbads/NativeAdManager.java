@@ -65,6 +65,15 @@ public class NativeAdManager extends ReactContextBaseJavaModule implements Nativ
     }
 
     /**
+     * Reload ads
+     */
+    @ReactMethod
+    public void reloadAds(String placementId) {
+        NativeAdsManager adsManager = mAdsManagers.get(placementId);
+        adsManager.loadAds();
+    }
+
+    /**
      * Disables auto refresh
      *
      * @param placementId
