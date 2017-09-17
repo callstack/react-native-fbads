@@ -21,6 +21,7 @@ import java.util.List;
 
 public class NativeAdClickableViewManager extends ViewGroupManager<ReactViewGroup> {
     public final static String NAME = "CTKNativeAdClickable";
+    public final static String LOGTAG = "ReactNative";
     private ThemedReactContext mContext;
     private ReactViewGroup view = null;
     private ReactViewGroup clickableView = null;
@@ -79,13 +80,17 @@ public class NativeAdClickableViewManager extends ViewGroupManager<ReactViewGrou
      */
     @ReactProp(name = "nativeAdView")
     public void setNativeAdView(final ReactViewGroup view, final int tag) {
-        UIManagerModule uiManager = this.mContext.getNativeModule(UIManagerModule.class);
-        uiManager.addUIBlock(new UIBlock() {
-            @Override
-            public void execute(NativeViewHierarchyManager nativeViewHierarchyManager) {
-                mRootView = (NativeAdView)nativeViewHierarchyManager.resolveView(tag);
-                mRootView.addClickableView(view);
-            }
-        });
+        try {
+            UIManagerModule uiManager = this.mContext.getNativeModule(UIManagerModule.class);
+            uiManager.addUIBlock(new UIBlock() {
+                @Override
+                public void execute(NativeViewHierarchyManager nativeViewHierarchyManager) {
+                    mRootView = (NativeAdView) nativeViewHierarchyManager.resolveView(tag);
+                    mRootView.addClickableView(view);
+                }
+            });
+        } catch (Exception e) {
+            Log.e(LOGTAG, e.getMessage());
+        }
     }
 }
