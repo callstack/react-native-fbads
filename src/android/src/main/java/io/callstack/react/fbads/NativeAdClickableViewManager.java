@@ -1,5 +1,6 @@
 package io.callstack.react.fbads;
 
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
