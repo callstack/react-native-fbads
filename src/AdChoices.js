@@ -6,7 +6,7 @@ var cfg = {
         shouldNotifyLoadEvents: true
     },
     propTypes: {
-        nativeAdView: PropTypes.number,
+        // nativeAdView: PropTypes.number,
         ...View.propTypes
     }
 };
