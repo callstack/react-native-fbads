@@ -109,9 +109,9 @@ class NativeAdsManager {
     if (this.lastError) {
       // Already had error
       func(this.lastError);
-      return () => {};
+      //return () => {};
     }
-    this.eventEmitter.once(AD_MANAGER_ERROR, func);
+    this.eventEmitter.on(AD_MANAGER_ERROR, func);
 
     return () => this.eventEmitter.removeListener(AD_MANAGER_ERROR, func);
   }
