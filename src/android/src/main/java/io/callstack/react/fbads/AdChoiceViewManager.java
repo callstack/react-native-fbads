@@ -68,8 +68,10 @@ public class AdChoiceViewManager extends SimpleViewManager<RelativeLayout> {
             public void execute(NativeViewHierarchyManager nativeViewHierarchyManager) {
                 NativeAdView v = (NativeAdView)nativeViewHierarchyManager.resolveView(tag);
                 NativeAd ad = v.getNativeAd();
-                final AdChoiceView adChoicesView = new AdChoiceView(mContext, ad, true);
-                mRootView.addView(adChoicesView);
+                if (ad != null) {
+                    final AdChoiceView adChoicesView = new AdChoiceView(mContext, ad, true);
+                    mRootView.addView(adChoicesView);
+                }
             }
         });
     }
