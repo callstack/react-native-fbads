@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { View, requireNativeComponent } from 'react-native';
+import { View, requireNativeComponent, Platform } from 'react-native';
 
 var cfg = {
   nativeOnly: {
