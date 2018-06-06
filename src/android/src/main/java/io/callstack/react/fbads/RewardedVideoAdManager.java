@@ -47,6 +47,9 @@ public class RewardedVideoAdManager extends ReactContextBaseJavaModule implement
         }
 
         ReactApplicationContext reactContext = this.getReactApplicationContext();
+
+        if(mRewardedVideoAd != null)
+            mRewardedVideoAd.destroy();
         mRewardedVideoAd = new RewardedVideoAd(reactContext, placementId);
 
         mLoadedPromise = p;
