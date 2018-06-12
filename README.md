@@ -29,6 +29,9 @@ react-native-fbads [![npm version](https://badge.fury.io/js/react-native-fbads.s
       - [setMediaCachePolicy](#setmediacachepolicy)
     - [InterstitialAdManager](#interstitialadmanager)
       - [showAd](#showad)
+    - [RewardedVideoAdManager](#rewardedvideoadmanager)
+      - [loadAd](#loadAd)
+      - [showAd](#showAd)
     - [AdSettings](#adsettings)
       - [currentDeviceHash](#currentdevicehash)
       - [addTestDevice](#addtestdevice)
@@ -249,6 +252,36 @@ On Android you have to add following activity to *AndroidManifest.xml*
 ```
 
 **Note:** There can be only one `showAd` call being performed at a time. Otherwise, an error will be thrown.
+
+### RewardedVideoAdManager
+
+```js
+import { RewardedVideoAdManager } from "react-native-fbads";
+```
+
+RewardedVideoAdManager is a manager that allows you to load a rewarded video, then show the video once the video is loaded, in that order.
+
+#### loadAd
+
+Loads a rewarded video asynchronously, returns success / true if it loads, error if there wasn't an ad fill or an error from the audience network SDK.
+
+```js
+RewardedVideoAdManager.loadAd('placementId')
+  .then(...) // fill success
+  .catch(...); // no fill or SDK error
+```
+
+#### showAd
+
+Shows a rewarded video immediately, returns success if the video was watched to completion and the user should be rewarded, error if the video wasn't complete or there was an error from the audience network SDK.
+
+```js
+RewardedVideoAdManager.showAd()
+  .then(...) // fully watched video, set your reward.
+  .catch(...); // error
+```
+
+**Note:** You need to be sure to load then show each time you wish to show a rewarded video ad. You also cannot load another video in the success callback of showAd().
 
 ### AdSettings
 
