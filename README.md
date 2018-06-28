@@ -1,7 +1,7 @@
-react-native-fbads [![npm version](https://badge.fury.io/js/react-native-fbads.svg)](https://badge.fury.io/js/react-native-fbads)
+react-native-fbads [![npm version][version-badge]][package]
 ============
 
-<a title="Join on Slack" href="slack.callstack.io"><img src="https://slack.callstack.io/badge.svg" /></a>
+[![chat][chat-badge]][chat]
 
 [![Facebook Ads](http://i.imgur.com/yH3s6rd.png)](https://developers.facebook.com/products/app-monetization)
 
@@ -381,3 +381,9 @@ $ cd ./example && npm run android
 ### Credits
 
 Some of the API explanations were borrowed from Facebook SDK documentation.
+
+<!-- badges -->
+[version-badge]: https://img.shields.io/npm/v/react-native-fbads.svg?style=flat-square
+[package]: https://www.npmjs.com/package/react-native-fbads
+[chat-badge]: https://img.shields.io/discord/426714625279524876.svg?style=flat-square&colorB=758ED3
+[chat]: https://discord.gg/zwR2Cdh
