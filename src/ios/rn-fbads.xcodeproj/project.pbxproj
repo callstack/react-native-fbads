@@ -13,6 +13,8 @@
 		ADDCECB11D96B85500C511E0 /* CTKNativeAdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDCECB01D96B85500C511E0 /* CTKNativeAdManager.m */; };
 		ADDCECB41D96B85E00C511E0 /* CTKNativeAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDCECB31D96B85E00C511E0 /* CTKNativeAdView.m */; };
 		ADE502341D9C7A3400A44A63 /* CTKAdSettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE502331D9C7A3400A44A63 /* CTKAdSettingsManager.m */; };
+		C77606EE2052B13B00ACF0BA /* CTKNativeAdClickableManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C77606ED2052B13B00ACF0BA /* CTKNativeAdClickableManager.m */; };
+		C77606F12052B14E00ACF0BA /* CTKNativeAdClickable.m in Sources */ = {isa = PBXBuildFile; fileRef = C77606F02052B14E00ACF0BA /* CTKNativeAdClickable.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -41,6 +43,10 @@
 		ADDCECB31D96B85E00C511E0 /* CTKNativeAdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTKNativeAdView.m; sourceTree = "<group>"; };
 		ADE502321D9C7A3400A44A63 /* CTKAdSettingsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTKAdSettingsManager.h; sourceTree = "<group>"; };
 		ADE502331D9C7A3400A44A63 /* CTKAdSettingsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTKAdSettingsManager.m; sourceTree = "<group>"; };
+		C77606EC2052B13B00ACF0BA /* CTKNativeAdClickableManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CTKNativeAdClickableManager.h; sourceTree = "<group>"; };
+		C77606ED2052B13B00ACF0BA /* CTKNativeAdClickableManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CTKNativeAdClickableManager.m; sourceTree = "<group>"; };
+		C77606EF2052B14E00ACF0BA /* CTKNativeAdClickable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CTKNativeAdClickable.h; sourceTree = "<group>"; };
+		C77606F02052B14E00ACF0BA /* CTKNativeAdClickable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CTKNativeAdClickable.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +63,10 @@
 		ADDCEC9A1D96B7DD00C511E0 = {
 			isa = PBXGroup;
 			children = (
+				C77606EF2052B14E00ACF0BA /* CTKNativeAdClickable.h */,
+				C77606F02052B14E00ACF0BA /* CTKNativeAdClickable.m */,
+				C77606EC2052B13B00ACF0BA /* CTKNativeAdClickableManager.h */,
+				C77606ED2052B13B00ACF0BA /* CTKNativeAdClickableManager.m */,
 				ADBC7F061D9D5CB900D1CC4D /* CTKInterstitialAdManager.h */,
 				ADBC7F071D9D5CB900D1CC4D /* CTKInterstitialAdManager.m */,
 				ADE502321D9C7A3400A44A63 /* CTKAdSettingsManager.h */,
@@ -137,6 +147,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C77606EE2052B13B00ACF0BA /* CTKNativeAdClickableManager.m in Sources */,
+				C77606F12052B14E00ACF0BA /* CTKNativeAdClickable.m in Sources */,
 				ADDCECB11D96B85500C511E0 /* CTKNativeAdManager.m in Sources */,
 				ADE502341D9C7A3400A44A63 /* CTKAdSettingsManager.m in Sources */,
 				AD540C161E36734D00EB6B73 /* CTKBannerViewManager.m in Sources */,
@@ -234,8 +246,11 @@
 		ADDCECAD1D96B7DE00C511E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "~/Documents/FacebookSDK";
-				HEADER_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"~/Documents/FacebookSDK",
+					"$(PROJECT_DIR)/../../../../ios/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -245,8 +260,11 @@
 		ADDCECAE1D96B7DE00C511E0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "~/Documents/FacebookSDK";
-				HEADER_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"~/Documents/FacebookSDK",
+					"$(PROJECT_DIR)/../../../../ios/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

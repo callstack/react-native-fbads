@@ -15,13 +15,18 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.common.MapBuilder;
 import com.facebook.react.uimanager.ThemedReactContext;
+import com.facebook.react.uimanager.UIBlock;
+import com.facebook.react.uimanager.UIManagerModule;
 import com.facebook.react.uimanager.ViewGroupManager;
 import com.facebook.react.uimanager.annotations.ReactProp;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class NativeAdViewManager extends ViewGroupManager<NativeAdView> {
     ReactApplicationContext mReactContext;
+    NativeAdView mView;
 
     public NativeAdViewManager(ReactApplicationContext reactContext) {
         super();
@@ -35,15 +40,23 @@ public class NativeAdViewManager extends ViewGroupManager<NativeAdView> {
 
     @Override
     protected NativeAdView createViewInstance(ThemedReactContext reactContext) {
-        return new NativeAdView(reactContext);
+        mView = new NativeAdView(reactContext);
+        return mView;
     }
 
     @ReactProp(name = "adsManager")
     public void setAdsManager(NativeAdView view, String adsManagerId) {
         NativeAdManager adManager = mReactContext.getNativeModule(NativeAdManager.class);
-        NativeAdsManager adsManager = adManager.getFBAdsManager(adsManagerId);
+        view.setNativeAd(adManager.getNextNativeAd(adsManagerId));
 
-        view.setNativeAd(adsManager.nextNativeAd());
+//        NativeAdsManager adsManager = adManager.getFBAdsManager(adsManagerId);
+
+//        view.setNativeAd(adsManager.nextNativeAd());
+    }
+
+    @ReactProp(name = "clickable")
+    public void setClickable(NativeAdView view, Boolean clickable) {
+        view.setAdClickable(clickable);
     }
 
     @Override
