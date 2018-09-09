@@ -1,0 +1,352 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D2AFD378211B15F300580DF0 /* EXNativeAdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AFD366211B15F300580DF0 /* EXNativeAdManager.m */; };
+		D2AFD379211B15F300580DF0 /* EXNativeAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AFD368211B15F300580DF0 /* EXNativeAdView.m */; };
+		D2AFD37A211B15F300580DF0 /* EXBannerViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AFD36A211B15F300580DF0 /* EXBannerViewManager.m */; };
+		D2AFD37B211B15F300580DF0 /* EXBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AFD36E211B15F300580DF0 /* EXBannerView.m */; };
+		D2AFD37C211B15F300580DF0 /* EXNativeMediaViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AFD370211B15F300580DF0 /* EXNativeMediaViewManager.m */; };
+		D2AFD37D211B15F300580DF0 /* EXAdIconViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AFD372211B15F300580DF0 /* EXAdIconViewManager.m */; };
+		D2AFD37E211B15F300580DF0 /* EXAdSettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AFD374211B15F300580DF0 /* EXAdSettingsManager.m */; };
+		D2AFD37F211B15F300580DF0 /* EXInterstitialAdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AFD375211B15F300580DF0 /* EXInterstitialAdManager.m */; };
+		D2AFD380211B15F300580DF0 /* EXNativeAdEmitter.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AFD376211B15F300580DF0 /* EXNativeAdEmitter.m */; };
+		D2AFD6642122392E00580DF0 /* AdChoiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AFD6632122392E00580DF0 /* AdChoiceManager.m */; };
+		D2AFD6742122B89100580DF0 /* AdChoiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AFD6722122B89100580DF0 /* AdChoiceView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D2AFD331211B138E00580DF0 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		D2AFD333211B138E00580DF0 /* libReactNativeAdsFacebook.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libReactNativeAdsFacebook.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2AFD366211B15F300580DF0 /* EXNativeAdManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXNativeAdManager.m; sourceTree = "<group>"; };
+		D2AFD367211B15F300580DF0 /* EXNativeAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXNativeAdView.h; sourceTree = "<group>"; };
+		D2AFD368211B15F300580DF0 /* EXNativeAdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXNativeAdView.m; sourceTree = "<group>"; };
+		D2AFD369211B15F300580DF0 /* EXNativeAdEmitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXNativeAdEmitter.h; sourceTree = "<group>"; };
+		D2AFD36A211B15F300580DF0 /* EXBannerViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXBannerViewManager.m; sourceTree = "<group>"; };
+		D2AFD36B211B15F300580DF0 /* EXNativeMediaViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXNativeMediaViewManager.h; sourceTree = "<group>"; };
+		D2AFD36C211B15F300580DF0 /* EXBannerViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXBannerViewManager.h; sourceTree = "<group>"; };
+		D2AFD36D211B15F300580DF0 /* EXBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXBannerView.h; sourceTree = "<group>"; };
+		D2AFD36E211B15F300580DF0 /* EXBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXBannerView.m; sourceTree = "<group>"; };
+		D2AFD36F211B15F300580DF0 /* EXInterstitialAdManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXInterstitialAdManager.h; sourceTree = "<group>"; };
+		D2AFD370211B15F300580DF0 /* EXNativeMediaViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXNativeMediaViewManager.m; sourceTree = "<group>"; };
+		D2AFD371211B15F300580DF0 /* EXAdIconViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXAdIconViewManager.h; sourceTree = "<group>"; };
+		D2AFD372211B15F300580DF0 /* EXAdIconViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXAdIconViewManager.m; sourceTree = "<group>"; };
+		D2AFD373211B15F300580DF0 /* EXAdSettingsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXAdSettingsManager.h; sourceTree = "<group>"; };
+		D2AFD374211B15F300580DF0 /* EXAdSettingsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXAdSettingsManager.m; sourceTree = "<group>"; };
+		D2AFD375211B15F300580DF0 /* EXInterstitialAdManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXInterstitialAdManager.m; sourceTree = "<group>"; };
+		D2AFD376211B15F300580DF0 /* EXNativeAdEmitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXNativeAdEmitter.m; sourceTree = "<group>"; };
+		D2AFD377211B15F300580DF0 /* EXNativeAdManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXNativeAdManager.h; sourceTree = "<group>"; };
+		D2AFD6602121FD8200580DF0 /* EXUnversioned.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EXUnversioned.h; sourceTree = "<group>"; };
+		D2AFD6622122391200580DF0 /* AdChoiceManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdChoiceManager.h; sourceTree = "<group>"; };
+		D2AFD6632122392E00580DF0 /* AdChoiceManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdChoiceManager.m; sourceTree = "<group>"; };
+		D2AFD6722122B89100580DF0 /* AdChoiceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdChoiceView.m; sourceTree = "<group>"; };
+		D2AFD6732122B89100580DF0 /* AdChoiceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdChoiceView.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D2AFD330211B138E00580DF0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D2AFD32A211B138E00580DF0 = {
+			isa = PBXGroup;
+			children = (
+				D2AFD335211B138E00580DF0 /* ReactNativeAdsFacebook */,
+				D2AFD334211B138E00580DF0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D2AFD334211B138E00580DF0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D2AFD333211B138E00580DF0 /* libReactNativeAdsFacebook.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D2AFD335211B138E00580DF0 /* ReactNativeAdsFacebook */ = {
+			isa = PBXGroup;
+			children = (
+				D2AFD6732122B89100580DF0 /* AdChoiceView.h */,
+				D2AFD6722122B89100580DF0 /* AdChoiceView.m */,
+				D2AFD371211B15F300580DF0 /* EXAdIconViewManager.h */,
+				D2AFD372211B15F300580DF0 /* EXAdIconViewManager.m */,
+				D2AFD373211B15F300580DF0 /* EXAdSettingsManager.h */,
+				D2AFD374211B15F300580DF0 /* EXAdSettingsManager.m */,
+				D2AFD36D211B15F300580DF0 /* EXBannerView.h */,
+				D2AFD36E211B15F300580DF0 /* EXBannerView.m */,
+				D2AFD36C211B15F300580DF0 /* EXBannerViewManager.h */,
+				D2AFD36A211B15F300580DF0 /* EXBannerViewManager.m */,
+				D2AFD36F211B15F300580DF0 /* EXInterstitialAdManager.h */,
+				D2AFD375211B15F300580DF0 /* EXInterstitialAdManager.m */,
+				D2AFD369211B15F300580DF0 /* EXNativeAdEmitter.h */,
+				D2AFD376211B15F300580DF0 /* EXNativeAdEmitter.m */,
+				D2AFD377211B15F300580DF0 /* EXNativeAdManager.h */,
+				D2AFD366211B15F300580DF0 /* EXNativeAdManager.m */,
+				D2AFD367211B15F300580DF0 /* EXNativeAdView.h */,
+				D2AFD368211B15F300580DF0 /* EXNativeAdView.m */,
+				D2AFD36B211B15F300580DF0 /* EXNativeMediaViewManager.h */,
+				D2AFD370211B15F300580DF0 /* EXNativeMediaViewManager.m */,
+				D2AFD6602121FD8200580DF0 /* EXUnversioned.h */,
+				D2AFD6622122391200580DF0 /* AdChoiceManager.h */,
+				D2AFD6632122392E00580DF0 /* AdChoiceManager.m */,
+			);
+			path = ReactNativeAdsFacebook;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D2AFD332211B138E00580DF0 /* ReactNativeAdsFacebook */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D2AFD33C211B138E00580DF0 /* Build configuration list for PBXNativeTarget "ReactNativeAdsFacebook" */;
+			buildPhases = (
+				D2AFD32F211B138E00580DF0 /* Sources */,
+				D2AFD330211B138E00580DF0 /* Frameworks */,
+				D2AFD331211B138E00580DF0 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ReactNativeAdsFacebook;
+			productName = ReactNativeAdsFacebook;
+			productReference = D2AFD333211B138E00580DF0 /* libReactNativeAdsFacebook.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D2AFD32B211B138E00580DF0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = "Suraj Tiwari ";
+				TargetAttributes = {
+					D2AFD332211B138E00580DF0 = {
+						CreatedOnToolsVersion = 9.4;
+					};
+				};
+			};
+			buildConfigurationList = D2AFD32E211B138E00580DF0 /* Build configuration list for PBXProject "ReactNativeAdsFacebook" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D2AFD32A211B138E00580DF0;
+			productRefGroup = D2AFD334211B138E00580DF0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D2AFD332211B138E00580DF0 /* ReactNativeAdsFacebook */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D2AFD32F211B138E00580DF0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2AFD37C211B15F300580DF0 /* EXNativeMediaViewManager.m in Sources */,
+				D2AFD380211B15F300580DF0 /* EXNativeAdEmitter.m in Sources */,
+				D2AFD37E211B15F300580DF0 /* EXAdSettingsManager.m in Sources */,
+				D2AFD378211B15F300580DF0 /* EXNativeAdManager.m in Sources */,
+				D2AFD379211B15F300580DF0 /* EXNativeAdView.m in Sources */,
+				D2AFD37D211B15F300580DF0 /* EXAdIconViewManager.m in Sources */,
+				D2AFD37F211B15F300580DF0 /* EXInterstitialAdManager.m in Sources */,
+				D2AFD6742122B89100580DF0 /* AdChoiceView.m in Sources */,
+				D2AFD6642122392E00580DF0 /* AdChoiceManager.m in Sources */,
+				D2AFD37A211B15F300580DF0 /* EXBannerViewManager.m in Sources */,
+				D2AFD37B211B15F300580DF0 /* EXBannerView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		D2AFD33A211B138E00580DF0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		D2AFD33B211B138E00580DF0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D2AFD33D211B138E00580DF0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W3VSH3LGL7;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../../../ios/Pods/FBAudienceNetwork/";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D2AFD33E211B138E00580DF0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W3VSH3LGL7;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../../../ios/Pods/FBAudienceNetwork/";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D2AFD32E211B138E00580DF0 /* Build configuration list for PBXProject "ReactNativeAdsFacebook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2AFD33A211B138E00580DF0 /* Debug */,
+				D2AFD33B211B138E00580DF0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D2AFD33C211B138E00580DF0 /* Build configuration list for PBXNativeTarget "ReactNativeAdsFacebook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2AFD33D211B138E00580DF0 /* Debug */,
+				D2AFD33E211B138E00580DF0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D2AFD32B211B138E00580DF0 /* Project object */;
+}

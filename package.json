@@ -1,40 +1,36 @@
 {
   "name": "react-native-fbads",
-  "version": "4.2.3",
+  "version": "5.0.0",
   "description": "Native Facebook Ads for React Native",
   "repository": {
     "type": "git",
     "url": "https://github.com/callstack-io/react-native-fbads"
   },
-  "main": "src/index.js",
+  "main": "index.js",
   "directories": {
     "example": "example"
   },
   "scripts": {
     "test": "flow ./src"
   },
-  "author": "Mike Grabowski <grabbou@gmail.com>",
+  "author": "Suraj Tiwari <surajtiwari020@gmail.com>",
   "license": "MIT",
   "peerDependencies": {
     "react-native": "*",
     "react": "*"
   },
-  "devDependencies": {
-    "babel-eslint": "~7.1.1",
-    "eslint": "~3.12.0",
-    "eslint-config-airbnb": "~13.0.0",
-    "eslint-plugin-import": "~2.2.0",
-    "eslint-plugin-jsx-a11y": "~3.0.1",
-    "eslint-plugin-react": "~6.8.0",
-    "react": "15.4.1",
-    "react-native": "^0.40.0"
-  },
   "dependencies": {
-    "eventemitter3": "^2.0.2"
+    "fbemitter": "^2.1.1"
   },
   "rnpm": {
     "android": {
-      "sourceDir": "src/android"
+      "sourceDir": "android/app"
     }
-  }
+  },
+  "keywords": [
+    "react-native",
+    "facebook",
+    "Audience Network",
+    "Native ads"
+  ]
 }
