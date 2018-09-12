@@ -5,7 +5,7 @@ import {Actions} from 'react-native-router-flux';
 
 let {width, height} = Dimensions.get('window');
 
-export default class Main extends Component<Props> {
+export default class Main extends Component<> {
     render() {
         return (
             <Container style={styles.container}>
