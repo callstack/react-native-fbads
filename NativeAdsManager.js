@@ -33,10 +33,6 @@ class NativeAdsManager {
         }else if(adIconViewTag > 0){
             clickable.push(adIconViewTag)
         }
-        console.log(nativeAdViewTag);
-        console.log(mediaViewTag);
-        console.log(adIconViewTag);
-        console.log(clickable);
         let result = await CTKNativeAdManager.registerViewsForInteraction(
             nativeAdViewTag,
             mediaViewTag,

@@ -120,7 +120,6 @@ export default <T>(Component: React.ComponentType<T>) =>
                     child => !this.state.clickableChildren.has(child)
                 );
                 if (mediaViewNodeHandleChanged || adIconViewNodeHandleChanged || clickableChildrenChanged) {
-                    console.log('update');
                     AdsManager.registerViewsForInteractionAsync(
                         findNodeHandle(this._nativeAdViewRef),
                         this.state.mediaViewNodeHandle,

@@ -13,7 +13,7 @@ export default class AdChoicesView extends React.Component<Object> {
     componentWillMount() {
         positionStyle = styles.topRight;
 
-        location  = this.props.position;
+        location = this.props.position;
 
         if (location === 'topLeft') {
             positionStyle = styles.topLeft
@@ -26,11 +26,21 @@ export default class AdChoicesView extends React.Component<Object> {
         }
     }
 
+    componentWillUpdate(nextProps) {
+        if (this.props.placementId !== nextProps.placementId) {
+            this.props.placementId = nextProps.placementId
+        }
+    }
+
     render() {
+        if (!this.props.placementId) {
+            return null;
+        }
         return (
-            <NativeAdChoicesView {...this.props}
-                                 style={[styles.adChoice, positionStyle]}
-                                 location={this.props.position || 'topRight'}/>
+            <NativeAdChoicesView
+                placementId={this.props.placementId}
+                style={[styles.adChoice, positionStyle]}
+                location={this.props.position || 'topRight'}/>
         );
     }
 }
@@ -66,4 +76,3 @@ let styles = StyleSheet.create({
     }
 
 })
-
