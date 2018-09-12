@@ -1,0 +1,7 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+project 'example.xcodeproj'
+
+target 'example' do
+  pod 'FBAudienceNetwork', '4.99.0'
+end
