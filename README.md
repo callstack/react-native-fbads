@@ -62,6 +62,20 @@ Install JavaScript packages:
 $ react-native install react-native-fbads@3.1.1
 ```
 
+#### Upgrading to latest version
+
+```
+react-native unlink react-native-fbads
+
+npm install react-native-fbads@latest --save
+
+react-native link react-native-fbads
+
+//IOS NOTICE
+Use pod to install fbAudience framework
+
+```
+
 ### 2. Configure native projects
 
 The react-native-fbads has been automatically linked for you, the next step will be downloading and linking the native Facebook SDK for both platforms.
@@ -125,18 +139,42 @@ The constructor accepts two parameters:
 
 #### 2. Making ad component
 
+
 After creating `adsManager` instance, next step is to wrap an arbitrary component that you want to
 use for rendering your custom advertises with a `withNativeAd` wrapper.
 
 It's a higher order component that passes `nativeAd` via props to a wrapped component allowing
 you to actually render an ad!
 
+The `nativeAd` object can contain the following properties:
+
+- `advertiserName` - The name of the Facebook Page or mobile app that represents the business running each ad.
+- `headline` - The headline that the advertiser entered when they created their ad. This is usually the ad's main title.
+- `linkDescription` - Additional information that the advertiser may have entered.
+- `translation` - The word 'ad', translated into the language based upon Facebook app language setting.
+- `promotedTranslation` - The word 'promoted', translated into the language based upon Facebook app language setting.
+- `sponsoredTranslation` - The word 'sponsored', translated into the language based upon Facebook app language setting.
+- `bodyText` - Ad body
+- `callToActionText` - Call to action phrase, e.g. - "Install Now"
+- `socialContext` - social context for the Ad, for example "Over half a million users"
+
+
+** Note: ** Don't use more than one MediaView/AdIconView component within one native ad.
+
+** Note: ** To make any text `Triggerable` wrap it in <TriggerableView></TriggerableView> use only <Text /> component
+
+
 ```js
+import { AdIconView,MediaView,TriggerableView } from 'react-native-ads-facebook';
 class AdComponent extends React.Component {
   render() {
     return (
       <View>
-        <Text>{this.props.nativeAd.description}</Text>
+        <AdIconView />
+        <MediaView />
+        <TriggerableView>
+            <Text>{this.props.nativeAd.description}</Text>
+        </TriggerableView>
       </View>
     );
   }
@@ -145,19 +183,25 @@ class AdComponent extends React.Component {
 export default withNativeAd(AdComponent);
 ```
 
-For full details on the `nativeAd` object, please check flowtype definitions [here](https://github.com/callstack-io/react-native-fbads/blob/master/src/types.js)
-
 #### 3. Rendering an ad
 
 Finally, you can render your wrapped component from previous step and pass it `adsManager`
 of your choice.
+
+##### Adchoice position props
+
+| prop | default | required | params | description |
+|------------------|----------|----------|-----------------------------------------------------------------------------|----------------------------------|
+| adsManager | null | true | `const adsManager = new NativeAdsManager(placementId, numberOfAdsToRequest)` | Set Placement id for native ad |
+| adChoicePosition | topRight | false | `topLeft , topRight , bottomLeft , bottomRight` | Set Ad choice position |
+| expandable | true | false | BOOLEAN | IOS only set Adchoice expandable |
 
 ```js
 class MainApp extends React.Component {
   render() {
     return (
       <View>
-        <AdComponent adsManager={adsManager} />
+        <AdComponent adsManager={adsManager} adChoicePosition="topLeft" expandable={false} />
       </View>
     );
   }

@@ -3,8 +3,23 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node ../node_modules/react-native/local-cli/cli.js start -- projectRoots ../",
-    "ios": "node ../node_modules/react-native/local-cli/cli.js run-ios",
-    "android": "node ../node_modules/react-native/local-cli/cli.js run-android"
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "native-base": "^2.8.0",
+    "react": "16.4.1",
+    "react-native": "0.56.0",
+    "react-native-fbads": "file:..",
+    "react-native-router-flux": "^4.0.1"
+  },
+  "devDependencies": {
+    "babel-jest": "23.4.2",
+    "babel-preset-react-native": "^5",
+    "jest": "23.5.0",
+    "react-test-renderer": "16.4.1"
+  },
+  "jest": {
+    "preset": "react-native"
   }
 }
