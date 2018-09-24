@@ -26,12 +26,6 @@ export default class AdChoicesView extends React.Component<Object> {
         }
     }
 
-    componentWillUpdate(nextProps) {
-        if (this.props.placementId !== nextProps.placementId) {
-            this.props.placementId = nextProps.placementId
-        }
-    }
-
     render() {
         if (!this.props.placementId) {
             return null;
