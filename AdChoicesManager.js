@@ -2,40 +2,34 @@ import React, {PropTypes} from 'react';
 import {requireNativeComponent, StyleSheet, Platform} from 'react-native';
 
 const NativeAdChoicesView = requireNativeComponent('AdChoicesView', null);
-let positionStyle = null;
-
-type adChoiceLocation = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
 
 export default class AdChoicesView extends React.Component<Object> {
-
-    location: adChoiceLocation;
-
-    componentWillMount() {
-        positionStyle = styles.topRight;
-
-        location = this.props.position;
-
-        if (location === 'topLeft') {
-            positionStyle = styles.topLeft
-        } else if (location === 'topRight') {
-            positionStyle = styles.topRight
-        } else if (location === 'bottomLeft') {
-            positionStyle = styles.bottomLeft
-        } else if (location === 'bottomRight') {
-            positionStyle = styles.bottomRight
-        }
-    }
-
     render() {
         if (!this.props.placementId) {
             return null;
         }
+
         return (
             <NativeAdChoicesView
                 placementId={this.props.placementId}
-                style={[styles.adChoice, positionStyle]}
+                style={[styles.adChoice, this.getPositionStyle()]}
                 location={this.props.position || 'topRight'}/>
         );
+    }
+
+    getPositionStyle = () => {
+        switch (this.props.position) {
+            case 'topLeft':
+                return styles.topLeft;
+            case 'topRight':
+                return styles.topRight;
+            case 'bottomLeft':
+                return styles.bottomLeft;
+            case 'bottomRight':
+                return styles.bottomRight;
+            default:
+                return null;
+        }
     }
 }
 
