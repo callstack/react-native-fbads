@@ -1,3 +1,4 @@
+// @flow
 import * as React from 'react';
 import {EmitterSubscription} from 'fbemitter';
 import {requireNativeComponent, findNodeHandle, Text, View} from 'react-native';
@@ -32,7 +33,8 @@ type NativeAdWrapperState = {
 type NativeAdWrapperProps = {
     adsManager: AdsManager,
     onAdLoaded?: ?(?NativeAd) => void,
-    adChoicePosition?: ?string
+    adChoicePosition?: ?string,
+    expandable?: ?boolean
 };
 
 type MultipleRegisterablesContextValueType = {
