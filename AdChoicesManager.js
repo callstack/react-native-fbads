@@ -3,8 +3,11 @@ import {requireNativeComponent, StyleSheet, Platform} from 'react-native';
 
 const NativeAdChoicesView = requireNativeComponent('AdChoicesView', null);
 
+type adChoiceLocation = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
+
 export default class AdChoicesView extends React.Component<Object> {
-    render() {
+    
+    render() {   
         if (!this.props.placementId) {
             return null;
         }
@@ -12,13 +15,13 @@ export default class AdChoicesView extends React.Component<Object> {
         return (
             <NativeAdChoicesView
                 placementId={this.props.placementId}
-                style={[styles.adChoice, this.getPositionStyle()]}
+                style={[styles.adChoice, this.getPositionStyle(this.props.position)]}
                 location={this.props.position || 'topRight'}/>
         );
     }
 
-    getPositionStyle = () => {
-        switch (this.props.position) {
+    getPositionStyle = (position: adChoiceLocation) => {
+        switch (position) {
             case 'topLeft':
                 return styles.topLeft;
             case 'topRight':
@@ -28,7 +31,7 @@ export default class AdChoicesView extends React.Component<Object> {
             case 'bottomRight':
                 return styles.bottomRight;
             default:
-                return null;
+                return styles.topLeft;
         }
     }
 }
