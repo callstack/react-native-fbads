@@ -1,3 +1,4 @@
+// @flow
 import * as React from 'react';
 import {EmitterSubscription} from 'fbemitter';
 import {requireNativeComponent, findNodeHandle, Text, View} from 'react-native';

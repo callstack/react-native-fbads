@@ -1,5 +1,4 @@
 // @flow
-
 import React, {PropTypes} from 'react';
 import { requireNativeComponent, StyleSheet, Platform } from 'react-native';
 
