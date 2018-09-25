@@ -33,7 +33,8 @@ type NativeAdWrapperState = {
 type NativeAdWrapperProps = {
     adsManager: AdsManager,
     onAdLoaded?: ?(?NativeAd) => void,
-    adChoicePosition?: ?string
+    adChoicePosition?: ?string,
+    expandable?: ?boolean
 };
 
 type MultipleRegisterablesContextValueType = {
