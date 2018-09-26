@@ -1,3 +1,4 @@
+// @flow
 import { NativeModules } from 'react-native';
 
 const { CTKInterstitialAdManager } = NativeModules;
