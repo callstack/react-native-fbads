@@ -1,3 +1,4 @@
+// @flow
 import * as React from 'react';
 import {findNodeHandle, requireNativeComponent, View, ViewPropTypes,Text} from 'react-native';
 
