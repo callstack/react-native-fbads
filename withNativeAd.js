@@ -113,7 +113,7 @@ export default <T>(Component: React.ComponentType<T>) =>
         }
 
         componentDidUpdate(prevProps: NativeAdWrapperProps, prevState: NativeAdWrapperState) {
-            if (this.state.mediaViewNodeHandle !== -1 || this.state.adIconViewNodeHandle !== -1 || [...this.state.clickableChildren] > 0) {
+            if (this.state.mediaViewNodeHandle !== -1 || this.state.adIconViewNodeHandle !== -1 || this.state.clickableChildren.size > 0) {
                 const mediaViewNodeHandleChanged =
                     this.state.mediaViewNodeHandle !== prevState.mediaViewNodeHandle;
                 const adIconViewNodeHandleChanged =
