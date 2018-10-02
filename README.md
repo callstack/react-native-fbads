@@ -165,7 +165,7 @@ The `nativeAd` object can contain the following properties:
 
 
 ```js
-import { AdIconView,MediaView,TriggerableView } from 'react-native-ads-facebook';
+import { AdIconView,MediaView,TriggerableView } from 'react-native-fbads';
 class AdComponent extends React.Component {
   render() {
     return (
@@ -188,20 +188,20 @@ export default withNativeAd(AdComponent);
 Finally, you can render your wrapped component from previous step and pass it `adsManager`
 of your choice.
 
-##### Adchoice position props
+#### Native Ad Props
 
 | prop | default | required | params | description |
 |------------------|----------|----------|-----------------------------------------------------------------------------|----------------------------------|
-| adsManager | null | true | `const adsManager = new NativeAdsManager(placementId, numberOfAdsToRequest)` | Set Placement id for native ad |
-| adChoicePosition | topRight | false | `topLeft , topRight , bottomLeft , bottomRight` | Set Ad choice position |
-| expandable | true | false | BOOLEAN | IOS only set Adchoice expandable |
+| adsManager | null | true | `NativeAdsManager` | Sets the Ads Manager this ad will work with |
+| adChoiceStyle | top left | false | `ViewStyleProp` | Set Ad choices style. |
+| adChoiceExpandable | true | false | bool | Control whether Adchoice is expandable (iOS only) |
 
 ```js
 class MainApp extends React.Component {
   render() {
     return (
       <View>
-        <AdComponent adsManager={adsManager} adChoicePosition="topLeft" expandable={false} />
+        <AdComponent adsManager={adsManager} adChoiceStyle={{ marginRight:15 }} adChoiceExpandable={false} />
       </View>
     );
   }
