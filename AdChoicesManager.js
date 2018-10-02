@@ -11,6 +11,25 @@ type Props = {
     style?: ViewStyleProp;
 }
 
+const styles = StyleSheet.create({
+    adChoice: {
+        backgroundColor: 'transparent',
+        ...Platform.select({
+            ios: {
+                width: 0, height: 0,
+            },
+            android: {
+                width: 22, height: 22,
+            },
+        }),
+    },
+    topLeft: {
+        position: 'absolute',
+        left: 0,
+        top: 0
+    }
+})
+
 export default class AdChoicesView extends React.Component<Props> {
     static defaultProps : Props = {
         placementId: null,
@@ -33,21 +52,3 @@ export default class AdChoicesView extends React.Component<Props> {
     }
 }
 
-let styles = StyleSheet.create({
-    adChoice: {
-        backgroundColor: 'transparent',
-        ...Platform.select({
-            ios: {
-                width: 0, height: 0,
-            },
-            android: {
-                width: 22, height: 22,
-            },
-        }),
-    },
-    topLeft: {
-        position: 'absolute',
-        left: 0,
-        top: 0
-    }
-})
