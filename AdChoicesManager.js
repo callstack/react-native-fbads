@@ -49,18 +49,5 @@ let styles = StyleSheet.create({
     topLeft: {
         left: 0,
         top: 0,
-    },
-    topRight: {
-        top: 0,
-        right: 0
-    },
-    bottomLeft: {
-        left: 0,
-        bottom: 0,
-    },
-    bottomRight: {
-        bottom: 0,
-        right: 0
     }
-
 })
