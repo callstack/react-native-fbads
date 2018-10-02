@@ -44,10 +44,10 @@ let styles = StyleSheet.create({
                 width: 22, height: 22,
             },
         }),
-        position: 'absolute',
     },
     topLeft: {
+        position: 'absolute',
         left: 0,
-        top: 0,
+        top: 0
     }
 })
