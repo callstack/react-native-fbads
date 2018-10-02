@@ -2,6 +2,7 @@
 import * as React from 'react';
 import {EmitterSubscription} from 'fbemitter';
 import {requireNativeComponent, findNodeHandle, Text, View} from 'react-native';
+import type { ViewStyleProp } from 'react-native/Libraries/StyleSheet/StyleSheet'
 
 import AdsManager from './NativeAdsManager';
 import {NativeAdIconView} from './AdIconViewManager';
@@ -33,7 +34,7 @@ type NativeAdWrapperState = {
 type NativeAdWrapperProps = {
     adsManager: AdsManager,
     onAdLoaded?: ?(?NativeAd) => void,
-    adChoicePosition?: ?string,
+    adChoiceStyle?: ?ViewStyleProp,
     expandable?: ?boolean
 };
 
@@ -174,7 +175,7 @@ export default <T>(Component: React.ComponentType<T>) =>
         };
 
         renderAdComponent(componentProps: T) {
-            const {adsManager,adChoicePosition,expandable} = this.props;
+            const {adsManager,adChoiceStyle,expandable} = this.props;
             if (this.state.ad) {
                 return (
                     <AdIconViewContext.Provider value={this._registerFunctionsForAdIconView}>
@@ -187,7 +188,7 @@ export default <T>(Component: React.ComponentType<T>) =>
                                 <Component {...componentProps} nativeAd={this.state.ad}/>
                                 <AdChoicesView placementId={adsManager.toJSON()}
                                                expandable={expandable || true}
-                                               position={adChoicePosition}/>
+                                               style={adChoiceStyle}/>
                             </TriggerableContext.Provider>
                         </MediaViewContext.Provider>
                     </AdIconViewContext.Provider>
