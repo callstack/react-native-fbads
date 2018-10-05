@@ -1,56 +1,17 @@
 // @flow
 import React, {PropTypes} from 'react';
 import { requireNativeComponent, StyleSheet, Platform } from 'react-native';
+import type { ViewStyleProp } from 'react-native/Libraries/StyleSheet/StyleSheet'
 
 const NativeAdChoicesView = requireNativeComponent('AdChoicesView', null);
 
-type AdChoicePosition = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
-
 type Props = {
     placementId: string | null;
-    position: AdChoicePosition;
     expandable: boolean;
+    style?: ViewStyleProp;
 }
 
-export default class AdChoicesView extends React.Component<Props> {
-    static defaultProps : Props = {
-        position: 'topLeft',
-        placementId: null,
-        expandable: false
-    }
-    
-    render() {   
-        if (!this.props.placementId) {
-            return null;
-        }
-
-        return (
-            <NativeAdChoicesView
-                style={[styles.adChoice, this.getPositionStyle(this.props.position)]}
-                placementId={this.props.placementId}
-                location={this.props.position}
-                expandable={this.props.expandable}
-            />
-        );
-    }
-
-    getPositionStyle = (position: AdChoicePosition) => {
-        switch (position) {
-            case 'topLeft':
-                return styles.topLeft;
-            case 'topRight':
-                return styles.topRight;
-            case 'bottomLeft':
-                return styles.bottomLeft;
-            case 'bottomRight':
-                return styles.bottomRight;
-            default:
-                throw new Error(`Unsupported position ${position}`)
-        }
-    }
-}
-
-let styles = StyleSheet.create({
+const styles = StyleSheet.create({
     adChoice: {
         backgroundColor: 'transparent',
         ...Platform.select({
@@ -61,23 +22,33 @@ let styles = StyleSheet.create({
                 width: 22, height: 22,
             },
         }),
-        position: 'absolute',
     },
     topLeft: {
+        position: 'absolute',
         left: 0,
-        top: 0,
-    },
-    topRight: {
-        top: 0,
-        right: 0
-    },
-    bottomLeft: {
-        left: 0,
-        bottom: 0,
-    },
-    bottomRight: {
-        bottom: 0,
-        right: 0
+        top: 0
     }
-
 })
+
+export default class AdChoicesView extends React.Component<Props> {
+    static defaultProps : Props = {
+        placementId: null,
+        expandable: false,
+        style: styles.topLeft
+    }
+    
+    render() {   
+        if (!this.props.placementId) {
+            return null;
+        }
+
+        return (
+            <NativeAdChoicesView
+                style={[styles.adChoice, this.props.style]}
+                placementId={this.props.placementId}
+                expandable={this.props.expandable}
+            />
+        );
+    }
+}
+

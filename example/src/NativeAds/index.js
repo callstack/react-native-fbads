@@ -16,7 +16,7 @@ export default class NativeAd extends Component<Props> {
     render() {
         return (
             <Container style={{justifyContent: 'center',backgroundColor:"#fff",padding:20}}>
-                <NativeAdView adsManager={adsManager} adChoicePosition="bottomRight"/>
+                <NativeAdView adsManager={adsManager} />
             </Container>
         );
     }
