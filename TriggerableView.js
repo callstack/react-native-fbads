@@ -1,13 +1,23 @@
 // @flow
 import * as React from 'react';
-import {findNodeHandle, requireNativeComponent, View, ViewPropTypes,Text} from 'react-native';
+import {
+  findNodeHandle,
+  requireNativeComponent,
+  View,
+  ViewPropTypes,
+  Text
+} from 'react-native';
 
 import { TriggerableContext } from './withNativeAd';
 import type { TriggerableContextValueType } from './withNativeAd';
 
 type PropsType = ViewPropTypes & TriggerableContextValueType;
 
-const NativeTriggerableView = requireNativeComponent('AdTriggerableView', null, {});
+const NativeTriggerableView = requireNativeComponent(
+  'AdTriggerableView',
+  null,
+  {}
+);
 
 class TriggerableViewChild extends React.Component<PropsType> {
   _wrapperRef: ?View;
@@ -25,7 +35,7 @@ class TriggerableViewChild extends React.Component<PropsType> {
   };
 
   render() {
-      return <Text {...this.props} ref={this._handleWrapperRef} />;
+    return <Text {...this.props} ref={this._handleWrapperRef} />;
   }
 }
 
