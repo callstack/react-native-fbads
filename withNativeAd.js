@@ -37,9 +37,7 @@ type NativeAdWrapperState = {
 
 type NativeAdWrapperProps = {
   adsManager: AdsManager,
-  onAdLoaded?: ?(?NativeAd) => void,
-  adChoicePosition?: ?string,
-  expandable?: ?boolean
+  onAdLoaded?: ?(?NativeAd) => void
 };
 
 type MultipleRegisterablesContextValueType = {
@@ -198,7 +196,7 @@ export default <T>(Component: React.ComponentType<T>) =>
     };
 
     renderAdComponent(componentProps: T) {
-      const { adsManager, adChoicePosition, expandable } = this.props;
+      const { adsManager } = this.props;
       if (this.state.ad) {
         return (
           <AdIconViewContext.Provider
@@ -221,11 +219,6 @@ export default <T>(Component: React.ComponentType<T>) =>
                   style={{ width: 0, height: 0 }}
                 />
                 <Component {...componentProps} nativeAd={this.state.ad} />
-                <AdChoicesView
-                  placementId={adsManager.toJSON()}
-                  expandable={expandable || true}
-                  position={adChoicePosition}
-                />
               </TriggerableContext.Provider>
             </MediaViewContext.Provider>
           </AdIconViewContext.Provider>
