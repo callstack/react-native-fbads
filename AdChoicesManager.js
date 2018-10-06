@@ -1,20 +1,22 @@
 // @flow
 import React, { PropTypes } from 'react';
 import { requireNativeComponent, StyleSheet, Platform } from 'react-native';
+import type { ViewStyleProp } from 'react-native/Libraries/StyleSheet/StyleSheet'
 
 const NativeAdChoicesView = requireNativeComponent('AdChoicesView', null);
 
-type AdChoicePosition = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
+type AdChoiceLocation = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
 
 type Props = {
   placementId: string | null,
-  position: AdChoicePosition,
-  expandable: boolean
+  location: AdChoiceLocation,
+  expandable: boolean,
+  style?: ViewStyleProp;
 };
 
 export default class AdChoicesView extends React.Component<Props> {
   static defaultProps: Props = {
-    position: 'topLeft',
+    location: 'topLeft',
     placementId: null,
     expandable: false
   };
@@ -26,28 +28,13 @@ export default class AdChoicesView extends React.Component<Props> {
 
     return (
       <NativeAdChoicesView
-        style={[styles.adChoice, this.getPositionStyle(this.props.position)]}
+        style={[styles.adChoice, this.props.style]}
         placementId={this.props.placementId}
-        location={this.props.position}
+        location={this.props.location}
         expandable={this.props.expandable}
       />
     );
   }
-
-  getPositionStyle = (position: AdChoicePosition) => {
-    switch (position) {
-      case 'topLeft':
-        return styles.topLeft;
-      case 'topRight':
-        return styles.topRight;
-      case 'bottomLeft':
-        return styles.bottomLeft;
-      case 'bottomRight':
-        return styles.bottomRight;
-      default:
-        throw new Error(`Unsupported position ${position}`);
-    }
-  };
 }
 
 let styles = StyleSheet.create({
@@ -63,22 +50,5 @@ let styles = StyleSheet.create({
         height: 22
       }
     }),
-    position: 'absolute'
-  },
-  topLeft: {
-    left: 0,
-    top: 0
-  },
-  topRight: {
-    top: 0,
-    right: 0
-  },
-  bottomLeft: {
-    left: 0,
-    bottom: 0
-  },
-  bottomRight: {
-    bottom: 0,
-    right: 0
   }
 });
