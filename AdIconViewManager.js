@@ -1,11 +1,11 @@
 // @flow
-import * as React from "react";
-import { requireNativeComponent } from "react-native";
+import * as React from 'react';
+import { requireNativeComponent } from 'react-native';
 
-import { AdIconViewContext } from "./withNativeAd";
-import type { AdIconViewContextValueType } from "./withNativeAd";
+import { AdIconViewContext } from './withNativeAd';
+import type { AdIconViewContextValueType } from './withNativeAd';
 
-export const NativeAdIconView = requireNativeComponent("AdIconView", null, {});
+export const NativeAdIconView = requireNativeComponent('AdIconView', null, {});
 
 class AdIconViewChild extends React.Component<PropsType> {
   _iconView: ?React.Node;

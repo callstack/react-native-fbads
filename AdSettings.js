@@ -1,15 +1,15 @@
 // @flow
-import { NativeModules } from "react-native";
+import { NativeModules } from 'react-native';
 
 const { CTKAdSettingsManager } = NativeModules;
 
 type SDKLogLevel =
-  | "none"
-  | "debug"
-  | "verbose"
-  | "warning"
-  | "error"
-  | "notification";
+  | 'none'
+  | 'debug'
+  | 'verbose'
+  | 'warning'
+  | 'error'
+  | 'notification';
 
 export default {
   /**

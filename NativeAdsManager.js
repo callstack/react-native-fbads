@@ -1,14 +1,14 @@
 // @flow
-import { NativeModules, NativeEventEmitter } from "react-native";
-import { EventEmitter, EmitterSubscription } from "fbemitter";
+import { NativeModules, NativeEventEmitter } from 'react-native';
+import { EventEmitter, EmitterSubscription } from 'fbemitter';
 
 const { CTKNativeAdManager, CTKNativeAdEmitter } = NativeModules;
 
 const nativeAdEmitter = new NativeEventEmitter(CTKNativeAdEmitter);
 
-const EVENT_DID_BECOME_VALID = "AdsManagerDidBecomeValid";
+const EVENT_DID_BECOME_VALID = 'AdsManagerDidBecomeValid';
 
-type AdManagerCachePolicy = "none" | "icon" | "image" | "all";
+type AdManagerCachePolicy = 'none' | 'icon' | 'image' | 'all';
 
 class NativeAdsManager {
   /** {@string} with placement id of ads **/
@@ -65,7 +65,7 @@ class NativeAdsManager {
    * callers will be notified of a change
    */
   _listenForStateChanges() {
-    nativeAdEmitter.addListener("CTKNativeAdsManagersChanged", managers => {
+    nativeAdEmitter.addListener('CTKNativeAdsManagersChanged', managers => {
       const isValidNew = managers[this.placementId];
       const isValid = this.isValid;
 

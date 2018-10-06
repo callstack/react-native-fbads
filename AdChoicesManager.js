@@ -1,10 +1,10 @@
 // @flow
-import React, { PropTypes } from "react";
-import { requireNativeComponent, StyleSheet, Platform } from "react-native";
+import React, { PropTypes } from 'react';
+import { requireNativeComponent, StyleSheet, Platform } from 'react-native';
 
-const NativeAdChoicesView = requireNativeComponent("AdChoicesView", null);
+const NativeAdChoicesView = requireNativeComponent('AdChoicesView', null);
 
-type AdChoicePosition = "topLeft" | "topRight" | "bottomLeft" | "bottomRight";
+type AdChoicePosition = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
 
 type Props = {
   placementId: string | null,
@@ -14,7 +14,7 @@ type Props = {
 
 export default class AdChoicesView extends React.Component<Props> {
   static defaultProps: Props = {
-    position: "topLeft",
+    position: 'topLeft',
     placementId: null,
     expandable: false
   };
@@ -36,13 +36,13 @@ export default class AdChoicesView extends React.Component<Props> {
 
   getPositionStyle = (position: AdChoicePosition) => {
     switch (position) {
-      case "topLeft":
+      case 'topLeft':
         return styles.topLeft;
-      case "topRight":
+      case 'topRight':
         return styles.topRight;
-      case "bottomLeft":
+      case 'bottomLeft':
         return styles.bottomLeft;
-      case "bottomRight":
+      case 'bottomRight':
         return styles.bottomRight;
       default:
         throw new Error(`Unsupported position ${position}`);
@@ -52,7 +52,7 @@ export default class AdChoicesView extends React.Component<Props> {
 
 let styles = StyleSheet.create({
   adChoice: {
-    backgroundColor: "transparent",
+    backgroundColor: 'transparent',
     ...Platform.select({
       ios: {
         width: 0,
@@ -63,7 +63,7 @@ let styles = StyleSheet.create({
         height: 22
       }
     }),
-    position: "absolute"
+    position: 'absolute'
   },
   topLeft: {
     left: 0,

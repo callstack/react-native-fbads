@@ -1,19 +1,19 @@
 // @flow
-import * as React from "react";
-import { EmitterSubscription } from "fbemitter";
+import * as React from 'react';
+import { EmitterSubscription } from 'fbemitter';
 import {
   requireNativeComponent,
   findNodeHandle,
   Text,
   View
-} from "react-native";
+} from 'react-native';
 
-import AdsManager from "./NativeAdsManager";
-import { NativeAdIconView } from "./AdIconViewManager";
-import { NativeMediaView } from "./MediaViewManager";
-import { MediaView, AdIconView, AdChoicesView } from "./index";
+import AdsManager from './NativeAdsManager';
+import { NativeAdIconView } from './AdIconViewManager';
+import { NativeMediaView } from './MediaViewManager';
+import { MediaView, AdIconView, AdChoicesView } from './index';
 
-const NativeAdView = requireNativeComponent("CTKNativeAd", null);
+const NativeAdView = requireNativeComponent('CTKNativeAd', null);
 
 type NativeAd = {
   advertiserName: ?string,

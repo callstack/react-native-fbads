@@ -1,11 +1,11 @@
 // @flow
-import * as React from "react";
-import { requireNativeComponent } from "react-native";
+import * as React from 'react';
+import { requireNativeComponent } from 'react-native';
 
-import { MediaViewContext } from "./withNativeAd";
-import type { MediaViewContextValueType } from "./withNativeAd";
+import { MediaViewContext } from './withNativeAd';
+import type { MediaViewContextValueType } from './withNativeAd';
 
-export const NativeMediaView = requireNativeComponent("MediaView", null, {});
+export const NativeMediaView = requireNativeComponent('MediaView', null, {});
 
 class MediaViewChild extends React.Component<Object> {
   _mediaView: ?React.Node;

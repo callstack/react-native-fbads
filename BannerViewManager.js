@@ -1,10 +1,10 @@
 // @flow
-import React from "react";
-import { requireNativeComponent } from "react-native";
+import React from 'react';
+import { requireNativeComponent } from 'react-native';
 
-type AdType = "large" | "rectangle" | "standard";
+type AdType = 'large' | 'rectangle' | 'standard';
 
-const CTKBannerView = requireNativeComponent("CTKBannerView", null, {
+const CTKBannerView = requireNativeComponent('CTKBannerView', null, {
   onAdPress: true,
   onAdError: true
 });

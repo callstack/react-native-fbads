@@ -1,20 +1,20 @@
 // @flow
-import * as React from "react";
+import * as React from 'react';
 import {
   findNodeHandle,
   requireNativeComponent,
   View,
   ViewPropTypes,
   Text
-} from "react-native";
+} from 'react-native';
 
-import { TriggerableContext } from "./withNativeAd";
-import type { TriggerableContextValueType } from "./withNativeAd";
+import { TriggerableContext } from './withNativeAd';
+import type { TriggerableContextValueType } from './withNativeAd';
 
 type PropsType = ViewPropTypes & TriggerableContextValueType;
 
 const NativeTriggerableView = requireNativeComponent(
-  "AdTriggerableView",
+  'AdTriggerableView',
   null,
   {}
 );
