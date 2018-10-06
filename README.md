@@ -198,6 +198,7 @@ import { AdChoices } from 'react-native-fbads'
 |------|---------|-----------|-------------|
 | style | undefined | false | Standard Style prop |
 | expandable | false | false | (iOS only) makes the native AdChoices expandable |
+| location | topLeft | false | (iOS only) controls the location of the AdChoices icon
 
 
 #### 3. Rendering an ad
