@@ -11,7 +11,7 @@ import {
 import AdsManager from './NativeAdsManager';
 import { NativeAdIconView } from './AdIconViewManager';
 import { NativeMediaView } from './MediaViewManager';
-import { MediaView, AdIconView, AdChoicesView } from './index';
+import { MediaView, AdIconView } from './index';
 
 const NativeAdView = requireNativeComponent('CTKNativeAd', null);
 
