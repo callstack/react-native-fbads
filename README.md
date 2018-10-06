@@ -188,11 +188,11 @@ Facebook's guidelines require every native ad to include the Ad Choices componen
 
 Example usage:
 ```js
-import { AdChoices } from 'react-native-fbads'
+import { AdChoicesView } from 'react-native-fbads'
 
 ...
 
-<AdChoices style={{position:'absolute', left:0, top:0}}/>
+<AdChoicesView style={{position:'absolute', left:0, top:0}}/>
 ```
 | prop | default | required  | description |
 |------|---------|-----------|-------------|

@@ -53,7 +53,7 @@ type RegisterableContextValueType = {
 export type TriggerableContextValueType = MultipleRegisterablesContextValueType;
 export type AdIconViewContextValueType = RegisterableContextValueType;
 export type MediaViewContextValueType = RegisterableContextValueType;
-
+export type AdChoicesViewContextValueType = string | null;
 /**
  * Higher order function that wraps given `Component` and provides `nativeAd` as a prop
  *
@@ -66,6 +66,7 @@ const defaultValue = { register: null, unregister: null };
 export const TriggerableContext = React.createContext(defaultValue);
 export const MediaViewContext = React.createContext(defaultValue);
 export const AdIconViewContext = React.createContext(defaultValue);
+export const AdChoicesViewContext = React.createContext(null);
 
 export default <T>(Component: React.ComponentType<T>) =>
   class NativeAdWrapper extends React.Component<
@@ -208,17 +209,21 @@ export default <T>(Component: React.ComponentType<T>) =>
               <TriggerableContext.Provider
                 value={this._registerFunctionsForTriggerables}
               >
-                {/* In case of no AdIconView or MediaView in Custom layout,
+                <AdChoicesViewContext.Provider
+                  value={this.props.adsManager.toJSON()}
+                >
+                  {/* In case of no AdIconView or MediaView in Custom layout,
                                      It will keep Triggerable component Functional */}
-                <AdIconView
-                  nativeAd={this.state.ad}
-                  style={{ width: 0, height: 0 }}
-                />
-                <MediaView
-                  nativeAd={this.state.ad}
-                  style={{ width: 0, height: 0 }}
-                />
-                <Component {...componentProps} nativeAd={this.state.ad} />
+                  <AdIconView
+                    nativeAd={this.state.ad}
+                    style={{ width: 0, height: 0 }}
+                  />
+                  <MediaView
+                    nativeAd={this.state.ad}
+                    style={{ width: 0, height: 0 }}
+                  />
+                  <Component {...componentProps} nativeAd={this.state.ad} />
+                </AdChoicesViewContext.Provider>
               </TriggerableContext.Provider>
             </MediaViewContext.Provider>
           </AdIconViewContext.Provider>
