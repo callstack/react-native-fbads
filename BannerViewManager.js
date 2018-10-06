@@ -1,31 +1,32 @@
 // @flow
-import React from 'react';
-import { requireNativeComponent } from 'react-native';
+import React from "react";
+import { requireNativeComponent } from "react-native";
 
-type AdType = 'large' | 'rectangle' | 'standard';
+type AdType = "large" | "rectangle" | "standard";
 
-const CTKBannerView = requireNativeComponent('CTKBannerView', null, {
+const CTKBannerView = requireNativeComponent("CTKBannerView", null, {
   onAdPress: true,
-  onAdError: true,
+  onAdError: true
 });
 
 const sizeForType = {
   large: 90,
   rectangle: 250,
-  standard: 50,
+  standard: 50
 };
 
 /**
  * Gets size for a type (any value of `AdType` is allowed)
  */
-const getSizeForType = (type: AdType) => sizeForType[type] || sizeForType.standard;
+const getSizeForType = (type: AdType) =>
+  sizeForType[type] || sizeForType.standard;
 
 type BannerViewProps = {
   type: AdType,
   placementId: string,
   onPress: Function,
   onError: Function,
-  style: any,
+  style: any
 };
 
 const BannerView = (props: BannerViewProps) => {

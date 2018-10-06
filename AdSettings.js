@@ -1,9 +1,15 @@
 // @flow
-import { NativeModules } from 'react-native';
+import { NativeModules } from "react-native";
 
 const { CTKAdSettingsManager } = NativeModules;
 
-type SDKLogLevel = 'none' | 'debug' | 'verbose' | 'warning' | 'error' | 'notification';
+type SDKLogLevel =
+  | "none"
+  | "debug"
+  | "verbose"
+  | "warning"
+  | "error"
+  | "notification";
 
 export default {
   /**
@@ -48,5 +54,5 @@ export default {
    */
   setUrlPrefix(urlPrefix: string) {
     CTKAdSettingsManager.setUrlPrefix(urlPrefix);
-  },
+  }
 };
