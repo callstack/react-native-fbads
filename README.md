@@ -1,5 +1,4 @@
-react-native-fbads [![npm version][version-badge]][package]
-============
+# react-native-fbads [![npm version][version-badge]][package]
 
 [![chat][chat-badge]][chat]
 
@@ -15,47 +14,51 @@ react-native-fbads [![npm version][version-badge]][package]
     - [iOS](#21-ios)
     - [Android](#22-android)
 - [Usage](#usage)
-   - [Interstitial Ads](#interstitial-ads)
-      - [1. Showing ad](#1-showing-ad)
-   - [Native Ads](#native-ads)
-      - [1. Creating AdsManager](#1-creating-adsmanager)
-      - [2. Making ad component](#2-making-ad-component)
-      - [3. Rendering an ad](#3-rendering-an-ad)
-   - [Banner View](#bannerview)
-      - [1. Showing ad](#1-showing-ad-1)
+  - [Interstitial Ads](#interstitial-ads)
+    - [1. Showing ad](#1-showing-ad)
+  - [Native Ads](#native-ads)
+    - [1. Creating AdsManager](#1-creating-adsmanager)
+    - [2. Making ad component](#2-making-ad-component)
+    - [3. Rendering an ad](#3-rendering-an-ad)
+  - [Banner View](#bannerview)
+    - [1. Showing ad](#1-showing-ad-1)
 - [API](#api)
-    - [NativeAdsManager](#nativeadsmanager)
-      - [disableAutoRefresh](#disableautorefresh)
-      - [setMediaCachePolicy](#setmediacachepolicy)
-    - [InterstitialAdManager](#interstitialadmanager)
-      - [showAd](#showad)
-    - [RewardedVideoAdManager](#rewardedvideoadmanager)
-      - [loadAd](#loadAd)
-      - [showAd](#showAd)
-    - [AdSettings](#adsettings)
-      - [currentDeviceHash](#currentdevicehash)
-      - [addTestDevice](#addtestdevice)
-      - [clearTestDevices](#cleartestdevices)
-      - [setLogLevel](#setloglevel)
-      - [setIsChildDirected](#setischilddirected)
-      - [setMediationService](#setmediationservice)
-      - [setUrlPrefix](#seturlprefix)
+  - [NativeAdsManager](#nativeadsmanager)
+    - [disableAutoRefresh](#disableautorefresh)
+    - [setMediaCachePolicy](#setmediacachepolicy)
+  - [InterstitialAdManager](#interstitialadmanager)
+    - [showAd](#showad)
+  - [RewardedVideoAdManager](#rewardedvideoadmanager)
+    - [loadAd](#loadAd)
+    - [showAd](#showAd)
+  - [AdSettings](#adsettings)
+    - [currentDeviceHash](#currentdevicehash)
+    - [addTestDevice](#addtestdevice)
+    - [clearTestDevices](#cleartestdevices)
+    - [setLogLevel](#setloglevel)
+    - [setIsChildDirected](#setischilddirected)
+    - [setMediationService](#setmediationservice)
+    - [setUrlPrefix](#seturlprefix)
 - [Running example](#running-example)
-   - [Install dependencies](#1-install-dependencies)
-   - [Start packager](#2-start-packager)
-   - [Run it on iOS / Android](#3-run-it-on-ios--android)
+  - [Install dependencies](#1-install-dependencies)
+  - [Start packager](#2-start-packager)
+  - [Run it on iOS / Android](#3-run-it-on-ios--android)
 - [Credits](#credits)
 
 ## Installation
 
 ### 1. Install Javascript packages
+
 ##### RN >= 0.40
+
 Install JavaScript packages:
 
 ```bash
 $ react-native install react-native-fbads
 ```
+
 ##### RN < 0.40
+
 Install JavaScript packages:
 
 ```bash
@@ -73,7 +76,6 @@ react-native link react-native-fbads
 
 //IOS NOTICE
 Use pod to install fbAudience framework
-
 ```
 
 ### 2. Configure native projects
@@ -111,7 +113,7 @@ import { InterstitialAdManager } from 'react-native-fbads';
 
 InterstitialAdManager.showAd(placementId)
   .then(didClick => {})
-  .catch(error => {})
+  .catch(error => {});
 ```
 
 Method returns a promise that will be rejected when an error occurs during a call (e.g. no fill from ad server or network error) and resolve when user either dimisses or interacts with the displayed ad.
@@ -134,11 +136,11 @@ const adsManager = new NativeAdsManager(placementId, numberOfAdsToRequest);
 ```
 
 The constructor accepts two parameters:
+
 - `placementId` - which is an unique identifier describing your ad units,
 - `numberOfAdsToRequest` - which is a number of ads to request by ads manager at a time
 
 #### 2. Making ad component
-
 
 After creating `adsManager` instance, next step is to wrap an arbitrary component that you want to
 use for rendering your custom advertises with a `withNativeAd` wrapper.
@@ -158,22 +160,26 @@ The `nativeAd` object can contain the following properties:
 - `callToActionText` - Call to action phrase, e.g. - "Install Now"
 - `socialContext` - social context for the Ad, for example "Over half a million users"
 
-
 ** Note: ** Don't use more than one MediaView/AdIconView component within one native ad.
 
 ** Note: ** To make any text `Triggerable` wrap it in <TriggerableView></TriggerableView> use only <Text /> component
 
-
 ```js
-import { AdIconView,MediaView,TriggerableView } from 'react-native-ads-facebook';
+import {
+  AdIconView,
+  MediaView,
+  AdChoicesView,
+  TriggerableView
+} from 'react-native-fbads';
 class AdComponent extends React.Component {
   render() {
     return (
       <View>
+        <AdChoicesView style={{ position: 'absolute', left: 0, top: 0 }} />
         <AdIconView />
         <MediaView />
         <TriggerableView>
-            <Text>{this.props.nativeAd.description}</Text>
+          <Text>{this.props.nativeAd.description}</Text>
         </TriggerableView>
       </View>
     );
@@ -184,22 +190,24 @@ export default withNativeAd(AdComponent);
 ```
 
 #### 4. Displaying Facebook Ad Choices Icon
-Facebook's guidelines require every native ad to include the Ad Choices component, which contains a small clickable icon.
 
-Example usage:
+Facebook's guidelines require every native ad to include the Ad Choices component, which contains a small clickable icon.
+You can use the included `AdChoicesView` component and style it to your liking.
+
+#### Example usage
+
 ```js
 import { AdChoicesView } from 'react-native-fbads'
 
-...
-
 <AdChoicesView style={{position:'absolute', left:0, top:0}}/>
 ```
-| prop | default | required  | description |
-|------|---------|-----------|-------------|
-| style | undefined | false | Standard Style prop |
-| expandable | false | false | (iOS only) makes the native AdChoices expandable |
-| location | topLeft | false | (iOS only) controls the location of the AdChoices icon
 
+#### Props
+| prop       | default   | required | description                                            |
+| ---------- | --------- | -------- | ------------------------------------------------------ |
+| style      | undefined | false    | Standard Style prop                                    |
+| expandable | false     | false    | (iOS only) makes the native AdChoices expandable       |
+| location   | topLeft   | false    | (iOS only) controls the location of the AdChoices icon |
 
 #### 3. Rendering an ad
 
@@ -208,9 +216,9 @@ of your choice.
 
 ##### Native Ad Props
 
-| prop | default | required | params | description |
-|------------------|----------|----------|-----------------------------------------------------------------------------|----------------------------------|
-| adsManager | null | true | `const adsManager = new NativeAdsManager(placementId, numberOfAdsToRequest)` | The ad manager to work with |
+| prop       | default | required | params                                                                       | description                 |
+| ---------- | ------- | -------- | ---------------------------------------------------------------------------- | --------------------------- |
+| adsManager | null    | true     | `const adsManager = new NativeAdsManager(placementId, numberOfAdsToRequest)` | The ad manager to work with |
 
 ```js
 class MainApp extends React.Component {
@@ -226,9 +234,10 @@ class MainApp extends React.Component {
 
 ### BannerView
 
-BannerView is a component that allows you to display native banners (know as *AdView*).
+BannerView is a component that allows you to display native banners (know as _AdView_).
 
 Banners are available in 3 sizes:
+
 - `standard` (BANNER_HEIGHT_50)
 - `large` (BANNER_HEIGHT_90)
 - `rectangle` (RECTANGLE_HEIGHT_250)
@@ -251,7 +260,7 @@ function ViewWithBanner(props) {
         placementId="YOUR_BANNER_PLACEMENT_ID"
         type="standard"
         onPress={() => console.log('click')}
-        onError={(err) => console.log('error', err)}
+        onError={err => console.log('error', err)}
       />
     </View>
   );
@@ -304,7 +313,8 @@ InterstitialAdManager.showAd('placementId')
 Promise will be rejected when there's an error loading ads from Facebook Audience network. It will resolve with a
 `boolean` indicating whether user didClick an ad or not.
 
-On Android you have to add following activity to *AndroidManifest.xml*
+On Android you have to add following activity to _AndroidManifest.xml_
+
 ```xml
 <activity
   android:name="com.facebook.ads.InterstitialAdActivity"
@@ -316,7 +326,7 @@ On Android you have to add following activity to *AndroidManifest.xml*
 ### RewardedVideoAdManager
 
 ```js
-import { RewardedVideoAdManager } from "react-native-fbads";
+import { RewardedVideoAdManager } from 'react-native-fbads';
 ```
 
 RewardedVideoAdManager is a manager that allows you to load a rewarded video, then show the video once the video is loaded, in that order.
@@ -381,7 +391,9 @@ AdSettings.clearTestDevices();
 Sets current SDK log level.
 
 ```js
-AdSettings.setLogLevel('none' | 'debug' | 'verbose' | 'warning' | 'error' | 'notification');
+AdSettings.setLogLevel(
+  'none' | 'debug' | 'verbose' | 'warning' | 'error' | 'notification'
+);
 ```
 
 **Note:** This method is a noop on Android.
@@ -443,6 +455,7 @@ $ cd ./example && npm run android
 Some of the API explanations were borrowed from Facebook SDK documentation.
 
 <!-- badges -->
+
 [version-badge]: https://img.shields.io/npm/v/react-native-fbads.svg?style=flat-square
 [package]: https://www.npmjs.com/package/react-native-fbads
 [chat-badge]: https://img.shields.io/discord/426714625279524876.svg?style=flat-square&colorB=758ED3
