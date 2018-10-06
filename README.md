@@ -192,9 +192,7 @@ of your choice.
 
 | prop | default | required | params | description |
 |------------------|----------|----------|-----------------------------------------------------------------------------|----------------------------------|
-| adsManager | null | true | `const adsManager = new NativeAdsManager(placementId, numberOfAdsToRequest)` | Set Placement id for native ad |
-| adChoicePosition | topRight | false | `topLeft , topRight , bottomLeft , bottomRight` | Set Ad choice position |
-| expandable | true | false | BOOLEAN | IOS only set Adchoice expandable |
+| adsManager | null | true | `const adsManager = new NativeAdsManager(placementId, numberOfAdsToRequest)` | The ad manager to work with |
 
 ```js
 class MainApp extends React.Component {
