@@ -203,6 +203,7 @@ import { AdChoicesView } from 'react-native-fbads'
 ```
 
 #### Props
+
 | prop       | default   | required | description                                            |
 | ---------- | --------- | -------- | ------------------------------------------------------ |
 | style      | undefined | false    | Standard Style prop                                    |
