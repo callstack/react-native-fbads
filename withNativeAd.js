@@ -53,7 +53,7 @@ type RegisterableContextValueType = {
 export type TriggerableContextValueType = MultipleRegisterablesContextValueType;
 export type AdIconViewContextValueType = RegisterableContextValueType;
 export type MediaViewContextValueType = RegisterableContextValueType;
-export type AdChoicesViewContextValueType = string | null;
+export type AdChoicesViewContextValueType = string;
 /**
  * Higher order function that wraps given `Component` and provides `nativeAd` as a prop
  *
@@ -66,7 +66,7 @@ const defaultValue = { register: null, unregister: null };
 export const TriggerableContext = React.createContext(defaultValue);
 export const MediaViewContext = React.createContext(defaultValue);
 export const AdIconViewContext = React.createContext(defaultValue);
-export const AdChoicesViewContext = React.createContext(null);
+export const AdChoicesViewContext = React.createContext();
 
 export default <T>(Component: React.ComponentType<T>) =>
   class NativeAdWrapper extends React.Component<
