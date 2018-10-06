@@ -1,7 +1,7 @@
 // @flow
 import React, { PropTypes } from 'react';
 import { requireNativeComponent, StyleSheet, Platform } from 'react-native';
-import type { ViewStyleProp } from 'react-native/Libraries/StyleSheet/StyleSheet'
+import type { ViewStyleProp } from 'react-native/Libraries/StyleSheet/StyleSheet';
 
 const NativeAdChoicesView = requireNativeComponent('AdChoicesView', null);
 
@@ -11,7 +11,7 @@ type Props = {
   placementId: string | null,
   location: AdChoiceLocation,
   expandable: boolean,
-  style?: ViewStyleProp;
+  style?: ViewStyleProp
 };
 
 export default class AdChoicesView extends React.Component<Props> {
@@ -49,6 +49,6 @@ let styles = StyleSheet.create({
         width: 22,
         height: 22
       }
-    }),
+    })
   }
 });
