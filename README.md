@@ -183,12 +183,29 @@ class AdComponent extends React.Component {
 export default withNativeAd(AdComponent);
 ```
 
+#### 4. Displaying Facebook Ad Choices Icon
+Facebook's guidelines require every native ad to include the Ad Choices component, which contains a small clickable icon.
+
+Example usage:
+```js
+import { AdChoices } from 'react-native-fbads'
+
+...
+
+<AdChoices style={{position:'absolute', left:0, top:0}}/>
+```
+| prop | default | required  | description |
+|------|---------|-----------|-------------|
+| style | undefined | false | Standard Style prop |
+| expandable | false | false | (iOS only) makes the native AdChoices expandable |
+
+
 #### 3. Rendering an ad
 
 Finally, you can render your wrapped component from previous step and pass it `adsManager`
 of your choice.
 
-##### Adchoice position props
+##### Native Ad Props
 
 | prop | default | required | params | description |
 |------------------|----------|----------|-----------------------------------------------------------------------------|----------------------------------|
@@ -199,7 +216,7 @@ class MainApp extends React.Component {
   render() {
     return (
       <View>
-        <AdComponent adsManager={adsManager} adChoicePosition="topLeft" expandable={false} />
+        <AdComponent adsManager={adsManager} />
       </View>
     );
   }
