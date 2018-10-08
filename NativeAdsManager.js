@@ -82,7 +82,7 @@ class NativeAdsManager {
    * If manager already became valid, it will call the function w/o registering
    * handler for events
    */
-  onAdsLoaded(func: Function): EmitterSubscription {
+  onAdsLoaded(func: () => mixed): EmitterSubscription {
     if (this.isValid) {
       setTimeout(func);
       return {
