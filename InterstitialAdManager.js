@@ -9,5 +9,5 @@ export default {
    */
   showAd(placementId: string): Promise<boolean> {
     return CTKInterstitialAdManager.showAd(placementId);
-  }
+  },
 };

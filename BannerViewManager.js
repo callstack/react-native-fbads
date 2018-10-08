@@ -6,13 +6,13 @@ type AdType = 'large' | 'rectangle' | 'standard';
 
 const CTKBannerView = requireNativeComponent('CTKBannerView', null, {
   onAdPress: true,
-  onAdError: true
+  onAdError: true,
 });
 
 const sizeForType = {
   large: 90,
   rectangle: 250,
-  standard: 50
+  standard: 50,
 };
 
 /**
@@ -26,7 +26,7 @@ type BannerViewProps = {
   placementId: string,
   onPress: Function,
   onError: Function,
-  style: any
+  style: any,
 };
 
 const BannerView = (props: BannerViewProps) => {

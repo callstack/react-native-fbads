@@ -1,5 +1,5 @@
 // @flow
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { requireNativeComponent, StyleSheet, Platform } from 'react-native';
 
 const NativeAdChoicesView = requireNativeComponent('AdChoicesView', null);
@@ -9,14 +9,14 @@ type AdChoicePosition = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
 type Props = {
   placementId: string | null,
   position: AdChoicePosition,
-  expandable: boolean
+  expandable: boolean,
 };
 
 export default class AdChoicesView extends React.Component<Props> {
   static defaultProps: Props = {
     position: 'topLeft',
     placementId: null,
-    expandable: false
+    expandable: false,
   };
 
   render() {
@@ -56,29 +56,29 @@ let styles = StyleSheet.create({
     ...Platform.select({
       ios: {
         width: 0,
-        height: 0
+        height: 0,
       },
       android: {
         width: 22,
-        height: 22
-      }
+        height: 22,
+      },
     }),
-    position: 'absolute'
+    position: 'absolute',
   },
   topLeft: {
     left: 0,
-    top: 0
+    top: 0,
   },
   topRight: {
     top: 0,
-    right: 0
+    right: 0,
   },
   bottomLeft: {
     left: 0,
-    bottom: 0
+    bottom: 0,
   },
   bottomRight: {
     bottom: 0,
-    right: 0
-  }
+    right: 0,
+  },
 });

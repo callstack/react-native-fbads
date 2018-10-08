@@ -1,12 +1,7 @@
 // @flow
 import * as React from 'react';
 import { EmitterSubscription } from 'fbemitter';
-import {
-  requireNativeComponent,
-  findNodeHandle,
-  Text,
-  View
-} from 'react-native';
+import { requireNativeComponent, findNodeHandle } from 'react-native';
 
 import AdsManager from './NativeAdsManager';
 import { NativeAdIconView } from './AdIconViewManager';
@@ -24,7 +19,7 @@ type NativeAd = {
   promotedTranslation: ?string,
   socialContext: ?string,
   sponsoredTranslation: ?string,
-  translation: ?string
+  translation: ?string,
 };
 
 type NativeAdWrapperState = {
@@ -32,24 +27,24 @@ type NativeAdWrapperState = {
   canRequestAds: boolean,
   mediaViewNodeHandle: number,
   adIconViewNodeHandle: number,
-  clickableChildren: Set<number>
+  clickableChildren: Set<number>,
 };
 
 type NativeAdWrapperProps = {
   adsManager: AdsManager,
   onAdLoaded?: ?(?NativeAd) => void,
   adChoicePosition?: ?string,
-  expandable?: ?boolean
+  expandable?: ?boolean,
 };
 
 type MultipleRegisterablesContextValueType = {
   unregister: (React.Node => void) | null,
-  register: (React.Node => void) | null
+  register: (React.Node => void) | null,
 };
 
 type RegisterableContextValueType = {
   register: (React.Node => void) | null,
-  unregister: (() => void) | null
+  unregister: (() => void) | null,
 };
 
 export type TriggerableContextValueType = MultipleRegisterablesContextValueType;
@@ -75,10 +70,15 @@ export default <T>(Component: React.ComponentType<T>) =>
     NativeAdWrapperState
   > {
     _subscription: ?EmitterSubscription;
+
     _nativeAdViewRef: ?NativeAdView;
+
     _registerFunctionsForTriggerables: TriggerableContextValueType;
+
     _registerFunctionsForMediaView: MediaViewContextValueType;
+
     _registerFunctionsForAdIconView: AdIconViewContextValueType;
+
     _clickableChildrenNodeHandles: { [React.Node]: number };
 
     constructor(props: NativeAdWrapperProps & T) {
@@ -86,17 +86,17 @@ export default <T>(Component: React.ComponentType<T>) =>
 
       this._registerFunctionsForTriggerables = {
         register: this._registerClickableChild,
-        unregister: this._unregisterClickableChild
+        unregister: this._unregisterClickableChild,
       };
 
       this._registerFunctionsForMediaView = {
         unregister: this._unregisterMediaView,
-        register: this._registerMediaView
+        register: this._registerMediaView,
       };
 
       this._registerFunctionsForAdIconView = {
         unregister: this._unregisterAdIconView,
-        register: this._registerAdIconView
+        register: this._registerAdIconView,
       };
 
       this._clickableChildrenNodeHandles = {};
@@ -107,7 +107,7 @@ export default <T>(Component: React.ComponentType<T>) =>
         mediaViewNodeHandle: -1,
         adIconViewNodeHandle: -1,
         clickableChildren: new Set(),
-        canRequestAds: false
+        canRequestAds: false,
       };
     }
 
@@ -134,7 +134,7 @@ export default <T>(Component: React.ComponentType<T>) =>
         const adIconViewNodeHandleChanged =
           this.state.adIconViewNodeHandle !== prevState.adIconViewNodeHandle;
         const clickableChildrenChanged = [
-          ...prevState.clickableChildren
+          ...prevState.clickableChildren,
         ].filter(child => !this.state.clickableChildren.has(child));
         if (
           mediaViewNodeHandleChanged ||
@@ -162,19 +162,19 @@ export default <T>(Component: React.ComponentType<T>) =>
 
     _registerMediaView = (mediaView: NativeMediaView) =>
       this.setState({ mediaViewNodeHandle: findNodeHandle(mediaView) });
+
     _unregisterMediaView = () => this.setState({ mediaViewNodeHandle: -1 });
 
     _registerAdIconView = (adIconView: NativeAdIconView) =>
       this.setState({ adIconViewNodeHandle: findNodeHandle(adIconView) });
+
     _unregisterAdIconView = () => this.setState({ adIconViewNodeHandle: -1 });
 
     _registerClickableChild = (child: React.Node) => {
       this._clickableChildrenNodeHandles[child] = findNodeHandle(child);
-      this.setState({
-        clickableChildren: this.state.clickableChildren.add(
-          findNodeHandle(child)
-        )
-      });
+      this.setState(state => ({
+        clickableChildren: state.clickableChildren.add(findNodeHandle(child)),
+      }));
     };
 
     _unregisterClickableChild = (child: React.Node) => {
