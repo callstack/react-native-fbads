@@ -23,8 +23,8 @@ public class NativeAdChoicesView extends ReactViewGroup {
 
   public void setNativeAd(NativeAd nativeAd) {
     AdChoicesView adChoicesView = new AdChoicesView(mContext, nativeAd, true);
-    adChoicesView.measure(40, 40);
-    adChoicesView.layout(0, 0, 40, 40);
+    adChoicesView.measure(adChoicesView.getMeasuredWidth(), adChoicesView.getMeasuredHeight());
+    adChoicesView.layout(0, 0, adChoicesView.getMeasuredWidth(), adChoicesView.getMeasuredHeight());
     adChoicesView.bringToFront();
     addView(adChoicesView);
   }
