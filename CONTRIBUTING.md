@@ -3,8 +3,8 @@
 Pull requests are always welcome!
 Before opening a PR, please:
 
+- Ensure Typescript compiles without errors
+- Run TSLint and fix any outstanding issues
 - Ensure you've formatted your code with Prettier
-- Run ESLint and fix any outstanding issues
-- Run Flow and ensure no errors were introduced
 
 Thanks for contributing!
