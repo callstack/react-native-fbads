@@ -16,8 +16,8 @@
   "author": "Suraj Tiwari <surajtiwari020@gmail.com>",
   "license": "MIT",
   "peerDependencies": {
-    "react-native": "*",
-    "react": "*"
+    "react": "*",
+    "react-native": "*"
   },
   "dependencies": {
     "fbemitter": "^2.1.1"
@@ -32,5 +32,8 @@
     "facebook",
     "Audience Network",
     "Native ads"
-  ]
+  ],
+  "devDependencies": {
+    "tslint-config-airbnb": "^5.11.0"
+  }
 }
