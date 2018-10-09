@@ -1,53 +1,41 @@
 // @flow
 import React from 'react';
 import { requireNativeComponent, StyleSheet, Platform } from 'react-native';
+import type { ViewStyleProp } from 'react-native/Libraries/StyleSheet/StyleSheet';
+
+import { AdChoicesViewContext } from './withNativeAd';
+import type { AdChoicesViewContextValueType } from './withNativeAd';
 
 const NativeAdChoicesView = requireNativeComponent('AdChoicesView', null);
 
-type AdChoicePosition = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
+type AdChoiceLocation = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
 
 type Props = {
-  placementId: string | null,
-  position: AdChoicePosition,
+  location: AdChoiceLocation,
   expandable: boolean,
+  style?: ViewStyleProp,
 };
 
 export default class AdChoicesView extends React.Component<Props> {
   static defaultProps: Props = {
-    position: 'topLeft',
-    placementId: null,
+    location: 'topLeft',
     expandable: false,
   };
 
   render() {
-    if (!this.props.placementId) {
-      return null;
-    }
-
     return (
-      <NativeAdChoicesView
-        style={[styles.adChoice, this.getPositionStyle(this.props.position)]}
-        placementId={this.props.placementId}
-        location={this.props.position}
-        expandable={this.props.expandable}
-      />
+      <AdChoicesViewContext.Consumer>
+        {(placementId: AdChoicesViewContextValueType) => (
+          <NativeAdChoicesView
+            style={[styles.adChoice, this.props.style]}
+            placementId={placementId}
+            location={this.props.location}
+            expandable={this.props.expandable}
+          />
+        )}
+      </AdChoicesViewContext.Consumer>
     );
   }
-
-  getPositionStyle = (position: AdChoicePosition) => {
-    switch (position) {
-      case 'topLeft':
-        return styles.topLeft;
-      case 'topRight':
-        return styles.topRight;
-      case 'bottomLeft':
-        return styles.bottomLeft;
-      case 'bottomRight':
-        return styles.bottomRight;
-      default:
-        throw new Error(`Unsupported position ${position}`);
-    }
-  };
 }
 
 let styles = StyleSheet.create({
@@ -63,22 +51,5 @@ let styles = StyleSheet.create({
         height: 22,
       },
     }),
-    position: 'absolute',
-  },
-  topLeft: {
-    left: 0,
-    top: 0,
-  },
-  topRight: {
-    top: 0,
-    right: 0,
-  },
-  bottomLeft: {
-    left: 0,
-    bottom: 0,
-  },
-  bottomRight: {
-    bottom: 0,
-    right: 0,
   },
 });
