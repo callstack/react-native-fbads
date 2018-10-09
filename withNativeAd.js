@@ -11,7 +11,7 @@ import {
 import AdsManager from './NativeAdsManager';
 import { NativeAdIconView } from './AdIconViewManager';
 import { NativeMediaView } from './MediaViewManager';
-import { MediaView, AdIconView, AdChoicesView } from './index';
+import { MediaView, AdIconView } from './index';
 
 const NativeAdView = requireNativeComponent('CTKNativeAd', null);
 
@@ -37,9 +37,7 @@ type NativeAdWrapperState = {
 
 type NativeAdWrapperProps = {
   adsManager: AdsManager,
-  onAdLoaded?: ?(?NativeAd) => void,
-  adChoicePosition?: ?string,
-  expandable?: ?boolean
+  onAdLoaded?: ?(?NativeAd) => void
 };
 
 type MultipleRegisterablesContextValueType = {
@@ -55,7 +53,7 @@ type RegisterableContextValueType = {
 export type TriggerableContextValueType = MultipleRegisterablesContextValueType;
 export type AdIconViewContextValueType = RegisterableContextValueType;
 export type MediaViewContextValueType = RegisterableContextValueType;
-
+export type AdChoicesViewContextValueType = string;
 /**
  * Higher order function that wraps given `Component` and provides `nativeAd` as a prop
  *
@@ -68,6 +66,7 @@ const defaultValue = { register: null, unregister: null };
 export const TriggerableContext = React.createContext(defaultValue);
 export const MediaViewContext = React.createContext(defaultValue);
 export const AdIconViewContext = React.createContext(defaultValue);
+export const AdChoicesViewContext = React.createContext();
 
 export default <T>(Component: React.ComponentType<T>) =>
   class NativeAdWrapper extends React.Component<
@@ -198,7 +197,7 @@ export default <T>(Component: React.ComponentType<T>) =>
     };
 
     renderAdComponent(componentProps: T) {
-      const { adsManager, adChoicePosition, expandable } = this.props;
+      const { adsManager } = this.props;
       if (this.state.ad) {
         return (
           <AdIconViewContext.Provider
@@ -210,22 +209,21 @@ export default <T>(Component: React.ComponentType<T>) =>
               <TriggerableContext.Provider
                 value={this._registerFunctionsForTriggerables}
               >
-                {/* In case of no AdIconView or MediaView in Custom layout,
+                <AdChoicesViewContext.Provider
+                  value={this.props.adsManager.toJSON()}
+                >
+                  {/* In case of no AdIconView or MediaView in Custom layout,
                                      It will keep Triggerable component Functional */}
-                <AdIconView
-                  nativeAd={this.state.ad}
-                  style={{ width: 0, height: 0 }}
-                />
-                <MediaView
-                  nativeAd={this.state.ad}
-                  style={{ width: 0, height: 0 }}
-                />
-                <Component {...componentProps} nativeAd={this.state.ad} />
-                <AdChoicesView
-                  placementId={adsManager.toJSON()}
-                  expandable={expandable || true}
-                  position={adChoicePosition}
-                />
+                  <AdIconView
+                    nativeAd={this.state.ad}
+                    style={{ width: 0, height: 0 }}
+                  />
+                  <MediaView
+                    nativeAd={this.state.ad}
+                    style={{ width: 0, height: 0 }}
+                  />
+                  <Component {...componentProps} nativeAd={this.state.ad} />
+                </AdChoicesViewContext.Provider>
               </TriggerableContext.Provider>
             </MediaViewContext.Provider>
           </AdIconViewContext.Provider>
