@@ -7,7 +7,7 @@ import type { MediaViewContextValueType } from './withNativeAd';
 
 export const NativeMediaView = requireNativeComponent('MediaView', null, {});
 
-class MediaViewChild extends React.Component<Object> {
+class MediaViewChild extends React.Component<{}> {
   _mediaView: ?React.Node;
 
   _handleMediaViewMount = (ref: ?React.Node) => {
@@ -27,7 +27,7 @@ class MediaViewChild extends React.Component<Object> {
   }
 }
 
-export default class MediaView extends React.Component<Object> {
+export default class MediaView extends React.Component<{}> {
   render() {
     return (
       <MediaViewContext.Consumer>

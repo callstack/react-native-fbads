@@ -11,16 +11,16 @@ const EVENT_DID_BECOME_VALID = 'AdsManagerDidBecomeValid';
 type AdManagerCachePolicy = 'none' | 'icon' | 'image' | 'all';
 
 class NativeAdsManager {
-  /** {@string} with placement id of ads **/
+  /** {@string} with placement id of ads * */
   placementId: string;
 
-  /** {@number} of ads to request at once **/
+  /** {@number} of ads to request at once * */
   adsToRequest: number;
 
-  /** {@boolean} indicating whether AdsManager is ready to serve ads **/
+  /** {@boolean} indicating whether AdsManager is ready to serve ads * */
   isValid: boolean = false;
 
-  /** {@EventEmitter} used for sending out updates **/
+  /** {@EventEmitter} used for sending out updates * */
   eventEmitter: EventEmitter = new EventEmitter();
 
   static async registerViewsForInteractionAsync(
@@ -36,7 +36,7 @@ class NativeAdsManager {
     } else if (adIconViewTag > 0) {
       clickable.push(adIconViewTag);
     }
-    let result = await CTKNativeAdManager.registerViewsForInteraction(
+    const result = await CTKNativeAdManager.registerViewsForInteraction(
       nativeAdViewTag,
       mediaViewTag,
       adIconViewTag,
@@ -67,7 +67,7 @@ class NativeAdsManager {
   _listenForStateChanges() {
     nativeAdEmitter.addListener('CTKNativeAdsManagersChanged', managers => {
       const isValidNew = managers[this.placementId];
-      const isValid = this.isValid;
+      const { isValid } = this;
 
       if (isValid !== isValidNew && isValidNew) {
         this.isValid = true;
@@ -82,11 +82,11 @@ class NativeAdsManager {
    * If manager already became valid, it will call the function w/o registering
    * handler for events
    */
-  onAdsLoaded(func: Function): EmitterSubscription {
+  onAdsLoaded(func: () => mixed): EmitterSubscription {
     if (this.isValid) {
       setTimeout(func);
       return {
-        remove: () => {}
+        remove: () => {},
       };
     }
 

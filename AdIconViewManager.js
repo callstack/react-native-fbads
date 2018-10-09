@@ -27,7 +27,7 @@ class AdIconViewChild extends React.Component<PropsType> {
   }
 }
 
-export default class AdIconView extends React.Component<Object> {
+export default class AdIconView extends React.Component<{}> {
   render() {
     return (
       <AdIconViewContext.Consumer>
