@@ -1,20 +1,26 @@
-// @flow
 import React, { PropTypes } from 'react';
-import { requireNativeComponent, StyleSheet, Platform } from 'react-native';
-import type { ViewStyleProp } from 'react-native/Libraries/StyleSheet/StyleSheet';
+import {
+  StyleProp,
+  ViewStyle,
+  requireNativeComponent,
+  StyleSheet,
+  Platform
+} from 'react-native';
 
-import { AdChoicesViewContext } from './withNativeAd';
-import type { AdChoicesViewContextValueType } from './withNativeAd';
+import {
+  AdChoicesViewContext,
+  AdChoicesViewContextValueType
+} from './withNativeAd';
 
 const NativeAdChoicesView = requireNativeComponent('AdChoicesView', null);
 
 type AdChoiceLocation = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
 
-type Props = {
-  location: AdChoiceLocation,
-  expandable: boolean,
-  style?: ViewStyleProp
-};
+interface Props {
+  location: AdChoiceLocation;
+  expandable: boolean;
+  style?: ViewStyleProp;
+}
 
 export default class AdChoicesView extends React.Component<Props> {
   static defaultProps: Props = {

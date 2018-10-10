@@ -1,16 +1,16 @@
-// @flow
-import * as React from 'react';
+import React from 'react';
 import { requireNativeComponent } from 'react-native';
 
-import { AdIconViewContext } from './withNativeAd';
-import type { AdIconViewContextValueType } from './withNativeAd';
+import { AdIconViewContext, AdIconViewContextValueType } from './withNativeAd';
 
 export const NativeAdIconView = requireNativeComponent('AdIconView', null, {});
 
-class AdIconViewChild extends React.Component<PropsType> {
-  _iconView: ?React.Node;
+export interface AdIconViewProps {}
 
-  _handleAdIconViewRef = (ref: ?React.Node) => {
+class AdIconViewChild extends React.Component<AdIconViewProps> {
+  _iconView: React.ReactNode | null = null;
+
+  _handleAdIconViewRef = (ref: React.ReactNode) => {
     if (this._iconView) {
       this.props.unregister(this._iconView);
       this._iconView = null;
@@ -27,7 +27,7 @@ class AdIconViewChild extends React.Component<PropsType> {
   }
 }
 
-export default class AdIconView extends React.Component<Object> {
+export default class AdIconView extends React.Component<AdIconViewProps> {
   render() {
     return (
       <AdIconViewContext.Consumer>

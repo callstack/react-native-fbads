@@ -34,6 +34,7 @@
     "Native ads"
   ],
   "devDependencies": {
+    "@types/react-native": "^0.57.4",
     "tslint-config-airbnb": "^5.11.0"
   }
 }

@@ -4,6 +4,7 @@
     "target": "es5",
     "module": "es2015",
     "strict": true,
+    "jsx": "react-native",
     "sourceMap": false,
     "declaration": true,
     "allowSyntheticDefaultImports": true,
