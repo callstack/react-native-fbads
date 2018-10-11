@@ -1,4 +1,3 @@
-// @flow
 import { NativeModules, NativeEventEmitter } from 'react-native';
 import { EventEmitter, EmitterSubscription } from 'fbemitter';
 
@@ -10,24 +9,19 @@ const EVENT_DID_BECOME_VALID = 'AdsManagerDidBecomeValid';
 
 type AdManagerCachePolicy = 'none' | 'icon' | 'image' | 'all';
 
-class NativeAdsManager {
-  /** {@string} with placement id of ads **/
-  placementId: string;
+export default class NativeAdsManager {
+  private placementId: string;
+  private adsToRequest: number;
 
-  /** {@number} of ads to request at once **/
-  adsToRequest: number;
-
-  /** {@boolean} indicating whether AdsManager is ready to serve ads **/
-  isValid: boolean = false;
-
-  /** {@EventEmitter} used for sending out updates **/
-  eventEmitter: EventEmitter = new EventEmitter();
+  // Indicates whether AdsManager is ready to serve ads
+  private isValid: boolean = false;
+  private eventEmitter: EventEmitter = new EventEmitter();
 
   static async registerViewsForInteractionAsync(
     nativeAdViewTag: number,
     mediaViewTag: number,
     adIconViewTag: number,
-    clickable: Array<number>
+    clickable: number[],
   ) {
     if (adIconViewTag > 0 && mediaViewTag > 0) {
       clickable.push(mediaViewTag, adIconViewTag);
@@ -36,11 +30,11 @@ class NativeAdsManager {
     } else if (adIconViewTag > 0) {
       clickable.push(adIconViewTag);
     }
-    let result = await CTKNativeAdManager.registerViewsForInteraction(
+    const result = await CTKNativeAdManager.registerViewsForInteraction(
       nativeAdViewTag,
       mediaViewTag,
       adIconViewTag,
-      clickable
+      clickable,
     );
     return result;
   }
@@ -55,7 +49,7 @@ class NativeAdsManager {
     this.placementId = placementId;
     this.adsToRequest = adsToRequest;
 
-    this._listenForStateChanges();
+    this.listenForStateChanges();
 
     CTKNativeAdManager.init(placementId, adsToRequest);
   }
@@ -64,16 +58,19 @@ class NativeAdsManager {
    * Listens for AdManager state changes and updates internal state. When it changes,
    * callers will be notified of a change
    */
-  _listenForStateChanges() {
-    nativeAdEmitter.addListener('CTKNativeAdsManagersChanged', managers => {
-      const isValidNew = managers[this.placementId];
-      const isValid = this.isValid;
+  private listenForStateChanges() {
+    nativeAdEmitter.addListener(
+      'CTKNativeAdsManagersChanged',
+      (managers: Record<string, boolean>) => {
+        const isValidNew = managers[this.placementId];
+        const isValid = this.isValid;
 
-      if (isValid !== isValidNew && isValidNew) {
-        this.isValid = true;
-        this.eventEmitter.emit(EVENT_DID_BECOME_VALID);
-      }
-    });
+        if (isValid !== isValidNew && isValidNew) {
+          this.isValid = true;
+          this.eventEmitter.emit(EVENT_DID_BECOME_VALID);
+        }
+      },
+    );
   }
 
   /**
@@ -86,7 +83,7 @@ class NativeAdsManager {
     if (this.isValid) {
       setTimeout(func);
       return {
-        remove: () => {}
+        remove: () => {},
       };
     }
 
@@ -113,5 +110,3 @@ class NativeAdsManager {
     return this.placementId;
   }
 }
-
-export default NativeAdsManager;
