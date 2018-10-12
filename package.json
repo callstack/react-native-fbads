@@ -11,8 +11,8 @@
     "example": "example"
   },
   "scripts": {
-    "test": "tsc .",
-    "lint": "tslint ."
+    "test": "tsc",
+    "lint": "tslint --project ."
   },
   "author": "Suraj Tiwari <surajtiwari020@gmail.com>",
   "license": "MIT",
