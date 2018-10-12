@@ -11,7 +11,8 @@
     "example": "example"
   },
   "scripts": {
-    "test": "flow ./src"
+    "test": "flow .",
+    "lint": "eslint ."
   },
   "author": "Suraj Tiwari <surajtiwari020@gmail.com>",
   "license": "MIT",
@@ -21,6 +22,15 @@
   },
   "dependencies": {
     "fbemitter": "^2.1.1"
+  },
+  "devDependencies": {
+    "@callstack/eslint-config": "^2.0.0",
+    "eslint": "^5.6.1",
+    "eslint-plugin-react-native": "^3.3.0",
+    "flow-bin": "~0.67.1",
+    "react": "16.3.1",
+    "react-dom": "16.3.1",
+    "react-native": "~0.55.4"
   },
   "rnpm": {
     "android": {

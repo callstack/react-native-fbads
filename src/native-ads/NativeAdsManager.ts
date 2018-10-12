@@ -63,7 +63,7 @@ export default class NativeAdsManager {
       'CTKNativeAdsManagersChanged',
       (managers: Record<string, boolean>) => {
         const isValidNew = managers[this.placementId];
-        const isValid = this.isValid;
+        const { isValid } = this;
 
         if (isValid !== isValidNew && isValidNew) {
           this.isValid = true;
