@@ -11,7 +11,6 @@ type AdManagerCachePolicy = 'none' | 'icon' | 'image' | 'all';
 
 export default class NativeAdsManager {
   private placementId: string;
-  private adsToRequest: number;
 
   // Indicates whether AdsManager is ready to serve ads
   private isValid: boolean = false;
@@ -47,7 +46,6 @@ export default class NativeAdsManager {
    */
   constructor(placementId: string, adsToRequest: number = 10) {
     this.placementId = placementId;
-    this.adsToRequest = adsToRequest;
 
     this.listenForStateChanges();
 
