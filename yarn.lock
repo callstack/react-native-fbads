@@ -19,6 +19,10 @@
     reflect-metadata "^0.1.12"
     tslib "^1.8.1"
 
+"@types/fbemitter@^2.0.32":
+  version "2.0.32"
+  resolved "http://registry.npmjs.org/@types/fbemitter/-/fbemitter-2.0.32.tgz#8ed204da0f54e9c8eaec31b1eec91e25132d082c"
+
 "@types/prop-types@*":
   version "15.5.6"
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.5.6.tgz#9c03d3fed70a8d517c191b7734da2879b50ca26c"

@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { ReactNode, requireNativeComponent } from 'react-native';
+import { requireNativeComponent } from 'react-native';
 import { MediaViewContext, MediaViewContextValueType } from './withNativeAd';
 
 // tslint:disable-next-line:variable-name
@@ -12,7 +12,7 @@ class MediaViewChild extends React.Component<Props> {
 
   private handleMediaViewMount = (ref: ReactNode) => {
     if (this.mediaView) {
-      this.props.unregister(this._mediaView);
+      this.props.unregister(this.mediaView);
       this.mediaView = null;
     }
 

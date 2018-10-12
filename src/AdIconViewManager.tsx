@@ -6,16 +6,16 @@ import { AdIconViewContext, AdIconViewContextValueType } from './withNativeAd';
 // tslint:disable-next-line:variable-name
 export const NativeAdIconView = requireNativeComponent<ViewProps>('AdIconView');
 
-export interface AdIconViewProps
-  extends ViewProps,
-    Required<AdIconViewContextValueType> {}
+export interface AdIconViewProps extends ViewProps {}
 
-class AdIconViewChild extends React.Component<AdIconViewProps> {
+class AdIconViewChild extends React.Component<
+  AdIconViewProps & AdIconViewContextValueType
+> {
   private iconView: React.ReactNode | null = null;
 
   private handleAdIconViewRef = (ref: React.ReactNode) => {
     if (this.iconView) {
-      this.props.unregister(this.iconView);
+      this.props.unregister();
       this.iconView = null;
     }
 
@@ -34,7 +34,7 @@ export default class AdIconView extends React.Component<AdIconViewProps> {
   render() {
     return (
       <AdIconViewContext.Consumer>
-        {(contextValue: Required<AdIconViewContextValueType>) => (
+        {(contextValue: AdIconViewContextValueType) => (
           <AdIconViewChild {...this.props} {...contextValue} />
         )}
       </AdIconViewContext.Consumer>

@@ -1,5 +1,5 @@
 import { NativeModules, NativeEventEmitter } from 'react-native';
-import { EventEmitter, EmitterSubscription } from 'fbemitter';
+import { EventEmitter, EventSubscription } from 'fbemitter';
 
 const { CTKNativeAdManager, CTKNativeAdEmitter } = NativeModules;
 
@@ -79,10 +79,12 @@ export default class NativeAdsManager {
    * If manager already became valid, it will call the function w/o registering
    * handler for events
    */
-  onAdsLoaded(func: Function): EmitterSubscription {
+  onAdsLoaded(func: Function): EventSubscription {
     if (this.isValid) {
       setTimeout(func);
       return {
+        context: null,
+        listener: () => {},
         remove: () => {},
       };
     }

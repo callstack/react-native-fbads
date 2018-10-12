@@ -1,4 +1,4 @@
-import { EmitterSubscription } from 'fbemitter';
+import { EventSubscription } from 'fbemitter';
 import React, { ReactNode } from 'react';
 import {
   requireNativeComponent,
@@ -11,21 +11,10 @@ import AdsManager from './NativeAdsManager';
 import { NativeAdIconView } from './AdIconViewManager';
 import { NativeMediaView } from './MediaViewManager';
 import { MediaView, AdIconView } from './index';
+import { NativeAd } from './nativeAd';
 
 // tslint:disable-next-line:variable-name
-const NativeAdView = requireNativeComponent('CTKNativeAd', null);
-
-export interface NativeAd {
-  advertiserName: string;
-  bodyText: string;
-  callToActionText: string;
-  headline: string;
-  linkDescription: string;
-  promotedTranslation: string;
-  sponsoredTranslation: string;
-  socialContext: string;
-  translation: string;
-}
+const NativeAdView = requireNativeComponent('CTKNativeAd');
 
 interface NativeAdWrapperState {
   ad?: NativeAd;
@@ -35,21 +24,21 @@ interface NativeAdWrapperState {
   clickableChildren: Set<number>;
 }
 
-type NodeFunc = (n: ReactNode) => void;
+type ReactNodeReceiver = (n: ReactNode) => void;
 
 interface NativeAdWrapperProps {
   adsManager: AdsManager;
-  onAdLoaded?: NodeFunc;
+  onAdLoaded?: ReactNodeReceiver;
 }
 
 interface MultipleRegisterablesContextValueType {
-  unregister?: NodeFunc;
-  register?: NodeFunc;
+  unregister: ReactNodeReceiver;
+  register: ReactNodeReceiver;
 }
 
 interface RegisterableContextValueType {
-  register?: NodeFunc;
-  unregister?: () => void;
+  register: ReactNodeReceiver;
+  unregister: () => void;
 }
 
 export type TriggerableContextValueType = MultipleRegisterablesContextValueType;
@@ -57,16 +46,33 @@ export type AdIconViewContextValueType = RegisterableContextValueType;
 export type MediaViewContextValueType = RegisterableContextValueType;
 export type AdChoicesViewContextValueType = string;
 
-const defaultValue = { register: null, unregister: null };
+const defaultValue = {
+  register: () => {
+    throw new Error('Stub!');
+  },
+  unregister: () => {
+    throw new Error('Stub!');
+  },
+};
 
 // tslint:disable-next-line:variable-name
-export const TriggerableContext = React.createContext(defaultValue);
+export const TriggerableContext = React.createContext<
+  TriggerableContextValueType
+>(defaultValue);
 // tslint:disable-next-line:variable-name
-export const MediaViewContext = React.createContext(defaultValue);
+export const MediaViewContext = React.createContext<MediaViewContextValueType>(
+  defaultValue,
+);
+
 // tslint:disable-next-line:variable-name
-export const AdIconViewContext = React.createContext(defaultValue);
+export const AdIconViewContext = React.createContext<
+  AdIconViewContextValueType
+>(defaultValue);
+
 // tslint:disable-next-line:variable-name
-export const AdChoicesViewContext = React.createContext();
+export const AdChoicesViewContext = React.createContext<
+  AdChoicesViewContextValueType
+>('');
 
 /**
  * Higher; order; function that wraps; given `Component`; and; provides `nativeAd` as a; prop
@@ -81,12 +87,12 @@ export default <T extends Object>(Component: React.ComponentType<T>) =>
     NativeAdWrapperProps & T,
     NativeAdWrapperState
   > {
-    private subscription?: EmitterSubscription;
+    private subscription?: EventSubscription;
     private nativeAdViewRef?: NativeAdView;
     private registerFunctionsForTriggerables: TriggerableContextValueType;
     private registerFunctionsForMediaView: MediaViewContextValueType;
     private registerFunctionsForAdIconView: AdIconViewContextValueType;
-    private clickableChildrenNodeHandles: { [ReactNode]: number };
+    private clickableChildrenNodeHandles: Record<ReactNode, number>;
 
     constructor(props: NativeAdWrapperProps & T) {
       super(props);
@@ -109,8 +115,7 @@ export default <T extends Object>(Component: React.ComponentType<T>) =>
       this.clickableChildrenNodeHandles = {};
 
       this.state = {
-        ad: null,
-        // iOS requires a nonnull value
+        // iOS requires a non-null value
         mediaViewNodeHandle: -1,
         adIconViewNodeHandle: -1,
         clickableChildren: new Set(),
@@ -143,13 +148,14 @@ export default <T extends Object>(Component: React.ComponentType<T>) =>
         const clickableChildrenChanged = [
           ...prevState.clickableChildren,
         ].filter(child => !this.state.clickableChildren.has(child));
+
         if (
           mediaViewNodeHandleChanged ||
           adIconViewNodeHandleChanged ||
           clickableChildrenChanged
         ) {
           AdsManager.registerViewsForInteractionAsync(
-            findNodeHandle(this._nativeAdViewRef),
+            findNodeHandle(this.nativeAdViewRef)!,
             this.state.mediaViewNodeHandle,
             this.state.adIconViewNodeHandle,
             [...this.state.clickableChildren],
@@ -167,12 +173,12 @@ export default <T extends Object>(Component: React.ComponentType<T>) =>
       }
     }
 
-    private registerMediaView = (mediaView: NativeMediaView) =>
+    private registerMediaView = (mediaView: ReactNode) =>
       this.setState({ mediaViewNodeHandle: findNodeHandle(mediaView) })
     private unregisterMediaView = () =>
       this.setState({ mediaViewNodeHandle: -1 })
 
-    private registerAdIconView = (adIconView: NativeAdIconView) =>
+    private registerAdIconView = (adIconView: ReactNode) =>
       this.setState({ adIconViewNodeHandle: findNodeHandle(adIconView) })
     private unregisterAdIconView = () =>
       this.setState({ adIconViewNodeHandle: -1 })
@@ -218,7 +224,6 @@ export default <T extends Object>(Component: React.ComponentType<T>) =>
             >
               <TriggerableContext.Provider
                 value={this.registerFunctionsForTriggerables}
-                y="hello"
               >
                 <AdChoicesViewContext.Provider
                   value={this.props.adsManager.toJSON()}
@@ -244,8 +249,8 @@ export default <T extends Object>(Component: React.ComponentType<T>) =>
     }
 
     render() {
-      const { adsManager, ...props } = this.props;
-      delete props.onAdLoaded;
+      const { adsManager, ...rest } = this.props;
+      delete rest.onAdLoaded;
 
       if (!this.state.canRequestAds) {
         return null;
@@ -257,7 +262,7 @@ export default <T extends Object>(Component: React.ComponentType<T>) =>
           adsManager={adsManager.toJSON()}
           onAdLoaded={this._handleAdLoaded}
         >
-          {this.renderAdComponent(props)}
+          {this.renderAdComponent(rest)}
         </NativeAdView>
       );
     }
