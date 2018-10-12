@@ -218,6 +218,7 @@ export default <T extends Object>(Component: React.ComponentType<T>) =>
             >
               <TriggerableContext.Provider
                 value={this.registerFunctionsForTriggerables}
+                y="hello"
               >
                 <AdChoicesViewContext.Provider
                   value={this.props.adsManager.toJSON()}

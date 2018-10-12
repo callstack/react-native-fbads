@@ -4,14 +4,15 @@ import {
   ViewStyle,
   requireNativeComponent,
   StyleSheet,
-  Platform
+  Platform,
 } from 'react-native';
 
 import {
   AdChoicesViewContext,
-  AdChoicesViewContextValueType
+  AdChoicesViewContextValueType,
 } from './withNativeAd';
 
+// tslint:disable-next-line:variable-name
 const NativeAdChoicesView = requireNativeComponent('AdChoicesView', null);
 
 type AdChoiceLocation = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
@@ -25,7 +26,7 @@ interface Props {
 export default class AdChoicesView extends React.Component<Props> {
   static defaultProps: Props = {
     location: 'topLeft',
-    expandable: false
+    expandable: false,
   };
 
   render() {
@@ -44,18 +45,18 @@ export default class AdChoicesView extends React.Component<Props> {
   }
 }
 
-let styles = StyleSheet.create({
+const styles = StyleSheet.create({
   adChoice: {
     backgroundColor: 'transparent',
     ...Platform.select({
       ios: {
         width: 0,
-        height: 0
+        height: 0,
       },
       android: {
         width: 22,
-        height: 22
-      }
-    })
-  }
+        height: 22,
+      },
+    }),
+  },
 });
