@@ -62,10 +62,9 @@ export default class NativeAdsManager {
     nativeAdEmitter.addListener(
       'CTKNativeAdsManagersChanged',
       (managers: Record<string, boolean>) => {
-        const isValidNew = managers[this.placementId];
-        const { isValid } = this;
+        const isValidNow = managers[this.placementId];
 
-        if (isValid !== isValidNew && isValidNew) {
+        if (this.isValid !== isValidNow && isValidNow) {
           this.isValid = true;
           this.eventEmitter.emit(EVENT_DID_BECOME_VALID);
         }
