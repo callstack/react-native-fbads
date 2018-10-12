@@ -1,25 +1,18 @@
 import { EventSubscription } from 'fbemitter';
-import React, { ReactNode } from 'react';
+import React, { ReactElement, ReactNode } from 'react';
+import { findNodeHandle, requireNativeComponent } from 'react-native';
+import { AdIconView, MediaView } from '../index';
 import {
-  requireNativeComponent,
-  findNodeHandle,
-  Text,
-  View,
-  NativeSyntheticEvent,
-} from 'react-native';
-
-import AdsManager from './NativeAdsManager';
-import { MediaView, AdIconView } from '../index';
-import { NativeAd, HasNativeAd } from './nativeAd';
-import {
-  TriggerableContextValueType,
-  MediaViewContextValueType,
-  AdIconViewContextValueType,
-  AdIconViewContext,
-  MediaViewContext,
-  TriggerableContext,
   AdChoicesViewContext,
+  AdIconViewContext,
+  AdIconViewContextValueType,
+  MediaViewContext,
+  MediaViewContextValueType,
+  TriggerableContext,
+  TriggerableContextValueType,
 } from './contexts';
+import { HasNativeAd, NativeAd } from './nativeAd';
+import AdsManager from './NativeAdsManager';
 
 interface NativeAdViewProps {
   adsManager: string;
@@ -29,7 +22,7 @@ interface NativeAdViewProps {
 // tslint:disable-next-line:variable-name
 const NativeAdView = requireNativeComponent<NativeAdViewProps>('CTKNativeAd');
 
-interface NativeAdWrapperState {
+interface AdWrapperState {
   ad?: NativeAd;
   canRequestAds: boolean;
   mediaViewNodeHandle: number;
@@ -37,7 +30,7 @@ interface NativeAdWrapperState {
   clickableChildren: Set<number>;
 }
 
-interface NativeAdWrapperProps {
+interface AdWrapperProps {
   adsManager: AdsManager;
   onAdLoaded?: ReactNodeReceiver;
 }
@@ -52,8 +45,8 @@ interface NativeAdWrapperProps {
 // tslint:disable-next-line:variable-name
 export default <T extends HasNativeAd>(Component: React.ComponentType<T>) =>
   class NativeAdWrapper extends React.Component<
-    NativeAdWrapperProps & T,
-    NativeAdWrapperState
+    AdWrapperProps & T,
+    AdWrapperState
   > {
     private subscription?: EventSubscription;
     private nativeAdViewRef?: ReactNode;
@@ -62,7 +55,7 @@ export default <T extends HasNativeAd>(Component: React.ComponentType<T>) =>
     private registerFunctionsForAdIconView: AdIconViewContextValueType;
     private clickableChildrenNodeHandles: Record<ReactNode, number>;
 
-    constructor(props: NativeAdWrapperProps & T) {
+    constructor(props: AdWrapperProps & T) {
       super(props);
 
       this.registerFunctionsForTriggerables = {
@@ -101,8 +94,8 @@ export default <T extends HasNativeAd>(Component: React.ComponentType<T>) =>
     }
 
     public componentDidUpdate(
-      prevProps: NativeAdWrapperProps,
-      prevState: NativeAdWrapperState,
+      prevProps: AdWrapperProps,
+      prevState: AdWrapperState,
     ) {
       if (
         this.state.mediaViewNodeHandle !== -1 ||
@@ -176,7 +169,7 @@ export default <T extends HasNativeAd>(Component: React.ComponentType<T>) =>
       this.setState({ ad: nativeEvent }, this.handleAdUpdated);
     }
 
-    private handleNativeAdViewMount = (ref: ReactNode) => {
+    private handleNativeAdViewMount = (ref: ReactElement<any>) => {
       this.nativeAdViewRef = ref;
     }
 
