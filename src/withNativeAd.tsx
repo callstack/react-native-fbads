@@ -88,7 +88,7 @@ export default <T extends Object>(Component: React.ComponentType<T>) =>
     NativeAdWrapperState
   > {
     private subscription?: EventSubscription;
-    private nativeAdViewRef?: NativeAdView;
+    private nativeAdViewRef?: ReactNode;
     private registerFunctionsForTriggerables: TriggerableContextValueType;
     private registerFunctionsForMediaView: MediaViewContextValueType;
     private registerFunctionsForAdIconView: AdIconViewContextValueType;
@@ -208,7 +208,7 @@ export default <T extends Object>(Component: React.ComponentType<T>) =>
       this.setState({ ad: nativeEvent }, this.handleAdUpdated);
     }
 
-    private handleNativeAdViewMount = (ref?: NativeAdView) => {
+    private handleNativeAdViewMount = (ref: ReactNode) => {
       this.nativeAdViewRef = ref;
     }
 
@@ -260,7 +260,7 @@ export default <T extends Object>(Component: React.ComponentType<T>) =>
         <NativeAdView
           ref={this.handleNativeAdViewMount}
           adsManager={adsManager.toJSON()}
-          onAdLoaded={this._handleAdLoaded}
+          onAdLoaded={this.handleAdLoaded}
         >
           {this.renderAdComponent(rest)}
         </NativeAdView>

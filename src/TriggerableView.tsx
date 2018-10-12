@@ -1,25 +1,17 @@
 import React from 'react';
-import {
-  findNodeHandle,
-  requireNativeComponent,
-  View,
-  ViewPropTypes,
-  Text,
-  TextProps,
-} from 'react-native';
-
+import { Text, TextProps, View } from 'react-native';
 import {
   TriggerableContext,
   TriggerableContextValueType,
 } from './withNativeAd';
 
-type PropsType = ViewPropTypes & TriggerableContextValueType;
-
-class TriggerableViewChild extends React.Component<TextProps> {
-  private wrapperRef: View;
+class TriggerableViewChild extends React.Component<
+  TextProps & TriggerableContextValueType
+> {
+  private wrapperRef: View | null = null;
 
   private handleWrapperRef = (ref: View) => {
-    if (this._wrapperRef) {
+    if (this.wrapperRef) {
       this.props.unregister(this.wrapperRef);
       this.wrapperRef = null;
     }
