@@ -8,7 +8,7 @@ import {
   NativeSyntheticEvent,
 } from 'react-native';
 
-import AdsManager from '../NativeAdsManager';
+import AdsManager from './NativeAdsManager';
 import { MediaView, AdIconView } from '../index';
 import { NativeAd, HasNativeAd } from './nativeAd';
 import {

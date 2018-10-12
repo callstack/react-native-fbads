@@ -10,7 +10,7 @@ import {
 import {
   AdChoicesViewContext,
   AdChoicesViewContextValueType,
-} from './native-ads/contexts';
+} from './contexts';
 
 interface AdChoicesProps {
   location: AdChoiceLocation;

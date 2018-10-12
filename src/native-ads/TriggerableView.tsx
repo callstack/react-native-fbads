@@ -3,7 +3,7 @@ import { Text, TextProps, View } from 'react-native';
 import {
   TriggerableContext,
   TriggerableContextValueType,
-} from './native-ads/contexts';
+} from './contexts';
 
 class TriggerableViewChild extends React.Component<
   TextProps & TriggerableContextValueType

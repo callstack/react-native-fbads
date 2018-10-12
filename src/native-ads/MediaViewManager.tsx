@@ -3,8 +3,8 @@ import { requireNativeComponent, StyleProp, ViewStyle } from 'react-native';
 import {
   MediaViewContext,
   MediaViewContextValueType,
-} from './native-ads/contexts';
-import { NativeAd } from './native-ads/nativeAd';
+} from './contexts';
+import { NativeAd } from './nativeAd';
 
 interface MediaViewProps {
   nativeAd: NativeAd;
