@@ -1,4 +1,4 @@
-export { default as withNativeAd } from './withNativeAd';
+export { default as withNativeAd } from './native-ads/withNativeAd';
 export { default as AdSettings } from './AdSettings';
 export { default as NativeAdsManager } from './NativeAdsManager';
 export { default as InterstitialAdManager } from './InterstitialAdManager';

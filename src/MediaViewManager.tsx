@@ -1,7 +1,10 @@
 import React, { ReactNode } from 'react';
 import { requireNativeComponent, StyleProp, ViewStyle } from 'react-native';
-import { MediaViewContext, MediaViewContextValueType } from './withNativeAd';
-import { NativeAd } from './nativeAd';
+import {
+  MediaViewContext,
+  MediaViewContextValueType,
+} from './native-ads/contexts';
+import { NativeAd } from './native-ads/nativeAd';
 
 interface MediaViewProps {
   nativeAd: NativeAd;

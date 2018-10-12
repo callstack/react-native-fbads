@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import {
   StyleProp,
   ViewStyle,
@@ -10,21 +10,23 @@ import {
 import {
   AdChoicesViewContext,
   AdChoicesViewContextValueType,
-} from './withNativeAd';
+} from './native-ads/contexts';
+
+interface AdChoicesProps {
+  location: AdChoiceLocation;
+  expandable: boolean;
+  style?: StyleProp<ViewStyle>;
+}
 
 // tslint:disable-next-line:variable-name
-const NativeAdChoicesView = requireNativeComponent('AdChoicesView', null);
+const NativeAdChoicesView = requireNativeComponent<
+  AdChoicesProps & { placementId: string }
+>('AdChoicesView');
 
 type AdChoiceLocation = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
 
-interface Props {
-  location: AdChoiceLocation;
-  expandable: boolean;
-  style?: ViewStyleProp;
-}
-
-export default class AdChoicesView extends React.Component<Props> {
-  static defaultProps: Props = {
+export default class AdChoicesView extends React.Component<AdChoicesProps> {
+  static defaultProps: AdChoicesProps = {
     location: 'topLeft',
     expandable: false,
   };

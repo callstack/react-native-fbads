@@ -1,15 +1,20 @@
 import React from 'react';
 import { requireNativeComponent, ViewProps } from 'react-native';
 
-import { AdIconViewContext, AdIconViewContextValueType } from './withNativeAd';
-import { NativeAd } from './nativeAd';
+import {
+  AdIconViewContext,
+  AdIconViewContextValueType,
+} from './native-ads/contexts';
+import { NativeAd } from './native-ads/nativeAd';
 
 export interface AdIconViewProps extends ViewProps {
   nativeAd: NativeAd;
 }
 
 // tslint:disable-next-line:variable-name
-export const NativeAdIconView = requireNativeComponent<AdIconViewProps>('AdIconView');
+export const NativeAdIconView = requireNativeComponent<AdIconViewProps>(
+  'AdIconView',
+);
 
 class AdIconViewChild extends React.Component<
   AdIconViewProps & AdIconViewContextValueType

@@ -5,16 +5,29 @@ import {
   findNodeHandle,
   Text,
   View,
+  NativeSyntheticEvent,
 } from 'react-native';
 
-import AdsManager from './NativeAdsManager';
-import { NativeAdIconView } from './AdIconViewManager';
-import { NativeMediaView } from './MediaViewManager';
-import { MediaView, AdIconView } from './index';
-import { NativeAd } from './nativeAd';
+import AdsManager from '../NativeAdsManager';
+import { MediaView, AdIconView } from '../index';
+import { NativeAd, HasNativeAd } from './nativeAd';
+import {
+  TriggerableContextValueType,
+  MediaViewContextValueType,
+  AdIconViewContextValueType,
+  AdIconViewContext,
+  MediaViewContext,
+  TriggerableContext,
+  AdChoicesViewContext,
+} from './contexts';
+
+interface NativeAdViewProps {
+  adsManager: string;
+  onAdLoaded: (args: { nativeEvent: NativeAd }) => void;
+}
 
 // tslint:disable-next-line:variable-name
-const NativeAdView = requireNativeComponent('CTKNativeAd');
+const NativeAdView = requireNativeComponent<NativeAdViewProps>('CTKNativeAd');
 
 interface NativeAdWrapperState {
   ad?: NativeAd;
@@ -24,55 +37,10 @@ interface NativeAdWrapperState {
   clickableChildren: Set<number>;
 }
 
-type ReactNodeReceiver = (n: ReactNode) => void;
-
 interface NativeAdWrapperProps {
   adsManager: AdsManager;
   onAdLoaded?: ReactNodeReceiver;
 }
-
-interface MultipleRegisterablesContextValueType {
-  unregister: ReactNodeReceiver;
-  register: ReactNodeReceiver;
-}
-
-interface RegisterableContextValueType {
-  register: ReactNodeReceiver;
-  unregister: () => void;
-}
-
-export type TriggerableContextValueType = MultipleRegisterablesContextValueType;
-export type AdIconViewContextValueType = RegisterableContextValueType;
-export type MediaViewContextValueType = RegisterableContextValueType;
-export type AdChoicesViewContextValueType = string;
-
-const defaultValue = {
-  register: () => {
-    throw new Error('Stub!');
-  },
-  unregister: () => {
-    throw new Error('Stub!');
-  },
-};
-
-// tslint:disable-next-line:variable-name
-export const TriggerableContext = React.createContext<
-  TriggerableContextValueType
->(defaultValue);
-// tslint:disable-next-line:variable-name
-export const MediaViewContext = React.createContext<MediaViewContextValueType>(
-  defaultValue,
-);
-
-// tslint:disable-next-line:variable-name
-export const AdIconViewContext = React.createContext<
-  AdIconViewContextValueType
->(defaultValue);
-
-// tslint:disable-next-line:variable-name
-export const AdChoicesViewContext = React.createContext<
-  AdChoicesViewContextValueType
->('');
 
 /**
  * Higher; order; function that wraps; given `Component`; and; provides `nativeAd` as a; prop
@@ -82,7 +50,7 @@ export const AdChoicesViewContext = React.createContext<
  } instead; of; a; component; provided.
  */
 // tslint:disable-next-line:variable-name
-export default <T extends Object>(Component: React.ComponentType<T>) =>
+export default <T extends HasNativeAd>(Component: React.ComponentType<T>) =>
   class NativeAdWrapper extends React.Component<
     NativeAdWrapperProps & T,
     NativeAdWrapperState
@@ -213,7 +181,6 @@ export default <T extends Object>(Component: React.ComponentType<T>) =>
     }
 
     private renderAdComponent(componentProps: T): ReactNode {
-      const { adsManager } = this.props;
       if (this.state.ad) {
         return (
           <AdIconViewContext.Provider

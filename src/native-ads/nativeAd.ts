@@ -9,3 +9,7 @@ export interface NativeAd {
   socialContext: string;
   translation: string;
 }
+
+export interface HasNativeAd {
+  nativeAd: NativeAd;
+}
