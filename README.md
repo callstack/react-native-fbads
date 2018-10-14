@@ -47,34 +47,42 @@
 
 ## Installation
 
-### Integrate the base Facebook SDK 
+### Integrate the base Facebook SDK
 
 Follow the instructions on [react-native-fbsdk](https://github.com/facebook/react-native-fbsdk) to integrate the Facebook SDK into your project.
 Note that for iOS, it's [recommended you use Cocoapods](https://developers.facebook.com/docs/ios/getting-started/advanced) rather than the manual installation.
 
 ### (iOS only) Integrate Facebook Audience Network
+
 1. Add the following Pod to your Podfile:
+
 ```
 pod 'FBAudienceNetwork'
 ```
+
 2. Run `pod install`
 
 If you didn't use Cocoapods to integrate the Facebook SDK, you'll need to manually add the audience network framework file to your project.
 
 ### Install The Javascript Package
+
 1. Add the package to your project using your favorite pacakge manager
+
 ```bash
 $ yarn install react-native-fbads
 ```
+
 2. Link the native projects
+
 ```bash
 $ react-native link react-native-fbads
 ```
 
 ### Get a Placement ID
-Follow  [Facebook's instructions](https://www.facebook.com/help/publisher/1195459597167215) to create placement IDs for your ads.
 
-You can skip the *Integrate the SDK* step of that guide, as you've already integrated the Facebook SDK in previous steps.
+Follow [Facebook's instructions](https://www.facebook.com/help/publisher/1195459597167215) to create placement IDs for your ads.
+
+You can skip the _Integrate the SDK_ step of that guide, as you've already integrated the Facebook SDK in previous steps.
 
 ## Usage
 
@@ -86,11 +94,7 @@ Interstitial Ad is a type of an ad that displays full screen with media content.
 
 <img src="https://cloud.githubusercontent.com/assets/2464966/19014517/3cea1da2-87ef-11e6-9f5a-6f3dbccc18a2.png" height="500">
 
-They are displayed over your root view with a single, imperative call.
-
-#### 1. Showing ad
-
-In order to show an ad, you have to import `InterstitialAdManager` and call `showAd` on it supplying it a placementId identifier, as in the below example:
+Interstitial ads are displayed over your root view with a single, imperative call.
 
 ```js
 import { InterstitialAdManager } from 'react-native-fbads';
@@ -100,18 +104,15 @@ InterstitialAdManager.showAd(placementId)
   .catch(error => {});
 ```
 
-Method returns a promise that will be rejected when an error occurs during a call (e.g. no fill from ad server or network error) and resolve when user either dimisses or interacts with the displayed ad.
+The `showAd` method returns a promise that will be resolves once the ad has been either dismissed or clicked by the user. The promise will reject if an erros occurs before displaying the ad, such as a network error.
 
 ### Native Ads
 
-Native Ad is a type of an ad that matches the form and function of your React Native interface.
+Native Ads allow you to create custom ad layouts that match your app. Before proceeding, please review [Facebook's documentation on Native Ads](https://developers.facebook.com/docs/audience-network/native-ads/) to get a better understanding of the requirements Native Ads impose.
 
 <img src="https://cloud.githubusercontent.com/assets/2464966/18811079/52c99932-829e-11e6-9a3d-218569d71a6d.png" height="500" />
 
-#### 1. Creating AdsManager
-
-In order to start rendering your custom native ads within your app, you have to construct
-a `NativeAdManager` that is responsible for caching and fetching ads as you request them.
+#### 1. Create the ads manager
 
 ```js
 import { NativeAdsManager } from 'react-native-fbads';
@@ -122,17 +123,11 @@ const adsManager = new NativeAdsManager(placementId, numberOfAdsToRequest);
 The constructor accepts two parameters:
 
 - `placementId` - which is an unique identifier describing your ad units,
-- `numberOfAdsToRequest` - which is a number of ads to request by ads manager at a time
+- `numberOfAdsToRequest` - which is a number of ads to request by ads manager at a time, defaults to 10.
 
-#### 2. Making ad component
+#### 2. Create your component
 
-After creating `adsManager` instance, next step is to wrap an arbitrary component that you want to
-use for rendering your custom advertises with a `withNativeAd` wrapper.
-
-It's a higher order component that passes `nativeAd` via props to a wrapped component allowing
-you to actually render an ad!
-
-The `nativeAd` object can contain the following properties:
+Your component will have access to the following properties, under the `nativeAd` prop:
 
 - `advertiserName` - The name of the Facebook Page or mobile app that represents the business running each ad.
 - `headline` - The headline that the advertiser entered when they created their ad. This is usually the ad's main title.
@@ -144,24 +139,29 @@ The `nativeAd` object can contain the following properties:
 - `callToActionText` - Call to action phrase, e.g. - "Install Now"
 - `socialContext` - social context for the Ad, for example "Over half a million users"
 
-** Note: ** Don't use more than one MediaView/AdIconView component within one native ad.
+In addition, you'll have access to the following components:
 
-** Note: ** To make any text `Triggerable` wrap it in <TriggerableView></TriggerableView> use only <Text /> component
+- `MediaView` for displaying Media ads
+- `AdIconView` for displaying the ad's icon
+- `AdChoicesView` for displaying the Facebook AdChoices icon.
+- `TriggerableView` for wrapping `Text` so it will respond to user clicks.
+
+Please ensure you've reviewed Facebook's instructions to get a better understanding of each of these components and how you should use them.
 
 ```js
 import {
   AdIconView,
   MediaView,
   AdChoicesView,
-  TriggerableView
+  TriggerableView,
 } from 'react-native-fbads';
 class AdComponent extends React.Component {
   render() {
     return (
       <View>
         <AdChoicesView style={{ position: 'absolute', left: 0, top: 0 }} />
-        <AdIconView />
-        <MediaView />
+        <AdIconView style={{ width: 50, height: 50 }} />
+        <MediaView style={{ width: 160, height: 90 }} />
         <TriggerableView>
           <Text>{this.props.nativeAd.description}</Text>
         </TriggerableView>
@@ -175,7 +175,7 @@ export default withNativeAd(AdComponent);
 
 #### 4. Displaying Facebook Ad Choices Icon
 
-Facebook's guidelines require every native ad to include the Ad Choices component, which contains a small clickable icon.
+Facebook's guidelines require every native ad to include the Ad Choices view, which contains a small clickable icon.
 You can use the included `AdChoicesView` component and style it to your liking.
 
 #### Example usage
@@ -194,18 +194,16 @@ import { AdChoicesView } from 'react-native-fbads'
 | expandable | false     | false    | (iOS only) makes the native AdChoices expandable       |
 | location   | topLeft   | false    | (iOS only) controls the location of the AdChoices icon |
 
-#### 3. Rendering an ad
+#### 3. Showing the ad
 
-Finally, you can render your wrapped component from previous step and pass it `adsManager`
-of your choice.
-
-##### Native Ad Props
-
-| prop       | default | required | params                                                                       | description                 |
-| ---------- | ------- | -------- | ---------------------------------------------------------------------------- | --------------------------- |
-| adsManager | null    | true     | `const adsManager = new NativeAdsManager(placementId, numberOfAdsToRequest)` | The ad manager to work with |
+Finally, wrap your component with the `withNativeAd` HOC and pass it the `adsManager` you've previously created.
 
 ```js
+class MyAd {
+ ...
+}
+export const AdComponent = withNativeAd(MyAd);
+
 class MainApp extends React.Component {
   render() {
     return (
@@ -219,7 +217,7 @@ class MainApp extends React.Component {
 
 ### BannerView
 
-BannerView is a component that allows you to display native banners (know as _AdView_).
+BannerView is a component that allows you to display ads in a banner format (know as _AdView_).
 
 Banners are available in 3 sizes:
 
@@ -227,17 +225,10 @@ Banners are available in 3 sizes:
 - `large` (BANNER_HEIGHT_90)
 - `rectangle` (RECTANGLE_HEIGHT_250)
 
-#### 1. Showing ad
-
-In order to show an ad, you have to first import it `BannerView` from the package:
 
 ```js
 import { BannerView } from 'react-native-fbads';
-```
 
-Later in your app, you can render it like below:
-
-```js
 function ViewWithBanner(props) {
   return (
     <View>
