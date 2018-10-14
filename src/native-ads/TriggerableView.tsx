@@ -1,11 +1,11 @@
-import React, { ReactNode } from 'react';
-import { TextProps, View } from 'react-native';
+import React from 'react';
+import { Text, TextProps, View } from 'react-native';
 import { TriggerableContext, TriggerableContextValueType } from './contexts';
 
 class TriggerableViewChild extends React.Component<
   TextProps & TriggerableContextValueType
 > {
-  private wrapperRef: ReactNode | null = null;
+  private wrapperRef: View | null = null;
 
   private handleWrapperRef = (ref: View) => {
     if (this.wrapperRef) {
@@ -14,16 +14,13 @@ class TriggerableViewChild extends React.Component<
     }
 
     if (ref) {
-      const child = React.Children.only(this.props.children);
-      this.wrapperRef = child;
-      this.props.register(child);
+      this.props.register(ref);
+      this.wrapperRef = ref;
     }
   }
 
   render() {
-    // tslint:disable-next-line:variable-name
-    const child = React.Children.only(this.props.children);
-    return child;
+    return <Text {...this.props} ref={this.handleWrapperRef} />;
   }
 }
 

@@ -1,15 +1,13 @@
 import React, { ReactNode } from 'react';
-import { requireNativeComponent, StyleProp, ViewStyle } from 'react-native';
 import {
-  MediaViewContext,
-  MediaViewContextValueType,
-} from './contexts';
-import { NativeAd } from './nativeAd';
+  requireNativeComponent,
+  StyleProp,
+  ViewStyle,
+  ViewProps,
+} from 'react-native';
+import { MediaViewContext, MediaViewContextValueType } from './contexts';
 
-interface MediaViewProps {
-  nativeAd: NativeAd;
-  style: StyleProp<ViewStyle>;
-}
+export type MediaViewProps = ViewProps;
 
 // tslint:disable-next-line:variable-name
 export const NativeMediaView = requireNativeComponent<MediaViewProps>(

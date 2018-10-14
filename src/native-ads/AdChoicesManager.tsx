@@ -13,8 +13,8 @@ import {
 } from './contexts';
 
 interface AdChoicesProps {
-  location: AdChoiceLocation;
-  expandable: boolean;
+  location?: AdChoiceLocation;
+  expandable?: boolean;
   style?: StyleProp<ViewStyle>;
 }
 
