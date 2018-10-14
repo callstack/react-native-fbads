@@ -47,50 +47,34 @@
 
 ## Installation
 
-### 1. Install Javascript packages
+### Integrate the base Facebook SDK 
 
-##### RN >= 0.40
+Follow the instructions on [react-native-fbsdk](https://github.com/facebook/react-native-fbsdk) to integrate the Facebook SDK into your project.
+Note that for iOS, it's [recommended you use Cocoapods](https://developers.facebook.com/docs/ios/getting-started/advanced) rather than the manual installation.
 
-Install JavaScript packages:
+### (iOS only) Integrate Facebook Audience Network
+1. Add the following Pod to your Podfile:
+```
+pod 'FBAudienceNetwork'
+```
+2. Run `pod install`
 
+If you didn't use Cocoapods to integrate the Facebook SDK, you'll need to manually add the audience network framework file to your project.
+
+### Install The Javascript Package
+1. Add the package to your project using your favorite pacakge manager
 ```bash
-$ react-native install react-native-fbads
+$ yarn install react-native-fbads
 ```
-
-##### RN < 0.40
-
-Install JavaScript packages:
-
+2. Link the native projects
 ```bash
-$ react-native install react-native-fbads@3.1.1
+$ react-native link react-native-fbads
 ```
 
-#### Upgrading to latest version
+### Get a Placement ID
+Follow  [Facebook's instructions](https://www.facebook.com/help/publisher/1195459597167215) to create placement IDs for your ads.
 
-```
-react-native unlink react-native-fbads
-
-npm install react-native-fbads@latest --save
-
-react-native link react-native-fbads
-
-//IOS NOTICE
-Use pod to install fbAudience framework
-```
-
-### 2. Configure native projects
-
-The react-native-fbads has been automatically linked for you, the next step will be downloading and linking the native Facebook SDK for both platforms.
-
-#### 2.1 iOS
-
-Make sure you have the latest Xcode installed. Open the .xcodeproj in Xcode found in the ios subfolder from your project's root directory. Now, follow all the steps in the [Getting Started Guide for Facebook SDK](https://developers.facebook.com/docs/ios/getting-started) for iOS. Along with FBSDKCoreKit.framework, don't forget to import FBAudienceNetwork.framework.
-
-Next, **follow steps 1 and 3** from the [Getting Started Guide for Facebook Audience](https://developers.facebook.com/docs/audience-network/getting-started). Once you have created the `placement id`, write it down and continue to next section.
-
-#### 2.2. Android
-
-If you are using [`react-native-fbsdk`](https://github.com/facebook/react-native-fbsdk) you can follow their installation instructions. Otherwise, please follow official [Getting Started Guide for Facebook SDK](https://developers.facebook.com/docs/android/getting-started).
+You can skip the *Integrate the SDK* step of that guide, as you've already integrated the Facebook SDK in previous steps.
 
 ## Usage
 
