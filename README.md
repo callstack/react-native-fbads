@@ -265,12 +265,10 @@ Constant which contains current device's hash id.
 
 #### addTestDevice
 
-Registers given device to receive test ads. When you run app on simulator, it should automatically get added. Use it
-to receive test ads in development mode on a standalone phone. Hash of the current device can be obtained from a
-debug log or `AdSettings.currentDeviceHash` constant.
+Registers given device to receive test ads. When running on a real device, call this method with the result of  `AdSettings.currentDeviceHash` to get test ads. 
+Do not call this method in production.
 
-All devices should be specified before any other action takes place, like [`AdsManager`](#nativeadsmanager) gets created.
-
+You should register test devices before displaying any ads or creating any ad managers.
 ```js
 AdSettings.addTestDevice('hash');
 ```
