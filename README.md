@@ -9,37 +9,14 @@
 ## Table of Contents
 
 - [Installation](#installation)
-  - [Install Javascript packages](#1-install-javascript-packages)
-  - [Configure native projects](#2-configure-native-projects)
-    - [iOS](#21-ios)
-    - [Android](#22-android)
 - [Usage](#usage)
   - [Interstitial Ads](#interstitial-ads)
-    - [1. Showing ad](#1-showing-ad)
   - [Native Ads](#native-ads)
-    - [1. Creating AdsManager](#1-creating-adsmanager)
-    - [2. Making ad component](#2-making-ad-component)
-    - [3. Rendering an ad](#3-rendering-an-ad)
   - [Banner View](#bannerview)
-    - [1. Showing ad](#1-showing-ad-1)
 - [API](#api)
   - [NativeAdsManager](#nativeadsmanager)
-    - [disableAutoRefresh](#disableautorefresh)
-    - [setMediaCachePolicy](#setmediacachepolicy)
-  - [InterstitialAdManager](#interstitialadmanager)
-    - [showAd](#showad)
-  - [RewardedVideoAdManager](#rewardedvideoadmanager)
-    - [loadAd](#loadAd)
-    - [showAd](#showAd)
   - [AdSettings](#adsettings)
-    - [currentDeviceHash](#currentdevicehash)
-    - [addTestDevice](#addtestdevice)
-    - [clearTestDevices](#cleartestdevices)
-    - [setLogLevel](#setloglevel)
-    - [setIsChildDirected](#setischilddirected)
-    - [setMediationService](#setmediationservice)
-    - [setUrlPrefix](#seturlprefix)
-- [Running example](#running-example)
+- [Running the example](#running-the-example)
   - [Install dependencies](#1-install-dependencies)
   - [Start packager](#2-start-packager)
   - [Run it on iOS / Android](#3-run-it-on-ios--android)
@@ -47,12 +24,12 @@
 
 ## Installation
 
-### Integrate the base Facebook SDK
+### 1. Integrate the base Facebook SDK
 
 Follow the instructions on [react-native-fbsdk](https://github.com/facebook/react-native-fbsdk) to integrate the Facebook SDK into your project.
 Note that for iOS, it's [recommended you use Cocoapods](https://developers.facebook.com/docs/ios/getting-started/advanced) rather than the manual installation.
 
-### (iOS only) Integrate Facebook Audience Network
+### 2. (iOS only) Integrate Facebook Audience Network
 
 1. Add the following Pod to your Podfile:
 
@@ -64,29 +41,27 @@ pod 'FBAudienceNetwork'
 
 If you didn't use Cocoapods to integrate the Facebook SDK, you'll need to manually add the audience network framework file to your project.
 
-### Install The Javascript Package
+### 3. Install The Javascript Package
 
-1. Add the package to your project using your favorite pacakge manager
+Add the package to your project using your favorite package manager
 
 ```bash
 $ yarn install react-native-fbads
 ```
 
-2. Link the native projects
+Link the native dependencies
 
 ```bash
 $ react-native link react-native-fbads
 ```
 
-### Get a Placement ID
+### 4. Get a Placement ID
 
 Follow [Facebook's instructions](https://www.facebook.com/help/publisher/1195459597167215) to create placement IDs for your ads.
 
 You can skip the _Integrate the SDK_ step of that guide, as you've already integrated the Facebook SDK in previous steps.
 
 ## Usage
-
-For detailed usage please check `examples` folder.
 
 ### Interstitial Ads
 
