@@ -6,7 +6,7 @@
     "type": "git",
     "url": "https://github.com/callstack-io/react-native-fbads"
   },
-  "main": "dist/lib/index.ts",
+  "main": "dist/lib/index.js",
   "directories": {
     "example": "example"
   },
