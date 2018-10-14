@@ -190,14 +190,8 @@ export default <T extends HasNativeAd>(Component: React.ComponentType<T>) =>
                 >
                   {/* In case of no AdIconView or MediaView in Custom layout,
                                      It will keep Triggerable component Functional */}
-                  <AdIconView
-                    nativeAd={this.state.ad}
-                    style={{ width: 0, height: 0 }}
-                  />
-                  <MediaView
-                    nativeAd={this.state.ad}
-                    style={{ width: 0, height: 0 }}
-                  />
+                  <AdIconView style={{ width: 0, height: 0 }} />
+                  <MediaView style={{ width: 0, height: 0 }} />
                   <Component {...componentProps} nativeAd={this.state.ad} />
                 </AdChoicesViewContext.Provider>
               </TriggerableContext.Provider>
