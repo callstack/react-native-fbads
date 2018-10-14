@@ -90,11 +90,21 @@ For detailed usage please check `examples` folder.
 
 ### Interstitial Ads
 
-Interstitial Ad is a type of an ad that displays full screen with media content. It has a dismiss button as well as the clickable area that takes user outside of your app.
+An Interstitial Ad is a an ad that covers the whole screen with media content. It has a dismiss button as well as the clickable area that takes user outside of your app.
 
 <img src="https://cloud.githubusercontent.com/assets/2464966/19014517/3cea1da2-87ef-11e6-9f5a-6f3dbccc18a2.png" height="500">
 
 Interstitial ads are displayed over your root view with a single, imperative call.
+
+On android, you'll need to add the following to your `AndroidManifest.xml`:
+
+```xml
+<activity
+  android:name="com.facebook.ads.InterstitialAdActivity"
+  android:configChanges="keyboardHidden|orientation" />
+```
+
+Usage:
 
 ```js
 import { InterstitialAdManager } from 'react-native-fbads';
@@ -225,7 +235,6 @@ Banners are available in 3 sizes:
 - `large` (BANNER_HEIGHT_90)
 - `rectangle` (RECTANGLE_HEIGHT_250)
 
-
 ```js
 import { BannerView } from 'react-native-fbads';
 
@@ -266,68 +275,6 @@ adsManager.setMediaCachePolicy('none' | 'icon' | 'image' | 'all');
 ```
 
 **Note:** This method is a noop on Android
-
-### InterstitialAdManager
-
-```js
-import { InterstitialAdManager } from 'react-native-fbads';
-```
-
-InterstitialAdManager is a manager that allows you to display interstitial ads within your app with a single call.
-
-#### showAd
-
-Loads an interstitial ad asynchronously and shows it full screen by attaching a view onto the current root view
-controller.
-
-```js
-InterstitialAdManager.showAd('placementId')
-  .then(...)
-  .catch(...);
-```
-
-Promise will be rejected when there's an error loading ads from Facebook Audience network. It will resolve with a
-`boolean` indicating whether user didClick an ad or not.
-
-On Android you have to add following activity to _AndroidManifest.xml_
-
-```xml
-<activity
-  android:name="com.facebook.ads.InterstitialAdActivity"
-  android:configChanges="keyboardHidden|orientation" />
-```
-
-**Note:** There can be only one `showAd` call being performed at a time. Otherwise, an error will be thrown.
-
-### RewardedVideoAdManager
-
-```js
-import { RewardedVideoAdManager } from 'react-native-fbads';
-```
-
-RewardedVideoAdManager is a manager that allows you to load a rewarded video, then show the video once the video is loaded, in that order.
-
-#### loadAd
-
-Loads a rewarded video asynchronously, returns success / true if it loads, error if there wasn't an ad fill or an error from the audience network SDK.
-
-```js
-RewardedVideoAdManager.loadAd('placementId')
-  .then(...) // fill success
-  .catch(...); // no fill or SDK error
-```
-
-#### showAd
-
-Shows a rewarded video immediately, returns success if the video was watched to completion and the user should be rewarded, error if the video wasn't complete or there was an error from the audience network SDK.
-
-```js
-RewardedVideoAdManager.showAd()
-  .then(...) // fully watched video, set your reward.
-  .catch(...); // error
-```
-
-**Note:** You need to be sure to load then show each time you wish to show a rewarded video ad. You also cannot load another video in the success callback of showAd().
 
 ### AdSettings
 
@@ -400,7 +347,7 @@ AdSettings.setUrlPrefix('...');
 
 **Note:** This method should never be used in production
 
-## Running example
+## Running the example
 
 In order to see ads you will have to create your own `placementId` and use it instead of the one provided in the examples. This is our internal set up that doesn't work for any developers outside of Callstack.io organisation. This is because of Facebook not showing test ads to outside collaborators in the development mode.
 
