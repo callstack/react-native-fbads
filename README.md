@@ -179,7 +179,7 @@ import { AdChoicesView } from 'react-native-fbads'
 | expandable | false     | false    | (iOS only) makes the native AdChoices expandable       |
 | location   | topLeft   | false    | (iOS only) controls the location of the AdChoices icon |
 
-#### 3. Showing the ad
+#### 5. Showing the ad
 
 Finally, wrap your component with the `withNativeAd` HOC and pass it the `adsManager` you've previously created.
 
