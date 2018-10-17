@@ -1,11 +1,10 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
+import { requireNativeComponent, ViewProps } from 'react-native';
 import {
-  requireNativeComponent,
-  StyleProp,
-  ViewStyle,
-  ViewProps,
-} from 'react-native';
-import { MediaViewContext, MediaViewContextValueType } from './contexts';
+  ComponentOrClass,
+  MediaViewContext,
+  MediaViewContextValueType,
+} from './contexts';
 
 export type MediaViewProps = ViewProps;
 
@@ -17,9 +16,9 @@ export const NativeMediaView = requireNativeComponent<MediaViewProps>(
 class MediaViewChild extends React.Component<
   MediaViewProps & MediaViewContextValueType
 > {
-  private mediaView: ReactNode;
+  private mediaView: ComponentOrClass | null = null;
 
-  private handleMediaViewMount = (ref: ReactNode) => {
+  private handleMediaViewMount = (ref: ComponentOrClass | null) => {
     if (this.mediaView) {
       this.props.unregister();
       this.mediaView = null;

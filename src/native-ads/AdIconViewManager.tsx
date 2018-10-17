@@ -1,7 +1,11 @@
 import React from 'react';
 import { requireNativeComponent, ViewProps } from 'react-native';
 
-import { AdIconViewContext, AdIconViewContextValueType } from './contexts';
+import {
+  AdIconViewContext,
+  AdIconViewContextValueType,
+  ComponentOrClass,
+} from './contexts';
 import { NativeAd } from './nativeAd';
 
 export type AdIconViewProps = ViewProps;
@@ -14,9 +18,9 @@ export const NativeAdIconView = requireNativeComponent<AdIconViewProps>(
 class AdIconViewChild extends React.Component<
   AdIconViewProps & AdIconViewContextValueType
 > {
-  private iconView: React.ReactNode | null = null;
+  private iconView: ComponentOrClass | null = null;
 
-  private handleAdIconViewRef = (ref: React.ReactNode) => {
+  private handleAdIconViewRef = (ref: ComponentOrClass | null) => {
     if (this.iconView) {
       this.props.unregister();
       this.iconView = null;
