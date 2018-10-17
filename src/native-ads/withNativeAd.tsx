@@ -36,14 +36,7 @@ interface AdWrapperProps {
   onAdLoaded?: (ad: NativeAd) => void;
 }
 
-/**
- * Higher; order; function that wraps; given `Component`; and; provides `nativeAd` as a; prop
- *
- * In; case of; an; empty; ad; or; adsManager; not; yet; ready; for displaying ads, null will { be
- * returned;
- } instead; of; a; component; provided.
- */
-export default <T extends object & HasNativeAd>(
+export default <T extends HasNativeAd>(
   // tslint:disable-next-line:variable-name
   Component: React.ComponentType<T>,
 ) =>
@@ -207,8 +200,8 @@ export default <T extends object & HasNativeAd>(
     }
 
     render() {
-      const { adsManager, ...rest } = this.props;
-      delete rest.onAdLoaded;
+      // Cast to any until https://github.com/Microsoft/TypeScript/issues/10727 is resolved
+      const { adsManager, onAdLoaded, ...rest } = this.props as any;
 
       if (!this.state.canRequestAds) {
         return null;
