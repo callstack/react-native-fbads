@@ -43,8 +43,10 @@ interface AdWrapperProps {
  * returned;
  } instead; of; a; component; provided.
  */
-// tslint:disable-next-line:variable-name
-export default <T extends HasNativeAd>(Component: React.ComponentType<T>) =>
+export default <T extends object & HasNativeAd>(
+  // tslint:disable-next-line:variable-name
+  Component: React.ComponentType<T>,
+) =>
   class NativeAdWrapper extends React.Component<
     AdWrapperProps & T,
     AdWrapperState
@@ -179,33 +181,29 @@ export default <T extends HasNativeAd>(Component: React.ComponentType<T>) =>
     }
 
     private renderAdComponent(componentProps: T): ReactNode {
-      if (this.state.ad) {
-        return (
-          <AdIconViewContext.Provider
-            value={this.registerFunctionsForAdIconView}
-          >
-            <MediaViewContext.Provider
-              value={this.registerFunctionsForMediaView}
+      if (!this.state.ad) {
+        return null;
+      }
+      return (
+        <AdIconViewContext.Provider value={this.registerFunctionsForAdIconView}>
+          <MediaViewContext.Provider value={this.registerFunctionsForMediaView}>
+            <TriggerableContext.Provider
+              value={this.registerFunctionsForTriggerables}
             >
-              <TriggerableContext.Provider
-                value={this.registerFunctionsForTriggerables}
+              <AdChoicesViewContext.Provider
+                value={this.props.adsManager.toJSON()}
               >
-                <AdChoicesViewContext.Provider
-                  value={this.props.adsManager.toJSON()}
-                >
-                  {/* Facebook's registerViewForInteraction requires both AdIconView and MediaView
+                {/* Facebook's registerViewForInteraction requires both AdIconView and MediaView
                   references to be set. We include both as a default */}
 
-                  <AdIconView style={{ width: 0, height: 0 }} />
-                  <MediaView style={{ width: 0, height: 0 }} />
-                  <Component {...componentProps} nativeAd={this.state.ad} />
-                </AdChoicesViewContext.Provider>
-              </TriggerableContext.Provider>
-            </MediaViewContext.Provider>
-          </AdIconViewContext.Provider>
-        );
-      }
-      return null;
+                <AdIconView style={{ width: 0, height: 0 }} />
+                <MediaView style={{ width: 0, height: 0 }} />
+                <Component {...componentProps} nativeAd={this.state.ad} />
+              </AdChoicesViewContext.Provider>
+            </TriggerableContext.Provider>
+          </MediaViewContext.Provider>
+        </AdIconViewContext.Provider>
+      );
     }
 
     render() {
