@@ -1,11 +1,12 @@
 import { EventSubscription } from 'fbemitter';
-import React, { ReactElement, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import { findNodeHandle, requireNativeComponent } from 'react-native';
 import { AdIconView, MediaView } from '../index';
 import {
   AdChoicesViewContext,
   AdIconViewContext,
   AdIconViewContextValueType,
+  ComponentOrClass,
   MediaViewContext,
   MediaViewContextValueType,
   TriggerableContext,
@@ -32,7 +33,7 @@ interface AdWrapperState {
 
 interface AdWrapperProps {
   adsManager: AdsManager;
-  onAdLoaded?: ReactNodeReceiver;
+  onAdLoaded?: (ad: NativeAd) => void;
 }
 
 /**
@@ -49,11 +50,11 @@ export default <T extends HasNativeAd>(Component: React.ComponentType<T>) =>
     AdWrapperState
   > {
     private subscription?: EventSubscription;
-    private nativeAdViewRef?: ReactNode;
+    private nativeAdViewRef?: React.Component;
     private registerFunctionsForTriggerables: TriggerableContextValueType;
     private registerFunctionsForMediaView: MediaViewContextValueType;
     private registerFunctionsForAdIconView: AdIconViewContextValueType;
-    private clickableChildrenNodeHandles: Record<ReactNode, number>;
+    private clickableChildrenNodeHandles: Map<ComponentOrClass, number>;
 
     constructor(props: AdWrapperProps & T) {
       super(props);
@@ -73,7 +74,7 @@ export default <T extends HasNativeAd>(Component: React.ComponentType<T>) =>
         register: this.registerAdIconView,
       };
 
-      this.clickableChildrenNodeHandles = {};
+      this.clickableChildrenNodeHandles = new Map();
 
       this.state = {
         // iOS requires a non-null value
@@ -116,7 +117,7 @@ export default <T extends HasNativeAd>(Component: React.ComponentType<T>) =>
           clickableChildrenChanged
         ) {
           AdsManager.registerViewsForInteractionAsync(
-            findNodeHandle(this.nativeAdViewRef)!,
+            findNodeHandle(this.nativeAdViewRef!)!,
             this.state.mediaViewNodeHandle,
             this.state.adIconViewNodeHandle,
             [...this.state.clickableChildren],
@@ -134,42 +135,46 @@ export default <T extends HasNativeAd>(Component: React.ComponentType<T>) =>
       }
     }
 
-    private registerMediaView = (mediaView: ReactNode) =>
-      this.setState({ mediaViewNodeHandle: findNodeHandle(mediaView) })
+    private registerMediaView = (mediaView: ComponentOrClass) =>
+      this.setState({ mediaViewNodeHandle: findNodeHandle(mediaView) || -1 })
     private unregisterMediaView = () =>
       this.setState({ mediaViewNodeHandle: -1 })
 
-    private registerAdIconView = (adIconView: ReactNode) =>
-      this.setState({ adIconViewNodeHandle: findNodeHandle(adIconView) })
+    private registerAdIconView = (adIconView: ComponentOrClass) =>
+      this.setState({ adIconViewNodeHandle: findNodeHandle(adIconView) || -1 })
     private unregisterAdIconView = () =>
       this.setState({ adIconViewNodeHandle: -1 })
 
-    private registerClickableChild = (child: ReactNode) => {
-      this.clickableChildrenNodeHandles[child] = findNodeHandle(child);
+    private registerClickableChild = (child: ComponentOrClass) => {
+      const handle = findNodeHandle(child) || -1;
+      this.clickableChildrenNodeHandles.set(child, handle);
+
       this.setState({
-        clickableChildren: this.state.clickableChildren.add(
-          findNodeHandle(child),
-        ),
+        clickableChildren: this.state.clickableChildren.add(handle),
       });
     }
 
-    private unregisterClickableChild = (child: ReactNode) => {
+    private unregisterClickableChild = (child: ComponentOrClass) => {
       this.setState(({ clickableChildren }) => {
         const newClickableChildren = new Set(clickableChildren);
-        newClickableChildren.delete(this.clickableChildrenNodeHandles[child]);
-        delete this.clickableChildrenNodeHandles[child];
+        newClickableChildren.delete(
+          this.clickableChildrenNodeHandles.get(child)!,
+        );
+        this.clickableChildrenNodeHandles.delete(child);
         return { clickableChildren: newClickableChildren };
       });
     }
 
     private handleAdUpdated = () =>
-      this.props.onAdLoaded && this.props.onAdLoaded(this.state.ad)
+      this.state.ad &&
+      this.props.onAdLoaded &&
+      this.props.onAdLoaded(this.state.ad)
 
     private handleAdLoaded = ({ nativeEvent }: { nativeEvent: NativeAd }) => {
       this.setState({ ad: nativeEvent }, this.handleAdUpdated);
     }
 
-    private handleNativeAdViewMount = (ref: ReactElement<any>) => {
+    private handleNativeAdViewMount = (ref: React.Component) => {
       this.nativeAdViewRef = ref;
     }
 
@@ -188,8 +193,9 @@ export default <T extends HasNativeAd>(Component: React.ComponentType<T>) =>
                 <AdChoicesViewContext.Provider
                   value={this.props.adsManager.toJSON()}
                 >
-                  {/* In case of no AdIconView or MediaView in Custom layout,
-                                     It will keep Triggerable component Functional */}
+                  {/* Facebook's registerViewForInteraction requires both AdIconView and MediaView
+                  references to be set. We include both as a default */}
+
                   <AdIconView style={{ width: 0, height: 0 }} />
                   <MediaView style={{ width: 0, height: 0 }} />
                   <Component {...componentProps} nativeAd={this.state.ad} />

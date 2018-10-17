@@ -1,14 +1,15 @@
 import React, { ReactNode } from 'react';
 
-type ReactNodeReceiver = (n: ReactNode) => void;
+export type ComponentOrClass = React.ComponentClass<any> | React.Component;
 
+type Receiver = (c: ComponentOrClass) => void;
 export interface MultipleRegisterablesContextValueType {
-  unregister: ReactNodeReceiver;
-  register: ReactNodeReceiver;
+  unregister: Receiver;
+  register: Receiver;
 }
 
 export interface RegisterableContextValueType {
-  register: ReactNodeReceiver;
+  register: Receiver;
   unregister: () => void;
 }
 
