@@ -89,7 +89,7 @@ InterstitialAdManager.showAd(placementId)
   .catch(error => {});
 ```
 
-The `showAd` method returns a promise that will be resolves once the ad has been either dismissed or clicked by the user. The promise will reject if an erros occurs before displaying the ad, such as a network error.
+The `showAd` method returns a promise that will be resolves once the ad has been either dismissed or clicked by the user. The promise will reject if an error occurs before displaying the ad, such as a network error.
 
 ### Native Ads
 
