@@ -14,6 +14,7 @@ import {
 } from './contexts';
 import { HasNativeAd, NativeAd } from './nativeAd';
 import AdsManager from './NativeAdsManager';
+import { areSetsEqual } from '../util/areSetsEqual';
 
 interface NativeAdViewProps {
   adsManager: string;
@@ -89,35 +90,36 @@ export default <T extends HasNativeAd>(
       );
     }
 
-    public componentDidUpdate(
-      prevProps: AdWrapperProps,
-      prevState: AdWrapperState,
-    ) {
+    public componentDidUpdate(_: AdWrapperProps, prevState: AdWrapperState) {
       if (
-        this.state.mediaViewNodeHandle !== -1 ||
-        this.state.adIconViewNodeHandle !== -1 ||
-        this.state.clickableChildren.size > 0
+        this.state.mediaViewNodeHandle === -1 ||
+        this.state.adIconViewNodeHandle === -1
       ) {
-        const mediaViewNodeHandleChanged =
-          this.state.mediaViewNodeHandle !== prevState.mediaViewNodeHandle;
-        const adIconViewNodeHandleChanged =
-          this.state.adIconViewNodeHandle !== prevState.adIconViewNodeHandle;
-        const clickableChildrenChanged = [
-          ...prevState.clickableChildren,
-        ].filter(child => !this.state.clickableChildren.has(child));
+        // Facebook's SDK requires both MediaView and AdIconView references in order to register
+        // interactable views. If one of them is missing, we can't proceed with the registration.
+        return;
+      }
 
-        if (
-          mediaViewNodeHandleChanged ||
-          adIconViewNodeHandleChanged ||
-          clickableChildrenChanged
-        ) {
-          AdsManager.registerViewsForInteractionAsync(
-            findNodeHandle(this.nativeAdViewRef!)!,
-            this.state.mediaViewNodeHandle,
-            this.state.adIconViewNodeHandle,
-            [...this.state.clickableChildren],
-          );
-        }
+      const mediaViewNodeHandleChanged =
+        this.state.mediaViewNodeHandle !== prevState.mediaViewNodeHandle;
+      const adIconViewNodeHandleChanged =
+        this.state.adIconViewNodeHandle !== prevState.adIconViewNodeHandle;
+      const clickableChildrenChanged = areSetsEqual(
+        prevState.clickableChildren,
+        this.state.clickableChildren,
+      );
+
+      if (
+        mediaViewNodeHandleChanged ||
+        adIconViewNodeHandleChanged ||
+        clickableChildrenChanged
+      ) {
+        AdsManager.registerViewsForInteractionAsync(
+          findNodeHandle(this.nativeAdViewRef!)!,
+          this.state.mediaViewNodeHandle,
+          this.state.adIconViewNodeHandle,
+          [...this.state.clickableChildren],
+        );
       }
     }
 
