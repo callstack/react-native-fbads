@@ -6,13 +6,14 @@
     "type": "git",
     "url": "https://github.com/callstack-io/react-native-fbads"
   },
-  "main": "index.js",
+  "main": "dist/lib/index.js",
+  "typings": "dist/types/index.d.ts",
   "directories": {
     "example": "example"
   },
   "scripts": {
-    "test": "flow .",
-    "lint": "eslint ."
+    "tsc": "tsc --project .",
+    "lint": "tslint --project ."
   },
   "author": "Suraj Tiwari <surajtiwari020@gmail.com>",
   "license": "MIT",
@@ -42,5 +43,12 @@
     "facebook",
     "Audience Network",
     "Native ads"
-  ]
+  ],
+  "devDependencies": {
+    "@types/fbemitter": "^2.0.32",
+    "@types/react-native": "^0.57.4",
+    "tslint": "^5.11.0",
+    "tslint-config-airbnb": "^5.11.0",
+    "typescript": "^3.1.2"
+  }
 }

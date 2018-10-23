@@ -1,3 +1,6 @@
+# Typescript generated files
+dist/
+
 # OSX
 #
 .vscode

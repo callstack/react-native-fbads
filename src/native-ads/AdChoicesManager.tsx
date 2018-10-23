@@ -1,23 +1,32 @@
-// @flow
 import React from 'react';
-import { requireNativeComponent, StyleSheet, Platform } from 'react-native';
-import type { ViewStyleProp } from 'react-native/Libraries/StyleSheet/StyleSheet';
+import {
+  StyleProp,
+  ViewStyle,
+  requireNativeComponent,
+  StyleSheet,
+  Platform,
+} from 'react-native';
 
-import { AdChoicesViewContext } from './withNativeAd';
-import type { AdChoicesViewContextValueType } from './withNativeAd';
+import {
+  AdChoicesViewContext,
+  AdChoicesViewContextValueType,
+} from './contexts';
 
-const NativeAdChoicesView = requireNativeComponent('AdChoicesView', null);
+interface AdChoicesProps {
+  location?: AdChoiceLocation;
+  expandable?: boolean;
+  style?: StyleProp<ViewStyle>;
+}
+
+// tslint:disable-next-line:variable-name
+const NativeAdChoicesView = requireNativeComponent<
+  AdChoicesProps & { placementId: string }
+>('AdChoicesView');
 
 type AdChoiceLocation = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
 
-type Props = {
-  location: AdChoiceLocation,
-  expandable: boolean,
-  style?: ViewStyleProp,
-};
-
-export default class AdChoicesView extends React.Component<Props> {
-  static defaultProps: Props = {
+export default class AdChoicesView extends React.Component<AdChoicesProps> {
+  static defaultProps: AdChoicesProps = {
     location: 'topLeft',
     expandable: false,
   };
@@ -38,7 +47,7 @@ export default class AdChoicesView extends React.Component<Props> {
   }
 }
 
-let styles = StyleSheet.create({
+const styles = StyleSheet.create({
   adChoice: {
     backgroundColor: 'transparent',
     ...Platform.select({
