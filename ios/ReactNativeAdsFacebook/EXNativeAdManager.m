@@ -150,6 +150,8 @@ RCT_EXPORT_METHOD(disableAutoRefresh:(NSString*)placementId)
 - (void)nativeAdsFailedToLoadWithError:(NSError *)errors
 {
   // @todo handle errors here
+    EXNativeAdEmitter *nativeAdEmitter = [_bridge moduleForClass:[EXNativeAdEmitter class]];
+    [nativeAdEmitter sendError:[NSString stringWithFormat:@"%i: %@", [errors code], [errors localizedDescription]]];
 }
 
 - (UIView *)view
