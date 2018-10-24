@@ -6,7 +6,7 @@ const { CTKNativeAdManager, CTKNativeAdEmitter } = NativeModules;
 const nativeAdEmitter = new NativeEventEmitter(CTKNativeAdEmitter);
 
 const EVENT_DID_BECOME_VALID = 'AdsManagerDidBecomeValid';
-const EVENT_DID_BECOME_ERROR = 'AdsManagerGotError';
+const EVENT_DID_BECOME_ERROR = 'AdsManagerDidBecomeError';
 
 type AdManagerCachePolicy = 'none' | 'icon' | 'image' | 'all';
 
