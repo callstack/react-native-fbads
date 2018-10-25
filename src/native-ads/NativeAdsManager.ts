@@ -6,7 +6,7 @@ const { CTKNativeAdManager, CTKNativeAdEmitter } = NativeModules;
 const nativeAdEmitter = new NativeEventEmitter(CTKNativeAdEmitter);
 
 const EVENT_DID_BECOME_VALID = 'AdsManagerDidBecomeValid';
-const EVENT_DID_BECOME_ERROR = 'AdsManagerDidBecomeError';
+const EVENT_DID_BECOME_INVALID = 'AdsManagerDidBecomeInvalid';
 
 type AdManagerCachePolicy = 'none' | 'icon' | 'image' | 'all';
 
@@ -80,7 +80,8 @@ export default class NativeAdsManager {
     nativeAdEmitter.addListener(
       'onAdError',
       (error: string) => {
-          this.eventEmitter.emit(EVENT_DID_BECOME_ERROR, error);
+          this.isValid = false;
+          this.eventEmitter.emit(EVENT_DID_BECOME_INVALID, error);
       },
     );
   }
@@ -108,7 +109,7 @@ export default class NativeAdsManager {
    * Used to listening for errors from this native ad manager
    */
   onAdsError(func: Function): EventSubscription {
-    return this.eventEmitter.once(EVENT_DID_BECOME_ERROR, func);
+    return this.eventEmitter.once(EVENT_DID_BECOME_INVALID, func);
   }
 
   /**
