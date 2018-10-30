@@ -46,6 +46,7 @@ export default <T extends HasNativeAd>(
     AdWrapperState
   > {
     private subscription?: EventSubscription;
+    private subscriptionError?: EventSubscription;
     private nativeAdViewRef?: React.Component;
     private registerFunctionsForTriggerables: TriggerableContextValueType;
     private registerFunctionsForMediaView: MediaViewContextValueType;
@@ -88,6 +89,9 @@ export default <T extends HasNativeAd>(
       this.subscription = this.props.adsManager.onAdsLoaded(() =>
         this.setState({ canRequestAds: true }),
       );
+      this.subscriptionError = this.props.adsManager.onAdsError(() =>
+        this.setState({ canRequestAds: false }),
+      );
     }
 
     public componentDidUpdate(_: AdWrapperProps, prevState: AdWrapperState) {
@@ -129,6 +133,9 @@ export default <T extends HasNativeAd>(
     public componentWillUnmount() {
       if (this.subscription) {
         this.subscription.remove();
+      }
+      if (this.subscriptionError) {
+        this.subscriptionError.remove();
       }
     }
 

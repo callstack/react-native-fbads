@@ -6,11 +6,15 @@ RCT_EXPORT_MODULE(CTKNativeAdEmitter)
 
 - (NSArray<NSString *> *)supportedEvents
 {
-  return @[@"CTKNativeAdsManagersChanged"];
+  return @[@"CTKNativeAdsManagersChanged", @"onAdError"];
 }
 
 - (void)sendManagersState:(NSDictionary<NSString *,NSNumber *> *)adManagersState {
   [self sendEventWithName:@"CTKNativeAdsManagersChanged" body:adManagersState];
+}
+
+- (void)sendError:(NSString *)error {
+    [self sendEventWithName:@"onAdError" body:error];
 }
 
 @end
