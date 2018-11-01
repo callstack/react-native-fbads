@@ -144,12 +144,12 @@ class AdComponent extends React.Component {
   render() {
     return (
       <View>
-        <AdChoicesView style={{ position: 'absolute', left: 0, top: 0 }} />
         <AdIconView style={{ width: 50, height: 50 }} />
         <MediaView style={{ width: 160, height: 90 }} />
         <TriggerableView>
           <Text>{this.props.nativeAd.description}</Text>
         </TriggerableView>
+        <AdChoicesView style={{backgroundColor:'#fff'}}  location={"bottomRight"} expandable={true} /> // Should be at bottom !important  
       </View>
     );
   }
@@ -168,7 +168,7 @@ You can use the included `AdChoicesView` component and style it to your liking.
 ```js
 import { AdChoicesView } from 'react-native-fbads'
 
-<AdChoicesView style={{position:'absolute', left:0, top:0}}/>
+<AdChoicesView style={{backgroundColor:'#fff'}}  location={"bottomRight"} expandable={true} />
 ```
 
 #### Props
@@ -177,7 +177,7 @@ import { AdChoicesView } from 'react-native-fbads'
 | ---------- | --------- | -------- | ------------------------------------------------------ |
 | style      | undefined | false    | Standard Style prop                                    |
 | expandable | false     | false    | (iOS only) makes the native AdChoices expandable       |
-| location   | topLeft   | false    | (iOS only) controls the location of the AdChoices icon |
+| location   | topLeft   | false    | controls the location of the AdChoices icon            |
 
 #### 5. Showing the ad
 
