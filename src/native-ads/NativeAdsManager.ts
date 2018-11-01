@@ -80,8 +80,8 @@ export default class NativeAdsManager {
     nativeAdEmitter.addListener(
       'onAdError',
       (error: string) => {
-          this.isValid = false;
-          this.eventEmitter.emit(EVENT_DID_BECOME_INVALID, error);
+        this.isValid = false;
+        this.eventEmitter.emit(EVENT_DID_BECOME_INVALID, error);
       },
     );
   }

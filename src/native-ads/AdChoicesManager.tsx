@@ -20,8 +20,7 @@ interface AdChoicesProps {
 
 // tslint:disable-next-line:variable-name
 const NativeAdChoicesView = requireNativeComponent<
-  AdChoicesProps & { placementId: string }
-  >('AdChoicesView');
+  AdChoicesProps & { placementId: string }>('AdChoicesView');
 
 type AdChoiceLocation = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
 
