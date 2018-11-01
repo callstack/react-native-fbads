@@ -38,8 +38,8 @@ export default class AdChoicesView extends React.Component<AdChoicesProps> {
           <NativeAdChoicesView
             style={[
               styles.adChoice,
-              this.props.style,
               this.getPositionStyle(this.props.location),
+              this.props.style,
             ]}
             placementId={placementId}
             location={this.props.location}
