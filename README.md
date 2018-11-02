@@ -149,7 +149,7 @@ class AdComponent extends React.Component {
         <TriggerableView>
           <Text>{this.props.nativeAd.description}</Text>
         </TriggerableView>
-        <AdChoicesView style={{backgroundColor:'#fff'}}  location={"bottomRight"} expandable={true} /> // Should be at bottom !important  
+        <AdChoicesView style={{backgroundColor:'#fff'}}  location={"bottomRight"} expandable={true} /> // If facing zIndex issue place it to bottom
       </View>
     );
   }
