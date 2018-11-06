@@ -1,6 +1,6 @@
 {
   "name": "react-native-fbads",
-  "version": "5.0.1",
+  "version": "6.0.0RC",
   "description": "Native Facebook Ads for React Native",
   "repository": {
     "type": "git",
@@ -26,12 +26,17 @@
   },
   "devDependencies": {
     "@callstack/eslint-config": "^2.0.0",
+    "@types/fbemitter": "^2.0.32",
+    "@types/react-native": "^0.57.4",
     "eslint": "^5.6.1",
     "eslint-plugin-react-native": "^3.3.0",
     "flow-bin": "~0.67.1",
     "react": "16.3.1",
     "react-dom": "16.3.1",
-    "react-native": "~0.55.4"
+    "react-native": "~0.55.4",
+    "tslint": "^5.11.0",
+    "tslint-config-airbnb": "^5.11.0",
+    "typescript": "^3.1.2"
   },
   "rnpm": {
     "android": {
@@ -43,12 +48,5 @@
     "facebook",
     "Audience Network",
     "Native ads"
-  ],
-  "devDependencies": {
-    "@types/fbemitter": "^2.0.32",
-    "@types/react-native": "^0.57.4",
-    "tslint": "^5.11.0",
-    "tslint-config-airbnb": "^5.11.0",
-    "typescript": "^3.1.2"
-  }
+  ]
 }
