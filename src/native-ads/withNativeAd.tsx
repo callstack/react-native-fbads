@@ -90,7 +90,12 @@ export default <T extends HasNativeAd>(
         this.setState({ canRequestAds: true }),
       );
       this.subscriptionError = this.props.adsManager.onAdsError(() =>
-        this.setState({ canRequestAds: false }),
+        {
+          this.setState({ canRequestAds: false }, () => {
+            this.props.onAdsError &&
+            this.props.onAdsError()
+          })
+        },
       );
     }
 
