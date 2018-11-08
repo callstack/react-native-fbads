@@ -44,7 +44,7 @@
 
 - (void)createViewIfCan:(NSString *)placementId :(UIRectCorner *) location :(BOOL) expandable
 {
-    if (!location || !placementId) {
+    if (!location || !placementId || !expandable) {
         return;
     }
     EXNativeAdManager *nativeAdManager = [_bridge moduleForClass:[EXNativeAdManager class]];
