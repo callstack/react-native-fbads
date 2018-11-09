@@ -4,12 +4,12 @@ import {
   ViewStyle,
   requireNativeComponent,
   StyleSheet,
-  Platform,
+  Platform
 } from 'react-native';
 
 import {
   AdChoicesViewContext,
-  AdChoicesViewContextValueType,
+  AdChoicesViewContextValueType
 } from './contexts';
 
 interface AdChoicesProps {
@@ -28,7 +28,7 @@ type AdChoiceLocation = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
 export default class AdChoicesView extends React.Component<AdChoicesProps> {
   static defaultProps: AdChoicesProps = {
     location: 'topLeft',
-    expandable: false,
+    expandable: false
   };
 
   render() {
@@ -53,12 +53,12 @@ const styles = StyleSheet.create({
     ...Platform.select({
       ios: {
         width: 0,
-        height: 0,
+        height: 0
       },
       android: {
         width: 22,
-        height: 22,
-      },
-    }),
-  },
+        height: 22
+      }
+    })
+  }
 });
