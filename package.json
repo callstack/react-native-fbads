@@ -18,7 +18,7 @@
   "author": "Suraj Tiwari <surajtiwari020@gmail.com>",
   "license": "MIT",
   "peerDependencies": {
-    "react-native": "^0.57.4"
+    "react-native": "*"
   },
   "dependencies": {
     "fbemitter": "^2.1.1"
