@@ -17,7 +17,7 @@ class TriggerableViewChild extends React.Component<
       this.props.register(ref);
       this.wrapperRef = ref;
     }
-  }
+  };
 
   render() {
     return <Text {...this.props} ref={this.handleWrapperRef} />;

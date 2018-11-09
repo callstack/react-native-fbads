@@ -21,13 +21,13 @@ interface BannerViewProps {
 
 // tslint:disable-next-line:variable-name
 const CTKBannerView = requireNativeComponent<NativeBannerViewProps>(
-  'CTKBannerView',
+  'CTKBannerView'
 );
 
 const sizeForType: Record<AdType, number> = {
   large: 90,
   rectangle: 250,
-  standard: 50,
+  standard: 50
 };
 
 const getSizeForType = (type: AdType) => sizeForType[type];

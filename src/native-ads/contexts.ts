@@ -24,7 +24,7 @@ const defaultValue = {
   },
   unregister: () => {
     throw new Error('Stub!');
-  },
+  }
 };
 
 // tslint:disable-next-line:variable-name
@@ -33,7 +33,7 @@ export const TriggerableContext = React.createContext<
 >(defaultValue);
 // tslint:disable-next-line:variable-name
 export const MediaViewContext = React.createContext<MediaViewContextValueType>(
-  defaultValue,
+  defaultValue
 );
 
 // tslint:disable-next-line:variable-name

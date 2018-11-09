@@ -3,7 +3,8 @@
   "extends": ["tslint-config-airbnb"],
   "jsRules": {},
   "rules": {
-    "import-name": false
+    "import-name": false,
+    "trailing-comma": false
   },
   "rulesDirectory": []
 }

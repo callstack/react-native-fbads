@@ -21,7 +21,7 @@ export default class NativeAdsManager {
     nativeAdViewTag: number,
     mediaViewTag: number,
     adIconViewTag: number,
-    clickable: number[],
+    clickable: number[]
   ) {
     if (adIconViewTag > 0 && mediaViewTag > 0) {
       clickable.push(mediaViewTag, adIconViewTag);
@@ -34,7 +34,7 @@ export default class NativeAdsManager {
       nativeAdViewTag,
       mediaViewTag,
       adIconViewTag,
-      clickable,
+      clickable
     );
     return result;
   }
@@ -68,7 +68,7 @@ export default class NativeAdsManager {
           this.isValid = true;
           this.eventEmitter.emit(EVENT_DID_BECOME_VALID);
         }
-      },
+      }
     );
   }
 
@@ -77,13 +77,10 @@ export default class NativeAdsManager {
    * callers will be notified of it
    */
   private listenForErrors() {
-    nativeAdEmitter.addListener(
-      'onAdError',
-      (error: string) => {
-          this.isValid = false;
-          this.eventEmitter.emit(EVENT_DID_BECOME_INVALID, error);
-      },
-    );
+    nativeAdEmitter.addListener('onAdError', (error: string) => {
+      this.isValid = false;
+      this.eventEmitter.emit(EVENT_DID_BECOME_INVALID, error);
+    });
   }
 
   /**
@@ -98,7 +95,7 @@ export default class NativeAdsManager {
       return {
         context: null,
         listener: () => {},
-        remove: () => {},
+        remove: () => {}
       };
     }
 

@@ -3,14 +3,14 @@ import { requireNativeComponent, ViewProps } from 'react-native';
 import {
   ComponentOrClass,
   MediaViewContext,
-  MediaViewContextValueType,
+  MediaViewContextValueType
 } from './contexts';
 
 export type MediaViewProps = ViewProps;
 
 // tslint:disable-next-line:variable-name
 export const NativeMediaView = requireNativeComponent<MediaViewProps>(
-  'MediaView',
+  'MediaView'
 );
 
 class MediaViewChild extends React.Component<
@@ -28,7 +28,7 @@ class MediaViewChild extends React.Component<
       this.props.register(ref);
       this.mediaView = ref;
     }
-  }
+  };
 
   render() {
     return <NativeMediaView {...this.props} ref={this.handleMediaViewMount} />;
