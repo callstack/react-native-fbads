@@ -46,7 +46,7 @@ If you didn't use Cocoapods to integrate the Facebook SDK, you'll need to manual
 Add the package to your project using your favorite package manager
 
 ```bash
-$ yarn install react-native-fbads
+$ yarn add react-native-fbads
 ```
 
 Link the native dependencies
@@ -54,6 +54,8 @@ Link the native dependencies
 ```bash
 $ react-native link react-native-fbads
 ```
+
+If you have more than one Targets on your Xcode project, you might link some of them manually by dragging `Libraries/ReactNativeAdsFacebook.xcodeproj/Products/libReactNativeAdsFacebook.a` to 'Build Phases' -> 'Link Binary With Libraries'.
 
 ### 4. Get a Placement ID
 
