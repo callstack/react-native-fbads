@@ -19,6 +19,7 @@ import { areSetsEqual } from '../util/areSetsEqual';
 interface NativeAdViewProps {
   adsManager: string;
   onAdLoaded: (args: { nativeEvent: NativeAd }) => void;
+  onAdError: () => void;
 }
 
 // tslint:disable-next-line:variable-name
@@ -35,6 +36,7 @@ interface AdWrapperState {
 interface AdWrapperProps {
   adsManager: AdsManager;
   onAdLoaded?: (ad: NativeAd) => void;
+  onAdError?: () => void;
 }
 
 export default <T extends HasNativeAd>(
@@ -92,8 +94,8 @@ export default <T extends HasNativeAd>(
       this.subscriptionError = this.props.adsManager.onAdsError(() =>
         {
           this.setState({ canRequestAds: false }, () => {
-            this.props.onAdsError &&
-            this.props.onAdsError()
+            this.props.onAdError &&
+            this.props.onAdError()
           })
         },
       );
