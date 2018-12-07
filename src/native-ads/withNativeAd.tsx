@@ -150,7 +150,12 @@ export default <T extends HasNativeAd>(
       this.setState({ adIconViewNodeHandle: -1 });
 
     private registerClickableChild = (child: ComponentOrClass) => {
-      const handle = findNodeHandle(child) || -1;
+      const handle = findNodeHandle(child);
+
+      if (!handle) {
+        return;
+      }
+
       this.clickableChildrenNodeHandles.set(child, handle);
 
       this.setState({
