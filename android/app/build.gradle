@@ -27,5 +27,5 @@ repositories {
 dependencies {
     compile 'com.facebook.react:react-native:+'
     compile "com.android.support:recyclerview-v7:${safeExtGet('supportLibVersion', '26.1.0')}"
-    compile 'com.facebook.android:audience-network-sdk:5.+'
+    compile 'com.facebook.android:audience-network-sdk:5.1.0'
 }

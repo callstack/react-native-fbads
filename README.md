@@ -29,17 +29,39 @@
 Follow the instructions on [react-native-fbsdk](https://github.com/facebook/react-native-fbsdk) to integrate the Facebook SDK into your project.
 Note that for iOS, it's [recommended you use Cocoapods](https://developers.facebook.com/docs/ios/getting-started/advanced) rather than the manual installation.
 
-### 2. (iOS only) Integrate Facebook Audience Network
+### 2. Integrate Facebook Audience Network
+
+#### For iOS:
 
 1. Add the following Pod to your Podfile:
 
 ```
-pod 'FBAudienceNetwork'
+pod 'FBAudienceNetwork', '~> 5.1.0'
 ```
 
 2. Run `pod install`
 
 If you didn't use Cocoapods to integrate the Facebook SDK, you'll need to manually add the audience network framework file to your project.
+
+#### For Android:
+
+1. The library will automatically add audience-network-sdk to your dependencies. There is no need to add the audience network artifact to your build.gradle.
+
+2. In `MainApplication.java`, initialize the SDK inside `onCreate`:
+
+```java
+
+import com.facebook.ads.AudienceNetworkAds; // <-- add this
+
+public class MainApplication extends Application implements ReactApplication {
+...
+@Override public void onCreate() {
+    super.onCreate();
+    AudienceNetworkAds.initialize(this); // <-- add this
+  }
+...
+}
+```
 
 ### 3. Install The Javascript Package
 
@@ -140,7 +162,7 @@ import {
   AdIconView,
   MediaView,
   AdChoicesView,
-  TriggerableView,
+  TriggerableView
 } from 'react-native-fbads';
 class AdComponent extends React.Component {
   render() {
@@ -267,10 +289,11 @@ Constant which contains current device's hash id.
 
 #### addTestDevice
 
-Registers given device to receive test ads. When running on a real device, call this method with the result of  `AdSettings.currentDeviceHash` to get test ads. 
+Registers given device to receive test ads. When running on a real device, call this method with the result of `AdSettings.currentDeviceHash` to get test ads.
 Do not call this method in production.
 
 You should register test devices before displaying any ads or creating any ad managers.
+
 ```js
 AdSettings.addTestDevice('hash');
 ```
