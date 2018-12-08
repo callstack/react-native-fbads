@@ -118,8 +118,14 @@ export default <T extends HasNativeAd>(
         adIconViewNodeHandleChanged ||
         clickableChildrenChanged
       ) {
+        const viewHandle = findNodeHandle(this.nativeAdViewRef!);
+        if (!viewHandle) {
+          // Skip registration if the view is no longer valid.
+          return;
+        }
+
         AdsManager.registerViewsForInteractionAsync(
-          findNodeHandle(this.nativeAdViewRef!)!,
+          viewHandle,
           this.state.mediaViewNodeHandle,
           this.state.adIconViewNodeHandle,
           [...this.state.clickableChildren]
@@ -150,7 +156,12 @@ export default <T extends HasNativeAd>(
       this.setState({ adIconViewNodeHandle: -1 });
 
     private registerClickableChild = (child: ComponentOrClass) => {
-      const handle = findNodeHandle(child) || -1;
+      const handle = findNodeHandle(child);
+
+      if (!handle) {
+        return;
+      }
+
       this.clickableChildrenNodeHandles.set(child, handle);
 
       this.setState({
