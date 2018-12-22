@@ -41,5 +41,14 @@
     "facebook",
     "Audience Network",
     "Native ads"
+  ],
+  "files": [
+    "android",
+    "ios",
+    "src",
+    "LICENSE",
+    "package.json",
+    "yarn.lock",
+    "dist"
   ]
 }
