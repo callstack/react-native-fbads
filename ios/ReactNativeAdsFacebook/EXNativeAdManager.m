@@ -115,7 +115,9 @@ RCT_EXPORT_METHOD(init:(NSString *)placementId withAdsToRequest:(nonnull NSNumbe
     
   [adsManager setDelegate:self];
 
-  [adsManager loadAds];
+  dispatch_async(dispatch_get_main_queue(), ^{
+    [adsManager loadAds];
+  });
     
   [_adsManagers setValue:adsManager forKey:placementId];
 }
