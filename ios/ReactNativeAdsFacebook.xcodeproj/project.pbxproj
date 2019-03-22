@@ -325,6 +325,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/**",
 					"$(SRCROOT)/../../../ios/Pods/FBAudienceNetwork/**",
+					"$(HOME)/Documents/FacebookSDK/**",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
