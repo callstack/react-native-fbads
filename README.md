@@ -52,12 +52,20 @@ If you didn't use Cocoapods to integrate the Facebook SDK, you'll need to manual
 ```java
 
 import com.facebook.ads.AudienceNetworkAds; // <-- add this
+import suraj.tiwari.reactnativefbads.FBAdsPackage; // <-- add this
 
 public class MainApplication extends Application implements ReactApplication {
 ...
-@Override public void onCreate() {
+  @Override 
+  public void onCreate() {
     super.onCreate();
     AudienceNetworkAds.initialize(this); // <-- add this
+  }
+  @Override
+  protected List<ReactPackage> getPackages() {
+    return Arrays.<ReactPackage>asList(
+          new FBAdsPackage()   // <-- add this
+    );
   }
 ...
 }
