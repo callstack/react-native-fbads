@@ -17,6 +17,7 @@ RCT_EXPORT_MODULE(CTKBannerViewManager)
 
 RCT_EXPORT_VIEW_PROPERTY(size, NSNumber)
 RCT_EXPORT_VIEW_PROPERTY(placementId, NSString)
+RCT_EXPORT_VIEW_PROPERTY(onAdLoad, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onAdPress, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onAdError, RCTBubblingEventBlock)
 

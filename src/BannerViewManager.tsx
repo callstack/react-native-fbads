@@ -7,6 +7,7 @@ interface NativeBannerViewProps {
   size: number;
   onAdPress: Function;
   onAdError: Function;
+  onAdLoad: Function;
   style: StyleProp<ViewStyle>;
   placementId: string;
 }
@@ -16,6 +17,7 @@ interface BannerViewProps {
   placementId: string;
   onPress: Function;
   onError: Function;
+  onLoad: Function;
   style: StyleProp<ViewStyle>;
 }
 
@@ -34,7 +36,7 @@ const getSizeForType = (type: AdType) => sizeForType[type];
 
 // tslint:disable-next-line:variable-name
 const BannerView = (props: BannerViewProps) => {
-  const { type, onPress, onError, style, ...restProps } = props;
+  const { type, onPress, onError, onLoad, style, ...restProps } = props;
   const size = getSizeForType(type);
 
   return (
@@ -42,6 +44,7 @@ const BannerView = (props: BannerViewProps) => {
       size={size}
       onAdPress={onPress}
       onAdError={onError}
+      onAdLoad={onLoad}
       style={[style, { height: size }]}
       {...restProps}
     />

@@ -81,6 +81,16 @@
   }
 }
 
+- (void)adViewDidLoad:(FBAdView *)adView
+{
+  NSLog(@"Ad was loaded and ready to be displayed");
+
+  if (_onAdLoad) {
+    _onAdLoad(nil);
+  }
+}
+
+
 - (void)adViewDidFinishHandlingClick:(FBAdView *)adView {}
 - (void)adViewWillLogImpression:(FBAdView *)adView {}
 
