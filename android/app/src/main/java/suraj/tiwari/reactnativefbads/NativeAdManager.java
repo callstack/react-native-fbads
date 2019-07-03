@@ -16,6 +16,7 @@ import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.UiThreadUtil;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.modules.core.RCTNativeAppEventEmitter;
+import com.facebook.react.module.annotations.ReactModule;
 import com.facebook.react.uimanager.IllegalViewOperationException;
 import com.facebook.react.uimanager.NativeViewHierarchyManager;
 import com.facebook.react.uimanager.UIBlock;
@@ -27,6 +28,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Locale;
 
+@ReactModule(name = "CTKNativeAdManager")
 public class NativeAdManager extends ReactContextBaseJavaModule implements NativeAdsManager.Listener {
   /**
    * @{Map} with all registered fb ads managers
