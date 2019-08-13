@@ -252,6 +252,7 @@ function ViewWithBanner(props) {
         placementId="YOUR_BANNER_PLACEMENT_ID"
         type="standard"
         onPress={() => console.log('click')}
+        onLoad={() => console.log('loaded')}
         onError={err => console.log('error', err)}
       />
     </View>
