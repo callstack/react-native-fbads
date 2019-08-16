@@ -4,7 +4,7 @@
 //#import <FBAudienceNetwork/FBAudienceNetwork.h>
 #import <React/RCTUtils.h>
 #import <React/RCTConvert.h>
-@import FBAudienceNetwork;
+#import <FBAudienceNetwork/FBAudienceNetwork.h>
 
 @implementation RCTConvert (EXNativeAdView)
 
