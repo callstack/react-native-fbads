@@ -85,7 +85,14 @@ Link the native dependencies
 $ react-native link react-native-fbads
 ```
 
+#### For RN < 0.60 
 If you have more than one Targets on your Xcode project, you might link some of them manually by dragging `Libraries/ReactNativeAdsFacebook.xcodeproj/Products/libReactNativeAdsFacebook.a` to 'Build Phases' -> 'Link Binary With Libraries'.
+
+#### For RN >= 0.60 
+If you are working with RN > 0.60 kindly add the following line in your `Podfile`
+```
+pod 'ReactNativeAdsFacebook', :path => '../node_modules/react-native-fbads'
+```
 
 ### 4. Get a Placement ID
 
