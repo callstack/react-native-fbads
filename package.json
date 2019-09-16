@@ -50,6 +50,7 @@
     "LICENSE",
     "package.json",
     "yarn.lock",
-    "dist"
+    "dist",
+    "ReactNativeAdsFacebook.podspec"
   ]
 }
