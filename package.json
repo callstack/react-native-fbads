@@ -31,11 +31,6 @@
     "tslint-config-prettier": "^1.15.0",
     "typescript": "^3.1.2"
   },
-  "rnpm": {
-    "android": {
-      "sourceDir": "android/app"
-    }
-  },
   "keywords": [
     "react-native",
     "facebook",
