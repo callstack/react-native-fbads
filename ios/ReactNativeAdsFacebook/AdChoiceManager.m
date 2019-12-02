@@ -37,6 +37,10 @@ RCT_EXPORT_MODULE(AdChoicesView)
     return [[AdChoiceView new] initWithBridge:_bridge];
 }
 
++ (BOOL) requiresMainQueueSetup {
+    return YES;
+}
+
 RCT_EXPORT_VIEW_PROPERTY(placementId,NSString);
 RCT_EXPORT_VIEW_PROPERTY(location,UIRectCorner);
 RCT_EXPORT_VIEW_PROPERTY(expandable,BOOL);
