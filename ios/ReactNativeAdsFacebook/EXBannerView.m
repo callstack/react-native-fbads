@@ -29,24 +29,25 @@
   if (!_placementId || !_size) {
     return;
   }
-  
+
   if (_adView) {
     [_adView removeFromSuperview];
   }
-  
+
   FBAdSize fbAdSize = [self fbAdSizeForHeight:_size];
-  
+
   FBAdView *adView = [[FBAdView alloc] initWithPlacementID:_placementId
                                                     adSize:fbAdSize
                                         rootViewController:RCTPresentedViewController()];
-  
+
   adView.frame = CGRectMake(0, 0, adView.bounds.size.width, adView.bounds.size.height);
+  adView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
   adView.delegate = self;
-  
+
   [adView loadAd];
-  
+
   [self addSubview:adView];
-  
+
   _adView = adView;
 }
 
