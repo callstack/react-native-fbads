@@ -14,6 +14,9 @@ public class InterstitialAdManager extends ReactContextBaseJavaModule implements
 
   private Promise mPromise;
   private boolean mDidClick = false;
+  private boolean mDidLoad = false;
+  private boolean mViewAtOnce = false;
+    
   private InterstitialAd mInterstitial;
 
   public InterstitialAdManager(ReactApplicationContext reactContext) {
@@ -29,10 +32,35 @@ public class InterstitialAdManager extends ReactContextBaseJavaModule implements
     }
     ReactApplicationContext reactContext = this.getReactApplicationContext();
 
+    mViewAtOnce = true;
     mPromise = p;
     mInterstitial = new InterstitialAd(reactContext, placementId);
     mInterstitial.setAdListener(this);
     mInterstitial.loadAd();
+  }
+
+  @ReactMethod
+  public void preloadAd(String placementId, Promise p) {
+    if (mPromise != null) {
+      p.reject("E_FAILED_TO_SHOW", "Only one `preloadAd` can be called at once");
+      return;
+    }
+    ReactApplicationContext reactContext = this.getReactApplicationContext();
+
+    mViewAtOnce = false;
+    mPromise = p;
+    mInterstitial = new InterstitialAd(reactContext, placementId);
+    mInterstitial.setAdListener(this);
+    mInterstitial.loadAd();
+  }
+
+  @ReactMethod
+  public void showPreloadedAd(String placementId, Promise p) {
+    if (mDidLoad) {
+      mInterstitial.show();
+    } else {
+      mViewAtOnce = true;
+    }
   }
 
   @Override
@@ -48,8 +76,10 @@ public class InterstitialAdManager extends ReactContextBaseJavaModule implements
 
   @Override
   public void onAdLoaded(Ad ad) {
-    if (ad == mInterstitial) {
+    if (ad == mInterstitial && mViewAtOnce) {
       mInterstitial.show();
+    } else {
+      mDidLoad = true;
     }
   }
 
@@ -76,6 +106,8 @@ public class InterstitialAdManager extends ReactContextBaseJavaModule implements
   private void cleanUp() {
     mPromise = null;
     mDidClick = false;
+    mDidLoad = false;
+    mViewAtOnce = false;
 
     if (mInterstitial != null) {
       mInterstitial.destroy();

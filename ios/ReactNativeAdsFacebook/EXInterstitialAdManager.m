@@ -12,6 +12,8 @@
 @property (nonatomic, strong) FBInterstitialAd *interstitialAd;
 @property (nonatomic, strong) UIViewController *adViewController;
 @property (nonatomic) bool didClick;
+@property (nonatomic) bool didLoad;
+@property (nonatomic) bool showWhenLoaded;
 @property (nonatomic) bool isBackground;
 
 @end
@@ -38,7 +40,7 @@ RCT_EXPORT_MODULE(CTKInterstitialAdManager)
 }
 
 RCT_EXPORT_METHOD(
-  loadAd:(NSString *)placementId
+  showAd:(NSString *)placementId
   resolver:(RCTPromiseResolveBlock)resolve
   rejecter:(RCTPromiseRejectBlock)reject
 )
@@ -54,18 +56,43 @@ RCT_EXPORT_METHOD(
   
   _interstitialAd = [[FBInterstitialAd alloc] initWithPlacementID:placementId];
   _interstitialAd.delegate = self;
+    _showWhenLoaded = true;
 //  [EXUtil performSynchronouslyOnMainThread:^{
     [self->_interstitialAd loadAd];
 //  }];
 }
 
-RCT_EXPORT_METHOD(showAd:(RCTPromiseResolveBlock)resolve
-                  reject:(RCTPromiseRejectBlock)reject) {
-  // Do something
-    if(_didLoad) {
-        [_interstitialAd showAdFromRootViewController:RCTPresentedViewController()];
-    }
-    
+
+RCT_EXPORT_METHOD(
+  preloadAd:(NSString *)placementId
+  resolver:(RCTPromiseResolveBlock)resolve
+  rejecter:(RCTPromiseRejectBlock)reject
+)
+{
+  RCTAssert(_resolve == nil && _reject == nil, @"Only one `preloadAd` can be called at once");
+  RCTAssert(_isBackground == false, @"`preloadAd` can be called only when experience is running in foreground");
+  
+  _resolve = resolve;
+  _reject = reject;
+  
+  _interstitialAd = [[FBInterstitialAd alloc] initWithPlacementID:placementId];
+  _interstitialAd.delegate = self;
+  _showWhenLoaded = false;
+  [self->_interstitialAd loadAd];
+}
+
+RCT_EXPORT_METHOD(
+  showPreloadedAd:(NSString *)placementId
+  resolver:(RCTPromiseResolveBlock)resolve
+  rejecter:(RCTPromiseRejectBlock)reject
+  ) {
+  // If already loaded, show it
+  if(_didLoad) {
+    [_interstitialAd showAdFromRootViewController:RCTPresentedViewController()];
+  } else {
+    // If not make sure its shown asap
+      _showWhenLoaded = true;
+  }
   resolve(nil);
 }
 
@@ -73,8 +100,11 @@ RCT_EXPORT_METHOD(showAd:(RCTPromiseResolveBlock)resolve
 
 - (void)interstitialAdDidLoad:(__unused FBInterstitialAd *)interstitialAd
 {
-  //[_interstitialAd showAdFromRootViewController:RCTPresentedViewController()];
-  _didLoad = true
+     _didLoad = true;
+    if (_showWhenLoaded) {
+        [_interstitialAd showAdFromRootViewController:RCTPresentedViewController()];
+    }
+ 
 }
 
 - (void)interstitialAd:(FBInterstitialAd *)interstitialAd didFailWithError:(NSError *)error
@@ -124,6 +154,7 @@ RCT_EXPORT_METHOD(showAd:(RCTPromiseResolveBlock)resolve
   _adViewController = nil;
   _didClick = false;
   _didLoad = false;
+  _showWhenLoaded = false;
 }
 
 @end
