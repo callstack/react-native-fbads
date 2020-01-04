@@ -38,7 +38,7 @@ RCT_EXPORT_MODULE(CTKInterstitialAdManager)
 }
 
 RCT_EXPORT_METHOD(
-  showAd:(NSString *)placementId
+  loadAd:(NSString *)placementId
   resolver:(RCTPromiseResolveBlock)resolve
   rejecter:(RCTPromiseRejectBlock)reject
 )
@@ -59,11 +59,22 @@ RCT_EXPORT_METHOD(
 //  }];
 }
 
+RCT_EXPORT_METHOD(showAd:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject) {
+  // Do something
+    if(_didLoad) {
+        [_interstitialAd showAdFromRootViewController:RCTPresentedViewController()];
+    }
+    
+  resolve(nil);
+}
+
 #pragma mark - FBInterstitialAdDelegate
 
 - (void)interstitialAdDidLoad:(__unused FBInterstitialAd *)interstitialAd
 {
-  [_interstitialAd showAdFromRootViewController:RCTPresentedViewController()];
+  //[_interstitialAd showAdFromRootViewController:RCTPresentedViewController()];
+  _didLoad = true
 }
 
 - (void)interstitialAd:(FBInterstitialAd *)interstitialAd didFailWithError:(NSError *)error
@@ -112,6 +123,7 @@ RCT_EXPORT_METHOD(
   _interstitialAd = nil;
   _adViewController = nil;
   _didClick = false;
+  _didLoad = false;
 }
 
 @end
