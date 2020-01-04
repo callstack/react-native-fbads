@@ -88,10 +88,12 @@ RCT_EXPORT_METHOD(
   ) {
   // If already loaded, show it
   if(_didLoad) {
-    [_interstitialAd showAdFromRootViewController:RCTPresentedViewController()];
+    dispatch_async(dispatch_get_main_queue(), ^{
+      [_interstitialAd showAdFromRootViewController:RCTPresentedViewController()];
+    });
   } else {
     // If not make sure its shown asap
-      _showWhenLoaded = true;
+    _showWhenLoaded = true;
   }
   resolve(nil);
 }
