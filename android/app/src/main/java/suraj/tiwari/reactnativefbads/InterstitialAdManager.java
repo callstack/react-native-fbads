@@ -22,17 +22,23 @@ public class InterstitialAdManager extends ReactContextBaseJavaModule implements
   }
 
   @ReactMethod
-  public void showAd(String placementId, Promise p) {
+  public void loadAd(String placementId, Promise p) {
     if (mPromise != null) {
-      p.reject("E_FAILED_TO_SHOW", "Only one `showAd` can be called at once");
+      p.reject("E_FAILED_TO_SHOW", "Only one load method can be called at once");
       return;
     }
     ReactApplicationContext reactContext = this.getReactApplicationContext();
 
     mPromise = p;
     mInterstitial = new InterstitialAd(reactContext, placementId);
-    mInterstitial.setAdListener(this);
     mInterstitial.loadAd();
+  }
+
+  @ReactMethod
+  public void showAd() {
+    if (mInterstitial != null && mInterstitial.isAdLoaded()) {
+      mInterstitial.show();
+    }
   }
 
   @Override
@@ -44,13 +50,6 @@ public class InterstitialAdManager extends ReactContextBaseJavaModule implements
   public void onError(Ad ad, AdError adError) {
     mPromise.reject("E_FAILED_TO_LOAD", adError.getErrorMessage());
     cleanUp();
-  }
-
-  @Override
-  public void onAdLoaded(Ad ad) {
-    if (ad == mInterstitial) {
-      mInterstitial.show();
-    }
   }
 
   @Override
