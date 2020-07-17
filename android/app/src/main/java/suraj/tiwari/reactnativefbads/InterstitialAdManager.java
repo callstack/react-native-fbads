@@ -83,6 +83,11 @@ public class InterstitialAdManager extends ReactContextBaseJavaModule implements
   }
 
   @Override
+  public void onAdLoaded(Ad ad) {
+    
+  }
+
+  @Override
   public void onHostResume() {
 
   }
