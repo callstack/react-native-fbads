@@ -14,6 +14,9 @@ public class InterstitialAdManager extends ReactContextBaseJavaModule implements
 
   private Promise mPromise;
   private boolean mDidClick = false;
+  private boolean mDidLoad = false;
+  private boolean mViewAtOnce = false;
+    
   private InterstitialAd mInterstitial;
 
   public InterstitialAdManager(ReactApplicationContext reactContext) {
@@ -26,15 +29,48 @@ public class InterstitialAdManager extends ReactContextBaseJavaModule implements
     
     ReactApplicationContext reactContext = this.getReactApplicationContext();
 
+    mViewAtOnce = true;
     mPromise = p;
     mInterstitial = new InterstitialAd(reactContext, placementId);
     mInterstitial.loadAd();
   }
+  
+  @ReactMethod
+  public void showAd(String placementId, Promise p) {
+    if (mPromise != null) {
+      p.reject("E_FAILED_TO_SHOW", "Only one `showAd` can be called at once");
+      return;
+    }
+    ReactApplicationContext reactContext = this.getReactApplicationContext();
+
+    mViewAtOnce = true;
+    mPromise = p;
+    mInterstitial = new InterstitialAd(reactContext, placementId);
+    mInterstitial.setAdListener(this);
+    mInterstitial.loadAd();
+  }
 
   @ReactMethod
-  public void showAd() {
-    if (mInterstitial != null && mInterstitial.isAdLoaded()) {
+  public void preloadAd(String placementId, Promise p) {
+    if (mPromise != null) {
+      p.reject("E_FAILED_TO_SHOW", "Only one `preloadAd` can be called at once");
+      return;
+    }
+    ReactApplicationContext reactContext = this.getReactApplicationContext();
+
+    mViewAtOnce = false;
+    mPromise = p;
+    mInterstitial = new InterstitialAd(reactContext, placementId);
+    mInterstitial.setAdListener(this);
+    mInterstitial.loadAd();
+  }
+
+  @ReactMethod
+  public void showPreloadedAd(String placementId, Promise p) {
+    if (mDidLoad) {
       mInterstitial.show();
+    } else {
+      mViewAtOnce = true;
     }
   }
 
@@ -47,6 +83,15 @@ public class InterstitialAdManager extends ReactContextBaseJavaModule implements
   public void onError(Ad ad, AdError adError) {
     mPromise.reject("E_FAILED_TO_LOAD", adError.getErrorMessage());
     cleanUp();
+  }
+
+  @Override
+  public void onAdLoaded(Ad ad) {
+    if (ad == mInterstitial && mViewAtOnce) {
+      mInterstitial.show();
+    } else {
+      mDidLoad = true;
+    }
   }
 
   @Override
@@ -72,16 +117,13 @@ public class InterstitialAdManager extends ReactContextBaseJavaModule implements
   private void cleanUp() {
     mPromise = null;
     mDidClick = false;
+    mDidLoad = false;
+    mViewAtOnce = false;
 
     if (mInterstitial != null) {
       mInterstitial.destroy();
       mInterstitial = null;
     }
-  }
-
-  @Override
-  public void onAdLoaded(Ad ad) {
-
   }
 
   @Override

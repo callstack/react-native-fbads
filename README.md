@@ -130,6 +130,19 @@ InterstitialAdManager.showAd(placementId)
 
 The `showAd` method returns a promise that will be resolves once the ad has been either dismissed or clicked by the user. The promise will reject if an error occurs before displaying the ad, such as a network error.
 
+If you want to preload the ad and show it later you can use this instead:
+
+```js
+import { InterstitialAdManager } from 'react-native-fbads';
+
+InterstitialAdManager.preloadAd(placementId)
+  .then(didClick => {})
+  .catch(error => {});
+
+// Will show it if already loaded, or wait for it to load and show it.
+InterstitialAdManager.showPreloadedAd(placementId)
+```
+
 ### Native Ads
 
 Native Ads allow you to create custom ad layouts that match your app. Before proceeding, please review [Facebook's documentation on Native Ads](https://developers.facebook.com/docs/audience-network/native-ads/) to get a better understanding of the requirements Native Ads impose.
