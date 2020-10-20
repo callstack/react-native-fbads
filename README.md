@@ -51,15 +51,13 @@ If you didn't use Cocoapods to integrate the Facebook SDK, you'll need to manual
 
 ```java
 
-import com.facebook.ads.AudienceNetworkAds; // <-- add this
 import suraj.tiwari.reactnativefbads.FBAdsPackage; // <-- add this
 
 public class MainApplication extends Application implements ReactApplication {
 ...
-  @Override 
+  @Override
   public void onCreate() {
     super.onCreate();
-    AudienceNetworkAds.initialize(this); // <-- add this
   }
   @Override
   protected List<ReactPackage> getPackages() {
@@ -85,11 +83,24 @@ Link the native dependencies
 $ react-native link react-native-fbads
 ```
 
-#### For RN < 0.60 
+#### Fix typo in settings.gradle
+
+Replace this
+
+`project(':react-native-fbads').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-fbads/android/')`
+
+With this
+
+`project(':react-native-fbads').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-fbads/android/app')`
+
+#### For RN < 0.60
+
 If you have more than one Targets on your Xcode project, you might link some of them manually by dragging `Libraries/ReactNativeAdsFacebook.xcodeproj/Products/libReactNativeAdsFacebook.a` to 'Build Phases' -> 'Link Binary With Libraries'.
 
-#### For RN >= 0.60 
+#### For RN >= 0.60
+
 If you are working with RN > 0.60 kindly add the following line in your `Podfile`
+
 ```
 pod 'ReactNativeAdsFacebook', :path => '../node_modules/react-native-fbads'
 ```
@@ -124,8 +135,8 @@ Usage:
 import { InterstitialAdManager } from 'react-native-fbads';
 
 InterstitialAdManager.showAd(placementId)
-  .then(didClick => {})
-  .catch(error => {});
+  .then((didClick) => {})
+  .catch((error) => {});
 ```
 
 The `showAd` method returns a promise that will be resolves once the ad has been either dismissed or clicked by the user. The promise will reject if an error occurs before displaying the ad, such as a network error.
@@ -136,11 +147,11 @@ If you want to preload the ad and show it later you can use this instead:
 import { InterstitialAdManager } from 'react-native-fbads';
 
 InterstitialAdManager.preloadAd(placementId)
-  .then(didClick => {})
-  .catch(error => {});
+  .then((didClick) => {})
+  .catch((error) => {});
 
 // Will show it if already loaded, or wait for it to load and show it.
-InterstitialAdManager.showPreloadedAd(placementId)
+InterstitialAdManager.showPreloadedAd(placementId);
 ```
 
 ### Native Ads
@@ -190,7 +201,7 @@ import {
   AdIconView,
   MediaView,
   AdChoicesView,
-  TriggerableView
+  TriggerableView,
 } from 'react-native-fbads';
 class AdComponent extends React.Component {
   render() {
@@ -218,9 +229,9 @@ You can use the included `AdChoicesView` component and style it to your liking.
 #### Example usage
 
 ```js
-import { AdChoicesView } from 'react-native-fbads'
+import { AdChoicesView } from 'react-native-fbads';
 
-<AdChoicesView style={{position:'absolute', left:0, top:0}}/>
+<AdChoicesView style={{ position: 'absolute', left: 0, top: 0 }} />;
 ```
 
 #### Props
@@ -273,7 +284,7 @@ function ViewWithBanner(props) {
         type="standard"
         onPress={() => console.log('click')}
         onLoad={() => console.log('loaded')}
-        onError={err => console.log('error', err)}
+        onError={(err) => console.log('error', err)}
       />
     </View>
   );
