@@ -36,7 +36,7 @@ Note that for iOS, it's [recommended you use Cocoapods](https://developers.faceb
 1. Add the following Pod to your Podfile:
 
 ```
-pod 'FBAudienceNetwork', '~> 5.1.0'
+pod 'FBAudienceNetwork'
 ```
 
 2. Run `pod install`
