@@ -379,6 +379,46 @@ AdSettings.setUrlPrefix('...');
 
 **Note:** This method should never be used in production
 
+### getTrackingStatus
+
+Gets the current Tracking API status. As of iOS 14, Apple requires apps to only enable tracking (advertiser ID collection) when the user has granted tracking permissions.
+
+> Requires iOS 14. On Android and iOS versions below 14, this will always return `'unavailable'`.
+
+```js
+const trackingStatus = await AdSettings.getTrackingStatus();
+if (trackingStatus === 'authorized' || trackingStatus === 'unavailable')
+  AdSettings.setAdvertiserIDCollectionEnabled(true);
+```
+
+The tracking status can return one of the following values:
+
+* `'unavailable'`: The tracking API is not available on the current device. That's the case on Android devices and iPhones below iOS 14.
+* `'denied'`: The user has explicitly denied permission to track. You'd want to respect that and disable [advertiser ID collection](#setAdvertiserIDCollectionEnabled).
+* `'authorized'`: The user has granted permission to track. You can now enable [advertiser ID collection](#setAdvertiserIDCollectionEnabled).
+* `'restricted'`: The tracking permission alert cannot be shown, because the device is restricted. See [`ATTrackingManager.AuthorizationStatus.restricted`](https://developer.apple.com/documentation/apptrackingtransparency/attrackingmanager/authorizationstatus/restricted) for more information.
+* `'not-determined'`: The user has not been asked to grant tracking permissions yet. Call `requestTrackingPermission()`.
+
+### requestTrackingPermission
+
+Requests permission to track the user. Requires an [`NSUserTrackingUsageDescription`](https://developer.apple.com/documentation/bundleresources/information_property_list/nsusertrackingusagedescription) key in your `Info.plist`. (See [iOS 14 Tracking API](https://developer.apple.com/documentation/apptrackingtransparency))
+
+> Requires iOS 14. On Android and iOS versions below 14, this will always return `'unavailable'`.
+
+```js
+const trackingStatus = await AdSettings.requestTrackingPermission();
+if (trackingStatus === 'authorized' || trackingStatus === 'unavailable')
+  AdSettings.setAdvertiserIDCollectionEnabled(true);
+```
+
+### setAdvertiserIDCollectionEnabled
+
+Enables or disables automatic advertiser ID collection. Since the iOS 14 API was introduced, you might want to disable advertiser ID collection per default (in `Info.plist`), and only enable it once the user has granted tracking permissions.
+
+```js
+AdSettings.setAdvertiserIDCollectionEnabled(true);
+```
+
 ## Running the example
 
 In order to see ads you will have to create your own `placementId` and use it instead of the one provided in the examples. This is our internal set up that doesn't work for any developers outside of Callstack.io organisation. This is because of Facebook not showing test ads to outside collaborators in the development mode.
