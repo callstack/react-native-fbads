@@ -19,7 +19,6 @@ import com.facebook.react.views.view.ReactViewGroup;
 
 
 public class BannerView extends ReactViewGroup implements AdListener, LifecycleEventListener {
-
   private ReactContext mContext;
   private AdView myAdView;
   private String mPlacementId;
@@ -86,9 +85,7 @@ public class BannerView extends ReactViewGroup implements AdListener, LifecycleE
   private void createAdViewIfCan() {
     if (myAdView == null && mPlacementId != null && mSize != null) {
       myAdView = new AdView(this.getContext(), mPlacementId, mSize);
-      myAdView.setAdListener(this);
-
-      myAdView.loadAd();
+      myAdView.loadAd(myAdView.buildLoadAdConfig().withAdListener(this).build());
     }
   }
 

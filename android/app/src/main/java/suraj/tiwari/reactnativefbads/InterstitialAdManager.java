@@ -46,8 +46,7 @@ public class InterstitialAdManager extends ReactContextBaseJavaModule implements
     mViewAtOnce = true;
     mPromise = p;
     mInterstitial = new InterstitialAd(reactContext, placementId);
-    mInterstitial.setAdListener(this);
-    mInterstitial.loadAd();
+    mInterstitial.loadAd(mInterstitial.buildLoadAdConfig().withAdListener(this).build());
   }
 
   @ReactMethod
@@ -61,8 +60,7 @@ public class InterstitialAdManager extends ReactContextBaseJavaModule implements
     mViewAtOnce = false;
     mPromise = p;
     mInterstitial = new InterstitialAd(reactContext, placementId);
-    mInterstitial.setAdListener(this);
-    mInterstitial.loadAd();
+    mInterstitial.loadAd(mInterstitial.buildLoadAdConfig().withAdListener(this).build());
   }
 
   @ReactMethod
