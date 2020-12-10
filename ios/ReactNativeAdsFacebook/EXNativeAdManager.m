@@ -56,31 +56,31 @@ RCT_EXPORT_METHOD(registerViewsForInteraction:(nonnull NSNumber *)nativeAdViewTa
     FBMediaView *mediaView = nil;
     FBAdIconView *adIconView = nil;
     EXNativeAdView *nativeAdView = nil;
-    
+
     if ([viewRegistry objectForKey:mediaViewTag] == nil) {
       reject(@"E_NO_VIEW_FOR_TAG", @"Could not find mediaView", nil);
       return;
     }
-    
+
     if ([viewRegistry objectForKey:nativeAdViewTag] == nil) {
       reject(@"E_NO_NATIVEAD_VIEW", @"Could not find nativeAdView", nil);
       return;
     }
-    
+
     if ([[viewRegistry objectForKey:mediaViewTag] isKindOfClass:[FBMediaView class]]) {
       mediaView = (FBMediaView *)[viewRegistry objectForKey:mediaViewTag];
     } else {
       reject(@"E_INVALID_VIEW_CLASS", @"View returned for passed media view tag is not an instance of FBMediaView", nil);
       return;
     }
-    
+
     if ([[viewRegistry objectForKey:nativeAdViewTag] isKindOfClass:[EXNativeAdView class]]) {
       nativeAdView = (EXNativeAdView *)[viewRegistry objectForKey:nativeAdViewTag];
     } else {
       reject(@"E_INVALID_VIEW_CLASS", @"View returned for passed native ad view tag is not an instance of EXNativeAdView", nil);
       return;
     }
-    
+
     if ([viewRegistry objectForKey:adIconViewTag]) {
       if ([[viewRegistry objectForKey:adIconViewTag] isKindOfClass:[FBAdIconView class]]) {
         adIconView  = (FBAdIconView *)[viewRegistry objectForKey:adIconViewTag];
@@ -89,7 +89,7 @@ RCT_EXPORT_METHOD(registerViewsForInteraction:(nonnull NSNumber *)nativeAdViewTa
         return;
       }
     }
-    
+
     NSMutableArray<UIView *> *clickableViews = [NSMutableArray new];
     for (id tag in tags) {
       if ([viewRegistry objectForKey:tag]) {
@@ -99,7 +99,7 @@ RCT_EXPORT_METHOD(registerViewsForInteraction:(nonnull NSNumber *)nativeAdViewTa
         return;
       }
     }
-    
+
     [nativeAdView registerViewsForInteraction:mediaView adIcon:adIconView clickableViews:clickableViews];
     resolve(@[]);
   }];
@@ -112,12 +112,12 @@ RCT_EXPORT_METHOD(init:(NSString *)placementId withAdsToRequest:(nonnull NSNumbe
                                                                 forNumAdsRequested:[adsToRequest intValue]];
 
   _myAdChoiceViewPlacementId = placementId;
-    
+
   [adsManager setDelegate:self];
 
   dispatch_async(dispatch_get_main_queue(), ^{
     [adsManager loadAds];
-    [_adsManagers setValue:adsManager forKey:placementId];
+    [self->_adsManagers setValue:adsManager forKey:placementId];
   });
 }
 
@@ -143,7 +143,7 @@ RCT_EXPORT_METHOD(disableAutoRefresh:(NSString*)placementId)
   [_adsManagers enumerateKeysAndObjectsUsingBlock:^(NSString* key, FBNativeAdsManager* adManager, __unused BOOL* stop) {
     [adsManagersState setValue:@([adManager isValid]) forKey:key];
   }];
-  
+
   EXNativeAdEmitter *nativeAdEmitter = [_bridge moduleForClass:[EXNativeAdEmitter class]];
   [nativeAdEmitter sendManagersState:adsManagersState];
 }
