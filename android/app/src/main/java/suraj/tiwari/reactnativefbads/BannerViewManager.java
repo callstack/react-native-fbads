@@ -4,8 +4,6 @@ package suraj.tiwari.reactnativefbads;
 import android.support.annotation.Nullable;
 
 import com.facebook.ads.AdSize;
-import com.facebook.react.bridge.ReactContext;
-import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.common.MapBuilder;
 import com.facebook.react.uimanager.SimpleViewManager;
 import com.facebook.react.uimanager.ThemedReactContext;

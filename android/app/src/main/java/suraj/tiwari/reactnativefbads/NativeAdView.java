@@ -1,12 +1,6 @@
 package suraj.tiwari.reactnativefbads;
 
-import android.graphics.drawable.Icon;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-
-import com.facebook.ads.AdChoicesView;
-import com.facebook.ads.AdIconView;
 import com.facebook.ads.MediaView;
 import com.facebook.ads.NativeAd;
 import com.facebook.react.bridge.Arguments;
@@ -15,7 +9,6 @@ import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
 import com.facebook.react.views.view.ReactViewGroup;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class NativeAdView extends ReactViewGroup {

@@ -157,6 +157,8 @@ public class NativeAdManager extends ReactContextBaseJavaModule implements Nativ
 
           if (adTag != -1) {
             nativeAdView = (NativeAdView) nativeViewHierarchyManager.resolveView(adTag);
+          } else {
+            throw new Exception("Native Ad View was not set!");
           }
 
           if (mediaViewTag != -1) {
@@ -174,12 +176,11 @@ public class NativeAdManager extends ReactContextBaseJavaModule implements Nativ
             clickableViews.add(view);
           }
 
-          Log.w("NativeAdManagerClickableViewsTags", Integer.toString(clickableViewsTags.size()));
-          Log.w("NativeAdManagerClickableViews", Integer.toString(clickableViews.size()) );
+          Log.w("ClickableViewsTags", Integer.toString(clickableViewsTags.size()));
+          Log.w("ClickableViews", Integer.toString(clickableViews.size()) );
 
           nativeAdView.registerViewsForInteraction(mediaView, adIconView, clickableViews);
           promise.resolve(null);
-
         } catch (ClassCastException e) {
           promise.reject("E_CANNOT_CAST", e);
         } catch (IllegalViewOperationException e) {
