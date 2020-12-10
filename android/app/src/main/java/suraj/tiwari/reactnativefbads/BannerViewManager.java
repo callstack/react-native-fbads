@@ -1,7 +1,7 @@
 package suraj.tiwari.reactnativefbads;
 
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.facebook.ads.AdSize;
 import com.facebook.react.common.MapBuilder;

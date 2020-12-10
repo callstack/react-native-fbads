@@ -387,8 +387,9 @@ Gets the current Tracking API status. As of iOS 14, Apple requires apps to only 
 
 ```js
 const trackingStatus = await AdSettings.getTrackingStatus();
-if (trackingStatus === 'authorized' || trackingStatus === 'unavailable')
+if (trackingStatus === 'authorized' || trackingStatus === 'unavailable') {
   AdSettings.setAdvertiserIDCollectionEnabled(true);
+}
 ```
 
 The tracking status can return one of the following values:
