@@ -7,6 +7,8 @@
 #import <FBAudienceNetwork/FBAudienceNetwork.h>
 #import <AppTrackingTransparency/AppTrackingTransparency.h>
 
+#import <FBSDKCoreKit/FBSDKSettings.h>
+
 @implementation RCTConvert (EXNativeAdView)
 
 RCT_ENUM_CONVERTER(FBAdLogLevel, (@{
@@ -121,6 +123,12 @@ RCT_EXPORT_METHOD(requestTrackingPermission:(RCTPromiseResolveBlock)resolve reje
         resolve(@"unavailable");
     }
 }
+
+RCT_EXPORT_METHOD(setAdvertiserIDCollectionEnabled:(BOOL)enabled)
+{
+    [FBSDKSettings setAdvertiserIDCollectionEnabled:enabled];
+}
+
 
 - (void)bridgeDidForeground:(NSNotification *)notification
 {
