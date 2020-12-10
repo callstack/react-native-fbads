@@ -33,13 +33,7 @@ Note that for iOS, it's [recommended you use Cocoapods](https://developers.faceb
 
 #### For iOS:
 
-1. Add the following Pod to your Podfile:
-
-```
-pod 'FBAudienceNetwork', '~> 5.1.0'
-```
-
-2. Run `pod install`
+1. Run `pod install` in the `ios/` directory
 
 If you didn't use Cocoapods to integrate the Facebook SDK, you'll need to manually add the audience network framework file to your project.
 
