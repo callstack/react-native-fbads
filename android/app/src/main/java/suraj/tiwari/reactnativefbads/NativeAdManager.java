@@ -4,7 +4,6 @@ import android.util.Log;
 import android.view.View;
 
 import com.facebook.ads.AdError;
-import com.facebook.ads.AdIconView;
 import com.facebook.ads.MediaView;
 import com.facebook.ads.NativeAdsManager;
 import com.facebook.react.bridge.Arguments;
@@ -153,7 +152,7 @@ public class NativeAdManager extends ReactContextBaseJavaModule implements Nativ
         try {
           NativeAdView nativeAdView = null;
           MediaView mediaView = null;
-          AdIconView adIconView = null;
+          MediaView adIconView = null;
 
           if (adTag != -1) {
             nativeAdView = (NativeAdView) nativeViewHierarchyManager.resolveView(adTag);
@@ -166,7 +165,7 @@ public class NativeAdManager extends ReactContextBaseJavaModule implements Nativ
           }
 
           if (adIconViewTag != -1) {
-            adIconView = (AdIconView) nativeViewHierarchyManager.resolveView(adIconViewTag);
+            adIconView = (MediaView) nativeViewHierarchyManager.resolveView(adIconViewTag);
           }
 
           List<View> clickableViews = new ArrayList<>();
