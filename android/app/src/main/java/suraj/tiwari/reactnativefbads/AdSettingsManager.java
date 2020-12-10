@@ -52,7 +52,7 @@ public class AdSettingsManager extends ReactContextBaseJavaModule implements Lif
 
     @ReactMethod
     public void setIsChildDirected(boolean isChildDirected) {
-        AdSettings.setIsChildDirected(isChildDirected);
+        AdSettings.setMixedAudience(isChildDirected);
         mIsChildDirected = isChildDirected;
     }
 
@@ -78,14 +78,14 @@ public class AdSettingsManager extends ReactContextBaseJavaModule implements Lif
             AdSettings.addTestDevice(hash);
         }
 
-        AdSettings.setIsChildDirected(mIsChildDirected);
+        AdSettings.setMixedAudience(mIsChildDirected);
         AdSettings.setMediationService(mMediationService);
         AdSettings.setUrlPrefix(mUrlPrefix);
     }
 
     private void clearSettings() {
         AdSettings.clearTestDevices();
-        AdSettings.setIsChildDirected(false);
+        AdSettings.setMixedAudience(false);
         AdSettings.setMediationService(null);
         AdSettings.setUrlPrefix(null);
     }
