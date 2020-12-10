@@ -1,9 +1,9 @@
 package suraj.tiwari.reactnativefbads;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import com.facebook.FacebookSdk;
 import com.facebook.ads.AdSettings;
 import com.facebook.react.bridge.LifecycleEventListener;
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -66,6 +66,11 @@ public class AdSettingsManager extends ReactContextBaseJavaModule implements Lif
     public void setUrlPrefix(String urlPrefix) {
         AdSettings.setUrlPrefix(urlPrefix);
         mUrlPrefix = urlPrefix;
+    }
+
+    @ReactMethod
+    public void setAdvertiserIDCollectionEnabled(boolean enabled) {
+        FacebookSdk.setAdvertiserIDCollectionEnabled(enabled);
     }
 
     private void restoreSettings() {
