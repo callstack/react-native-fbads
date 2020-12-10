@@ -1,4 +1,4 @@
-import { NativeModules } from 'react-native';
+import { NativeModules, Platform } from 'react-native';
 
 const { CTKAdSettingsManager } = NativeModules;
 
@@ -9,6 +9,8 @@ type SDKLogLevel =
   | 'warning'
   | 'error'
   | 'notification';
+
+export type TrackingStatus = 'unavailable' | 'denied' | 'authorized' | 'restricted' | 'not-determined';
 
 export default {
   /**
@@ -53,5 +55,24 @@ export default {
    */
   setUrlPrefix(urlPrefix: string) {
     CTKAdSettingsManager.setUrlPrefix(urlPrefix);
+  },
+
+  /**
+   * Requests permission to track the user.
+   *
+   * @platform iOS 14
+   */
+  async requestTrackingPermission(): Promise<TrackingStatus> {
+    if (Platform.OS !== 'ios') return 'unavailable';
+    return await CTKAdSettingsManager.requestTrackingPermission();
+  },
+  /**
+   * Gets the current tracking status.
+   *
+   * @platform iOS 14
+   */
+  async getTrackingStatus(): Promise<TrackingStatus> {
+    if (Platform.OS !== 'ios') return 'unavailable';
+    return await CTKAdSettingsManager.getTrackingStatus();
   }
 };
