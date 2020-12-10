@@ -391,6 +391,14 @@ if (trackingStatus === 'authorized' || trackingStatus === 'unavailable')
   AdSettings.setAdvertiserIDCollectionEnabled(true);
 ```
 
+The tracking status can return one of the following values:
+
+* `'unavailable'`: The tracking API is not available on the current device. That's the case on Android devices and iPhones below iOS 14.
+* `'denied'`: The user has explicitly denied permission to track. You'd want to respect that and disable [advertiser ID collection](#setAdvertiserIDCollectionEnabled).
+* `'authorized'`: The user has granted permission to track. You can now enable [advertiser ID collection](#setAdvertiserIDCollectionEnabled).
+* `'restricted'`: The tracking permission alert cannot be shown, because the device is restricted. See [`ATTrackingManager.AuthorizationStatus.restricted`](https://developer.apple.com/documentation/apptrackingtransparency/attrackingmanager/authorizationstatus/restricted) for more information.
+* `'not-determined'`: The user has not been asked to grant tracking permissions yet. Call `requestTrackingPermission()`.
+
 ### requestTrackingPermission
 
 Requests permission to track the user. Requires an [`NSUserTrackingUsageDescription`](https://developer.apple.com/documentation/bundleresources/information_property_list/nsusertrackingusagedescription) key in your `Info.plist`. (See [iOS 14 Tracking API](https://developer.apple.com/documentation/apptrackingtransparency))
