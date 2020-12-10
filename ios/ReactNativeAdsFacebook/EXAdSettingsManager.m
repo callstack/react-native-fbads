@@ -5,6 +5,9 @@
 #import <React/RCTUtils.h>
 #import <React/RCTConvert.h>
 #import <FBAudienceNetwork/FBAudienceNetwork.h>
+#import <AppTrackingTransparency/AppTrackingTransparency.h>
+
+#import <FBSDKCoreKit/FBSDKSettings.h>
 
 @implementation RCTConvert (EXNativeAdView)
 
@@ -100,6 +103,33 @@ RCT_EXPORT_METHOD(setUrlPrefix:(NSString *)urlPrefix)
   _urlPrefix = urlPrefix;
 }
 
+
+RCT_EXPORT_METHOD(getTrackingStatus:(RCTPromiseResolveBlock)resolve rejector:(RCTPromiseRejectBlock)reject)
+{
+    if (@available(iOS 14, *)) {
+        resolve([EXAdSettingsManager convertTrackingStatusToString:[ATTrackingManager trackingAuthorizationStatus]]);
+    } else {
+        resolve(@"unavailable");
+    }
+}
+
+RCT_EXPORT_METHOD(requestTrackingPermission:(RCTPromiseResolveBlock)resolve rejector:(RCTPromiseRejectBlock)reject)
+{
+    if (@available(iOS 14, *)) {
+        [ATTrackingManager requestTrackingAuthorizationWithCompletionHandler:^(ATTrackingManagerAuthorizationStatus status) {
+            resolve([EXAdSettingsManager convertTrackingStatusToString:status]);
+        }];
+    } else {
+        resolve(@"unavailable");
+    }
+}
+
+RCT_EXPORT_METHOD(setAdvertiserIDCollectionEnabled:(BOOL)enabled)
+{
+    [FBSDKSettings setAdvertiserIDCollectionEnabled:enabled];
+}
+
+
 - (void)bridgeDidForeground:(NSNotification *)notification
 {
   [FBAdSettings setIsChildDirected:_isChildDirected];
@@ -126,6 +156,19 @@ RCT_EXPORT_METHOD(setUrlPrefix:(NSString *)urlPrefix)
 - (NSDictionary *)constantsToExport
 {
   return @{ @"currentDeviceHash": [FBAdSettings testDeviceHash] };
+}
+
++ (NSString *) convertTrackingStatusToString:(ATTrackingManagerAuthorizationStatus) status API_AVAILABLE(ios(14)) {
+    switch (status) {
+        case ATTrackingManagerAuthorizationStatusDenied:
+            return @"denied";
+        case ATTrackingManagerAuthorizationStatusAuthorized:
+            return @"authorized";
+        case ATTrackingManagerAuthorizationStatusRestricted:
+            return @"restricted";
+        case ATTrackingManagerAuthorizationStatusNotDetermined:
+            return @"not-determined";
+    }
 }
 
 @end
