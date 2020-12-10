@@ -21,7 +21,7 @@
 - (void)setOnAdLoaded:(RCTBubblingEventBlock)onAdLoaded
 {
   _onAdLoaded = onAdLoaded;
-  
+
   if (_nativeAd != nil) {
     [self callOnAdLoadedWithAd:_nativeAd];
   }
@@ -50,7 +50,7 @@
   }
 }
 
-- (void)registerViewsForInteraction:(FBMediaView *)mediaView adIcon:(FBAdIconView *)adIconView clickableViews:(NSArray<UIView *> *)clickable
+- (void)registerViewsForInteraction:(FBMediaView *)mediaView adIcon:(FBMediaView *)adIconView clickableViews:(NSArray<UIView *> *)clickable
 {
   [_nativeAd registerViewForInteraction:self
                                   mediaView:mediaView
