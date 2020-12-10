@@ -1,9 +1,11 @@
 package suraj.tiwari.reactnativefbads;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.facebook.ads.NativeAdsManager;
 import com.facebook.react.bridge.ReactContext;
@@ -22,8 +24,9 @@ public class NativeAdViewManager extends ViewGroupManager<NativeAdView> {
     return NAME;
   }
 
+  @NonNull
   @Override
-  protected NativeAdView createViewInstance(ThemedReactContext reactContext) {
+  protected NativeAdView createViewInstance(@NonNull ThemedReactContext reactContext) {
     return new NativeAdView(reactContext);
   }
 
