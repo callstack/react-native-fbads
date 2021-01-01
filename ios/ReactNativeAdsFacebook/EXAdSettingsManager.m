@@ -87,7 +87,7 @@ RCT_EXPORT_METHOD(setLogLevel:(FBAdLogLevel)logLevel)
 
 RCT_EXPORT_METHOD(setIsChildDirected:(BOOL)isDirected)
 {
-  [FBAdSettings setIsChildDirected:isDirected];
+  [FBAdSettings setMixedAudience:isDirected];
   _isChildDirected = isDirected;
 }
 
@@ -132,7 +132,7 @@ RCT_EXPORT_METHOD(setAdvertiserIDCollectionEnabled:(BOOL)enabled)
 
 - (void)bridgeDidForeground:(NSNotification *)notification
 {
-  [FBAdSettings setIsChildDirected:_isChildDirected];
+  [FBAdSettings setMixedAudience:_isChildDirected];
   [FBAdSettings setMediationService:_mediationService];
   [FBAdSettings setUrlPrefix:_urlPrefix];
   [FBAdSettings setLogLevel:_logLevel];
@@ -141,7 +141,7 @@ RCT_EXPORT_METHOD(setAdvertiserIDCollectionEnabled:(BOOL)enabled)
 
 - (void)bridgeDidBackground:(NSNotification *)notification
 {
-  [FBAdSettings setIsChildDirected:NO];
+  [FBAdSettings setMixedAudience:NO];
   [FBAdSettings setMediationService:@""];
   [FBAdSettings setUrlPrefix:@""];
   [FBAdSettings setLogLevel:FBAdLogLevelLog];

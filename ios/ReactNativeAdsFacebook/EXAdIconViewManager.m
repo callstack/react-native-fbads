@@ -6,7 +6,7 @@ RCT_EXPORT_MODULE(AdIconViewManager)
 
 - (UIView *)view
 {
-  return [[FBAdIconView alloc] init];
+  return [[FBMediaView alloc] init];
 }
 
 @end

@@ -51,7 +51,7 @@
     FBNativeAdsManager *_adsManager = [nativeAdManager getFBAdsManager:placementId];
     FBNativeAd *nativeAd = [_adsManager nextNativeAd];
     FBAdChoicesView *adChoicesView = [[FBAdChoicesView alloc] initWithNativeAd:nativeAd expandable:expandable];
-    [adChoicesView updateFrameFromSuperview:location];
+    [adChoicesView updateFrameFromSuperview:*location];
     [self addSubview:adChoicesView];
 }
 

@@ -4,7 +4,6 @@ import android.util.Log;
 import android.view.View;
 
 import com.facebook.ads.AdError;
-import com.facebook.ads.AdIconView;
 import com.facebook.ads.MediaView;
 import com.facebook.ads.NativeAdsManager;
 import com.facebook.react.bridge.Arguments;
@@ -153,10 +152,12 @@ public class NativeAdManager extends ReactContextBaseJavaModule implements Nativ
         try {
           NativeAdView nativeAdView = null;
           MediaView mediaView = null;
-          AdIconView adIconView = null;
+          MediaView adIconView = null;
 
           if (adTag != -1) {
             nativeAdView = (NativeAdView) nativeViewHierarchyManager.resolveView(adTag);
+          } else {
+            throw new Exception("Native Ad View was not set!");
           }
 
           if (mediaViewTag != -1) {
@@ -164,7 +165,7 @@ public class NativeAdManager extends ReactContextBaseJavaModule implements Nativ
           }
 
           if (adIconViewTag != -1) {
-            adIconView = (AdIconView) nativeViewHierarchyManager.resolveView(adIconViewTag);
+            adIconView = (MediaView) nativeViewHierarchyManager.resolveView(adIconViewTag);
           }
 
           List<View> clickableViews = new ArrayList<>();
@@ -174,12 +175,11 @@ public class NativeAdManager extends ReactContextBaseJavaModule implements Nativ
             clickableViews.add(view);
           }
 
-          Log.w("NativeAdManagerClickableViewsTags", Integer.toString(clickableViewsTags.size()));
-          Log.w("NativeAdManagerClickableViews", Integer.toString(clickableViews.size()) );
+          Log.w("ClickableViewsTags", Integer.toString(clickableViewsTags.size()));
+          Log.w("ClickableViews", Integer.toString(clickableViews.size()) );
 
           nativeAdView.registerViewsForInteraction(mediaView, adIconView, clickableViews);
           promise.resolve(null);
-
         } catch (ClassCastException e) {
           promise.reject("E_CANNOT_CAST", e);
         } catch (IllegalViewOperationException e) {
