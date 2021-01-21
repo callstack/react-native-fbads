@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { Container } from 'native-base';
-import { Scene, Router } from 'react-native-router-flux';
+import React, {Component} from 'react';
+import {Container} from 'native-base';
+import {Scene, Router} from 'react-native-router-flux';
 
 import Main from './src';
 import NativeAd from './src/NativeAds';
@@ -47,3 +47,4 @@ export default class App extends Component<Props> {
     );
   }
 }
+
