@@ -6077,10 +6077,8 @@ react-native-easy-grid@0.2.2:
   dependencies:
     lodash "^4.17.15"
 
-react-native-fbads@^6.3.1:
+"react-native-fbads@file:..":
   version "6.3.1"
-  resolved "https://registry.yarnpkg.com/react-native-fbads/-/react-native-fbads-6.3.1.tgz#31c53eabccab6b0615e8a487223720af94be3ff6"
-  integrity sha512-DxAdHX8xDJ5/VyyFseyRJVPjzfI5+0MLJY4AC2nQqx706oAIkti/UAYQVQymeuiCeyU7lNKizmUlolhk6LeoTA==
   dependencies:
     fbemitter "^2.1.1"
 
