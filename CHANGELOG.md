@@ -1,5 +1,3 @@
-
-
 v4.2.0
 ======
 - an updated version of Facebook SDK for Android, which should enable publishing apps with this module again
@@ -35,4 +33,3 @@ Check its documentation for [more](https://github.com/callstack/react-native-fba
 v3.0.0
 ======
 Initial Facebook Audience SDK release.
-
