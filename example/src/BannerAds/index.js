@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Container } from 'native-base';
-import { BannerView } from 'react-native-fbads';
-import { bannerAdPlacementId } from '../Variables';
+import React, {Component} from 'react';
+import {StyleSheet, View} from 'react-native';
+import {Container} from 'native-base';
+import {BannerView} from 'react-native-fbads';
+import {bannerAdPlacementId} from '../Variables';
 
-export default class BannerAd extends Component<Props> {
+export default class BannerAd extends Component {
   render() {
     return (
       <Container style={styles.container}>
@@ -13,7 +13,7 @@ export default class BannerAd extends Component<Props> {
             placementId={bannerAdPlacementId}
             type="standard"
             onPress={() => console.log('click')}
-            onError={err => console.log('error', err)}
+            onError={(err) => console.log('error', err)}
           />
         </View>
         <View style={styles.bannerContainer}>
@@ -21,7 +21,7 @@ export default class BannerAd extends Component<Props> {
             placementId={bannerAdPlacementId}
             type="large"
             onPress={() => console.log('click')}
-            onError={err => console.log('error', err)}
+            onError={(err) => console.log('error', err)}
           />
         </View>
         <View style={styles.bannerContainer}>
@@ -29,7 +29,7 @@ export default class BannerAd extends Component<Props> {
             placementId={bannerAdPlacementId}
             type="rectangle"
             onPress={() => console.log('click')}
-            onError={err => console.log('error', err)}
+            onError={(err) => console.log('error', err)}
           />
         </View>
       </Container>

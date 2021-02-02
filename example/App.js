@@ -7,7 +7,7 @@ import NativeAd from './src/NativeAds';
 import BannerAd from './src/BannerAds';
 import InterstitialAd from './src/InterstitialAds';
 
-export default class App extends Component<Props> {
+export default class App extends Component {
   render() {
     return (
       <Container>
@@ -47,4 +47,3 @@ export default class App extends Component<Props> {
     );
   }
 }
-
