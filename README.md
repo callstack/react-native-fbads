@@ -115,7 +115,7 @@ You can get AAID from the android device/emulator by going to **Settings > Googl
 
 #### iOS
 
-You can get IDFA from the iOS device using third party tool. There is a wide selection of apps with the capability on the App Store. You can get IDFA directly from the iOS simulator by running this command: `xcrun simctl list 'devices' 'booted'`.
+You can get IDFA from the iOS device using a third party app from the App Store. For simulators IDFA can be obtained by running this command: `xcrun simctl list 'devices' 'booted'`.
 
 **Note**: Simulator must be booted.
 
