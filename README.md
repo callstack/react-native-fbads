@@ -105,6 +105,20 @@ Follow [Facebook's instructions](https://www.facebook.com/help/publisher/1195459
 
 You can skip the _Integrate the SDK_ step of that guide, as you've already integrated the Facebook SDK in previous steps.
 
+### 5. Testing integration on simulators/devices
+
+Follow [Facebook's instructions](https://developers.facebook.com/docs/audience-network/guides/test) to add test devices and add test users.
+
+#### Android
+
+You can get AAID from the android device/emulator by going to **Settings > Google > Ads**
+
+#### iOS
+
+You can get IDFA from the iOS device using a third party app from the App Store. For simulators IDFA can be obtained by running this command: `xcrun simctl list 'devices' 'booted'`.
+
+**Note**: Simulator must be booted.
+
 ## Usage
 
 ### Interstitial Ads
@@ -394,11 +408,11 @@ if (trackingStatus === 'authorized' || trackingStatus === 'unavailable') {
 
 The tracking status can return one of the following values:
 
-* `'unavailable'`: The tracking API is not available on the current device. That's the case on Android devices and iPhones below iOS 14.
-* `'denied'`: The user has explicitly denied permission to track. You'd want to respect that and disable [advertiser ID collection](#setAdvertiserIDCollectionEnabled).
-* `'authorized'`: The user has granted permission to track. You can now enable [advertiser ID collection](#setAdvertiserIDCollectionEnabled).
-* `'restricted'`: The tracking permission alert cannot be shown, because the device is restricted. See [`ATTrackingManager.AuthorizationStatus.restricted`](https://developer.apple.com/documentation/apptrackingtransparency/attrackingmanager/authorizationstatus/restricted) for more information.
-* `'not-determined'`: The user has not been asked to grant tracking permissions yet. Call `requestTrackingPermission()`.
+- `'unavailable'`: The tracking API is not available on the current device. That's the case on Android devices and iPhones below iOS 14.
+- `'denied'`: The user has explicitly denied permission to track. You'd want to respect that and disable [advertiser ID collection](#setAdvertiserIDCollectionEnabled).
+- `'authorized'`: The user has granted permission to track. You can now enable [advertiser ID collection](#setAdvertiserIDCollectionEnabled).
+- `'restricted'`: The tracking permission alert cannot be shown, because the device is restricted. See [`ATTrackingManager.AuthorizationStatus.restricted`](https://developer.apple.com/documentation/apptrackingtransparency/attrackingmanager/authorizationstatus/restricted) for more information.
+- `'not-determined'`: The user has not been asked to grant tracking permissions yet. Call `requestTrackingPermission()`.
 
 ### requestTrackingPermission
 
