@@ -30,11 +30,11 @@ You must have Facebook developer account in order to start integrating your app 
 
 Follow the instructions on [react-native-fbsdk](https://github.com/facebook/react-native-fbsdk) to integrate the **Facebook SDK** into your project.
 
-#### Get a Placement ID
+### Get a Placement ID
 
 Follow [Facebook's instructions](https://www.facebook.com/help/publisher/1195459597167215) to create placement IDs for your ads.
 
-#### Add test devices and test users
+### Add test devices and test users
 
 Follow [Facebook's instructions](https://developers.facebook.com/docs/audience-network/guides/test) to add test devices and add test users.
 
