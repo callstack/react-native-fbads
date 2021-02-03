@@ -34,7 +34,7 @@ Follow the instructions on [react-native-fbsdk](https://github.com/facebook/reac
 Add the package to your project using your favorite package manager yarn:
 
 ```bash
-$ yarn add react-native-fbads
+yarn add react-native-fbads
 ```
 
 or npm:
