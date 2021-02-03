@@ -40,7 +40,7 @@ yarn add react-native-fbads
 or npm:
 
 ```bash
-npm install --save-dev react-native-fbads
+npm install --save react-native-fbads
 ```
 
 #### For React Native >= 0.60
