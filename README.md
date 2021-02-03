@@ -8,6 +8,7 @@
 
 ## Table of Contents
 
+- [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Usage](#usage)
   - [Interstitial Ads](#interstitial-ads)
@@ -22,78 +23,48 @@
   - [Run it on iOS / Android](#3-run-it-on-ios--android)
 - [Credits](#credits)
 
-## Installation
+## Prerequisites
 
-### 1. Integrate the base Facebook SDK
+You must have Facebook developer account in order to start integrating your app with this library. If you don't have one just sign in [here](https://developers.facebook.com/).
 
-Follow the instructions on [react-native-fbsdk](https://github.com/facebook/react-native-fbsdk) to integrate the Facebook SDK into your project.
+Follow the instructions on [react-native-fbsdk](https://github.com/facebook/react-native-fbsdk) to integrate the **Facebook SDK** into your project.
 Note that for iOS, it's [recommended you use Cocoapods](https://developers.facebook.com/docs/ios/getting-started/advanced) rather than the manual installation.
 
-### 2. Integrate Facebook Audience Network
+## Installation
 
-#### For iOS:
-
-1. Run `pod install` in the `ios/` directory
-
-If you didn't use Cocoapods to integrate the Facebook SDK, you'll need to manually add the audience network framework file to your project.
-
-#### For Android:
-
-1. The library will automatically add audience-network-sdk to your dependencies. There is no need to add the audience network artifact to your build.gradle.
-
-2. In `MainApplication.java`, initialize the SDK inside `onCreate`:
-
-```java
-
-import suraj.tiwari.reactnativefbads.FBAdsPackage; // <-- add this
-
-public class MainApplication extends Application implements ReactApplication {
-...
-  @Override
-  public void onCreate() {
-    super.onCreate();
-  }
-  @Override
-  protected List<ReactPackage> getPackages() {
-    return Arrays.<ReactPackage>asList(
-          new FBAdsPackage()   // <-- add this
-    );
-  }
-...
-}
-```
-
-### 3. Install The Javascript Package
-
-Add the package to your project using your favorite package manager
+Add the package to your project using your favorite package manager yarn:
 
 ```bash
 $ yarn add react-native-fbads
 ```
 
-### For RN < 0.60
+or npm:
 
-Link the native dependencies
+```bash
+$ npm install --save-dev react-native-fbads
+```
+
+#### For React Native >= 0.60
+
+If you are working with RN >= 0.60 automatic linking should do the job for you.
+
+<details>
+<summary>For React-Native < 0.60</summary>
+Link the native dependencies:
 
 ```bash
 $ react-native link react-native-fbads
 ```
 
-#### iOS
+</details>
 
-If you have more than one Targets on your Xcode project, you might link some of them manually by dragging `Libraries/ReactNativeAdsFacebook.xcodeproj/Products/libReactNativeAdsFacebook.a` to 'Build Phases' -> 'Link Binary With Libraries'.
-
-#### For RN >= 0.60
-
-If you are working with RN >= 0.60 automatic linking should do the job for you.
-
-### 4. Get a Placement ID
+### 1. Get a Placement ID
 
 Follow [Facebook's instructions](https://www.facebook.com/help/publisher/1195459597167215) to create placement IDs for your ads.
 
 You can skip the _Integrate the SDK_ step of that guide, as you've already integrated the Facebook SDK in previous steps.
 
-### 5. Testing integration on simulators/devices
+### 2. Testing integration on simulators/devices
 
 Follow [Facebook's instructions](https://developers.facebook.com/docs/audience-network/guides/test) to add test devices and add test users.
 
