@@ -8,7 +8,9 @@
 
 ## Table of Contents
 
+- [Prerequisites](#prerequisites)
 - [Installation](#installation)
+- [Linking](#linking)
 - [Usage](#usage)
   - [Interstitial Ads](#interstitial-ads)
   - [Native Ads](#native-ads)
@@ -22,102 +24,62 @@
   - [Run it on iOS / Android](#3-run-it-on-ios--android)
 - [Credits](#credits)
 
+## Prerequisites
+
+You must have Facebook developer account in order to start integrating your app with this library. If you don't have one sign up [here](https://developers.facebook.com/).
+
+Follow the instructions on [react-native-fbsdk](https://github.com/facebook/react-native-fbsdk) to integrate the **Facebook SDK** into your project.
+
+### Get a Placement ID
+
+Follow [Facebook's instructions](https://www.facebook.com/help/publisher/1195459597167215) to create placement IDs for your ads.
+
+### Add test devices and test users
+
+Follow [Facebook's instructions](https://developers.facebook.com/docs/audience-network/guides/test) to add test devices and add test users.
+
+##### Android
+
+You can get AAID from the android device/emulator by going to **Settings > Google > Ads**.
+
+##### iOS
+
+You can get IDFA from the iOS device using a third party app from the App Store. For simulators IDFA can be obtained by running this command: `xcrun simctl list 'devices' 'booted'`.
+
+**Note**: Simulator must be booted.
+
 ## Installation
 
-### 1. Integrate the base Facebook SDK
-
-Follow the instructions on [react-native-fbsdk](https://github.com/facebook/react-native-fbsdk) to integrate the Facebook SDK into your project.
-Note that for iOS, it's [recommended you use Cocoapods](https://developers.facebook.com/docs/ios/getting-started/advanced) rather than the manual installation.
-
-### 2. Integrate Facebook Audience Network
-
-#### For iOS:
-
-1. Run `pod install` in the `ios/` directory
-
-If you didn't use Cocoapods to integrate the Facebook SDK, you'll need to manually add the audience network framework file to your project.
-
-#### For Android:
-
-1. The library will automatically add audience-network-sdk to your dependencies. There is no need to add the audience network artifact to your build.gradle.
-
-2. In `MainApplication.java`, initialize the SDK inside `onCreate`:
-
-```java
-
-import suraj.tiwari.reactnativefbads.FBAdsPackage; // <-- add this
-
-public class MainApplication extends Application implements ReactApplication {
-...
-  @Override
-  public void onCreate() {
-    super.onCreate();
-  }
-  @Override
-  protected List<ReactPackage> getPackages() {
-    return Arrays.<ReactPackage>asList(
-          new FBAdsPackage()   // <-- add this
-    );
-  }
-...
-}
-```
-
-### 3. Install The Javascript Package
-
-Add the package to your project using your favorite package manager
+Add the package to your project using either yarn:
 
 ```bash
-$ yarn add react-native-fbads
+yarn add react-native-fbads
 ```
 
-Link the native dependencies
+or npm:
+
+```bash
+npm install --save react-native-fbads
+```
+
+## Linking
+
+### React Native >= 0.60
+
+CLI autolink feature links the module while building the app.
+
+**Note**: for iOS make sure to install Pods through CocoaPods by running this command in your project's root directory:
+`cd ios && pod install`
+
+<details>
+<summary>For React-Native < 0.60</summary>
+Link the native dependencies:
 
 ```bash
 $ react-native link react-native-fbads
 ```
 
-#### Fix typo in settings.gradle
-
-Replace this
-
-`project(':react-native-fbads').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-fbads/android/')`
-
-With this
-
-`project(':react-native-fbads').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-fbads/android/app')`
-
-#### For RN < 0.60
-
-If you have more than one Targets on your Xcode project, you might link some of them manually by dragging `Libraries/ReactNativeAdsFacebook.xcodeproj/Products/libReactNativeAdsFacebook.a` to 'Build Phases' -> 'Link Binary With Libraries'.
-
-#### For RN >= 0.60
-
-If you are working with RN > 0.60 kindly add the following line in your `Podfile`
-
-```
-pod 'ReactNativeAdsFacebook', :path => '../node_modules/react-native-fbads'
-```
-
-### 4. Get a Placement ID
-
-Follow [Facebook's instructions](https://www.facebook.com/help/publisher/1195459597167215) to create placement IDs for your ads.
-
-You can skip the _Integrate the SDK_ step of that guide, as you've already integrated the Facebook SDK in previous steps.
-
-### 5. Testing integration on simulators/devices
-
-Follow [Facebook's instructions](https://developers.facebook.com/docs/audience-network/guides/test) to add test devices and add test users.
-
-#### Android
-
-You can get AAID from the android device/emulator by going to **Settings > Google > Ads**
-
-#### iOS
-
-You can get IDFA from the iOS device using a third party app from the App Store. For simulators IDFA can be obtained by running this command: `xcrun simctl list 'devices' 'booted'`.
-
-**Note**: Simulator must be booted.
+</details>
 
 ## Usage
 
