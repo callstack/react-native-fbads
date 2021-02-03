@@ -1,20 +1,19 @@
-import React, { Component } from 'react';
-import { StyleSheet, Dimensions, TouchableHighlight } from 'react-native';
-import { Container, Text } from 'native-base';
-import { InterstitialAdManager } from 'react-native-fbads';
-import { InterstitialAdPlacementId } from '../Variables';
+import React, {Component} from 'react';
+import {StyleSheet, Dimensions, TouchableHighlight} from 'react-native';
+import {Container, Text} from 'native-base';
+import {InterstitialAdManager} from 'react-native-fbads';
+import {InterstitialAdPlacementId} from '../Variables';
 
-const { width } = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 
-export default class InterstitialAd extends Component<Props> {
+export default class InterstitialAd extends Component {
   render() {
     return (
       <Container style={styles.container}>
         <TouchableHighlight
           underlayColor="#b2bbbc"
           style={styles.button}
-          onPress={() => this._showAd()}
-        >
+          onPress={() => this._showAd()}>
           <Text style={styles.buttonText}>Show Interstitial Ad</Text>
         </TouchableHighlight>
       </Container>
