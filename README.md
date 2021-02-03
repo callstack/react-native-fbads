@@ -44,10 +44,6 @@ or npm:
 $ npm install --save-dev react-native-fbads
 ```
 
-#### For React Native >= 0.60
-
-If you are working with RN >= 0.60 automatic linking should do the job for you.
-
 <details>
 <summary>For React-Native < 0.60</summary>
 Link the native dependencies:
