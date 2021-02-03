@@ -25,23 +25,22 @@
 
 ## Prerequisites
 
-You must have Facebook developer account in order to start integrating your app with this library. If you don't have one just sign in [here](https://developers.facebook.com/).
+You must have Facebook developer account in order to start integrating your app with this library. If you don't have one sign up [here](https://developers.facebook.com/).
 
 Follow the instructions on [react-native-fbsdk](https://github.com/facebook/react-native-fbsdk) to integrate the **Facebook SDK** into your project.
-Note that for iOS, it's [recommended you use Cocoapods](https://developers.facebook.com/docs/ios/getting-started/advanced) rather than the manual installation.
 
 ## Installation
 
 Add the package to your project using your favorite package manager yarn:
 
 ```bash
-$ yarn add react-native-fbads
+yarn add react-native-fbads
 ```
 
 or npm:
 
 ```bash
-$ npm install --save-dev react-native-fbads
+npm install --save react-native-fbads
 ```
 
 <details>
