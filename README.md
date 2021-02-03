@@ -71,33 +71,21 @@ Add the package to your project using your favorite package manager
 $ yarn add react-native-fbads
 ```
 
+### For RN < 0.60
+
 Link the native dependencies
 
 ```bash
 $ react-native link react-native-fbads
 ```
 
-#### Fix typo in settings.gradle
-
-Replace this
-
-`project(':react-native-fbads').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-fbads/android/')`
-
-With this
-
-`project(':react-native-fbads').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-fbads/android/app')`
-
-#### For RN < 0.60
+#### iOS
 
 If you have more than one Targets on your Xcode project, you might link some of them manually by dragging `Libraries/ReactNativeAdsFacebook.xcodeproj/Products/libReactNativeAdsFacebook.a` to 'Build Phases' -> 'Link Binary With Libraries'.
 
 #### For RN >= 0.60
 
-If you are working with RN > 0.60 kindly add the following line in your `Podfile`
-
-```
-pod 'ReactNativeAdsFacebook', :path => '../node_modules/react-native-fbads'
-```
+If you are working with RN >= 0.60 automatic linking should do the job for you.
 
 ### 4. Get a Placement ID
 
