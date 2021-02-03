@@ -10,6 +10,7 @@
 
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
+- [Linking](#linking)
 - [Usage](#usage)
   - [Interstitial Ads](#interstitial-ads)
   - [Native Ads](#native-ads)
@@ -29,6 +30,24 @@ You must have Facebook developer account in order to start integrating your app 
 
 Follow the instructions on [react-native-fbsdk](https://github.com/facebook/react-native-fbsdk) to integrate the **Facebook SDK** into your project.
 
+#### Get a Placement ID
+
+Follow [Facebook's instructions](https://www.facebook.com/help/publisher/1195459597167215) to create placement IDs for your ads.
+
+#### Add test devices and test users
+
+Follow [Facebook's instructions](https://developers.facebook.com/docs/audience-network/guides/test) to add test devices and add test users.
+
+##### Android
+
+You can get AAID from the android device/emulator by going to **Settings > Google > Ads**.
+
+##### iOS
+
+You can get IDFA from the iOS device using a third party app from the App Store. For simulators IDFA can be obtained by running this command: `xcrun simctl list 'devices' 'booted'`.
+
+**Note**: Simulator must be booted.
+
 ## Installation
 
 Add the package to your project using either yarn:
@@ -43,6 +62,15 @@ or npm:
 npm install --save react-native-fbads
 ```
 
+## Linking
+
+### React Native >= 0.60
+
+CLI autolink feature links the module while building the app.
+
+**Note**: for iOS make sure to install Pods through CocoaPods by running this command in your project's root directory:
+`cd ios && pod install`
+
 <details>
 <summary>For React-Native < 0.60</summary>
 Link the native dependencies:
@@ -52,26 +80,6 @@ $ react-native link react-native-fbads
 ```
 
 </details>
-
-### 1. Get a Placement ID
-
-Follow [Facebook's instructions](https://www.facebook.com/help/publisher/1195459597167215) to create placement IDs for your ads.
-
-You can skip the _Integrate the SDK_ step of that guide, as you've already integrated the Facebook SDK in previous steps.
-
-### 2. Testing integration on simulators/devices
-
-Follow [Facebook's instructions](https://developers.facebook.com/docs/audience-network/guides/test) to add test devices and add test users.
-
-#### Android
-
-You can get AAID from the android device/emulator by going to **Settings > Google > Ads**
-
-#### iOS
-
-You can get IDFA from the iOS device using a third party app from the App Store. For simulators IDFA can be obtained by running this command: `xcrun simctl list 'devices' 'booted'`.
-
-**Note**: Simulator must be booted.
 
 ## Usage
 
