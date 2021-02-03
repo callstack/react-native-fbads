@@ -28,7 +28,6 @@
 You must have Facebook developer account in order to start integrating your app with this library. If you don't have one sign up [here](https://developers.facebook.com/).
 
 Follow the instructions on [react-native-fbsdk](https://github.com/facebook/react-native-fbsdk) to integrate the **Facebook SDK** into your project.
-Note that for iOS, it's [recommended you use Cocoapods](https://developers.facebook.com/docs/ios/getting-started/advanced) rather than the manual installation.
 
 ## Installation
 
