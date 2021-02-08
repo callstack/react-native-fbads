@@ -1,16 +1,13 @@
-import React, { Component } from 'react';
-import { NativeAdsManager, AdSettings } from 'react-native-fbads';
-import { Container } from 'native-base';
-import { nativeAdPlacementId } from '../Variables/index';
+import React, {Component} from 'react';
+import {NativeAdsManager, AdSettings} from 'react-native-fbads';
+import {Container} from 'native-base';
+import {nativeAdPlacementId} from '../Variables';
+
 import NativeAdView from './NativeAdView';
 
-AdSettings.clearTestDevices();
-AdSettings.setLogLevel('debug');
-AdSettings.addTestDevice(AdSettings.currentDeviceHash);
+export default class NativeAd extends Component {
+  adsManager = new NativeAdsManager(nativeAdPlacementId);
 
-const adsManager = new NativeAdsManager(nativeAdPlacementId);
-
-export default class NativeAd extends Component<Props> {
   render() {
     return (
       <Container
@@ -18,9 +15,11 @@ export default class NativeAd extends Component<Props> {
           justifyContent: 'center',
           backgroundColor: '#fff',
           padding: 20,
-        }}
-      >
-        <NativeAdView adsManager={adsManager} adChoicePosition="bottomRight" />
+        }}>
+        <NativeAdView
+          adsManager={this.adsManager}
+          adChoicePosition="bottomRight"
+        />
       </Container>
     );
   }

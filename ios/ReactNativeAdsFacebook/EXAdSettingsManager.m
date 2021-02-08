@@ -130,6 +130,12 @@ RCT_EXPORT_METHOD(setAdvertiserIDCollectionEnabled:(BOOL)enabled)
 }
 
 
+RCT_EXPORT_METHOD(setAdvertiserTrackingEnabled:(BOOL)enabled)
+{
+    [FBAdSettings setAdvertiserTrackingEnabled:enabled];
+}
+
+
 - (void)bridgeDidForeground:(NSNotification *)notification
 {
   [FBAdSettings setMixedAudience:_isChildDirected];

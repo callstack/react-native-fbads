@@ -2,10 +2,27 @@ import React, {Component} from 'react';
 import {StyleSheet, Dimensions, TouchableHighlight} from 'react-native';
 import {Container, Text} from 'native-base';
 import {Actions} from 'react-native-router-flux';
+import {AdSettings} from 'react-native-fbads';
 
 const {width} = Dimensions.get('window');
 
 export default class Main extends Component {
+  async componentDidMount() {
+    AdSettings.setLogLevel('debug');
+    AdSettings.addTestDevice(AdSettings.currentDeviceHash);
+    const requestedStatus = await AdSettings.requestTrackingPermission();
+
+    if (requestedStatus === 'authorized' || requestedStatus === 'unavailable') {
+      AdSettings.setAdvertiserIDCollectionEnabled(true);
+      // Both calls are not related to each other
+      // FB won't deliver any ads if this is set to false or not called at all.
+      AdSettings.setAdvertiserTrackingEnabled(true);
+    }
+  }
+
+  componentWillUnmount() {
+    AdSettings.clearTestDevices();
+  }
   render() {
     return (
       <Container style={styles.container}>

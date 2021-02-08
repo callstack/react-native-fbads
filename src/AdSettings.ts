@@ -10,7 +10,12 @@ type SDKLogLevel =
   | 'error'
   | 'notification';
 
-export type TrackingStatus = 'unavailable' | 'denied' | 'authorized' | 'restricted' | 'not-determined';
+export type TrackingStatus =
+  | 'unavailable'
+  | 'denied'
+  | 'authorized'
+  | 'restricted'
+  | 'not-determined';
 
 export default {
   /**
@@ -83,5 +88,15 @@ export default {
    */
   setAdvertiserIDCollectionEnabled(enabled: boolean): void {
     CTKAdSettingsManager.setAdvertiserIDCollectionEnabled(enabled);
-  }
+  },
+
+  /**
+   * Enable or disable ads tracking. Only works for iOS 14+. In order to ask user for tracking permission (@see `requestTrackingPermission()`).
+   */
+  setAdvertiserTrackingEnabled(enabled: boolean): void {
+    if (Platform.OS !== 'ios') {
+      return;
+    }
+    CTKAdSettingsManager.setAdvertiserTrackingEnabled(enabled);
+  },
 };

@@ -241,7 +241,7 @@ Banners are available in 3 sizes:
 
 - `standard` (BANNER_HEIGHT_50)
 - `large` (BANNER_HEIGHT_90)
-- `rectangle` (RECTANGLE_HEIGHT_250)
+- `rectangle` (RECTANGLE_HEIGHT_250) – currently Android only
 
 ```js
 import { BannerView } from 'react-native-fbads';
@@ -384,8 +384,21 @@ Requests permission to track the user. Requires an [`NSUserTrackingUsageDescript
 
 ```js
 const trackingStatus = await AdSettings.requestTrackingPermission();
-if (trackingStatus === 'authorized' || trackingStatus === 'unavailable')
+if (trackingStatus === 'authorized' || trackingStatus === 'unavailable') {
   AdSettings.setAdvertiserIDCollectionEnabled(true);
+  AdSettings.setAdvertiserTrackingEnabled(true);
+}
+```
+
+### setAdvertiserTrackingEnabled
+
+Enables or disables personalized ads tracking on iOS 14+. See Facebook docs on [Advertising Tracking Enabled For Audience Network](https://developers.facebook.com/docs/audience-network/guides/advertising-tracking-enabled)
+
+> Requires iOS 14. On Android and iOS versions below 14, this will always be no-op.
+> **Important: FB won't display adds unless this is set to `true`.**
+
+```js
+AdSettings.setAdvertiserTrackingEnabled(true);
 ```
 
 ### setAdvertiserIDCollectionEnabled
