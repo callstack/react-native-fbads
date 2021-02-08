@@ -14,6 +14,7 @@ export default class Main extends Component {
 
     if (requestedStatus === 'authorized' || requestedStatus === 'unavailable') {
       AdSettings.setAdvertiserIDCollectionEnabled(true);
+      // Both calls are not related to each other
       // FB won't deliver any ads if this is set to false or not called at all.
       AdSettings.setAdvertiserTrackingEnabled(true);
     }
