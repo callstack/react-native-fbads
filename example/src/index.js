@@ -10,17 +10,11 @@ export default class Main extends Component {
   async componentDidMount() {
     AdSettings.setLogLevel('debug');
     AdSettings.addTestDevice(AdSettings.currentDeviceHash);
-
-    const trackingStatus = await AdSettings.getTrackingStatus();
-    if (trackingStatus === 'authorized' || trackingStatus === 'unavailable') {
-      AdSettings.setAdvertiserIDCollectionEnabled(true);
-      AdSettings.setAdvertiserTrackingEnabled(true);
-      return;
-    }
-
     const requestedStatus = await AdSettings.requestTrackingPermission();
+
     if (requestedStatus === 'authorized' || requestedStatus === 'unavailable') {
       AdSettings.setAdvertiserIDCollectionEnabled(true);
+      // FB won't deliver any ads if this is set to false or not called at all.
       AdSettings.setAdvertiserTrackingEnabled(true);
     }
   }
