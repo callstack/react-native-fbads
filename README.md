@@ -384,8 +384,20 @@ Requests permission to track the user. Requires an [`NSUserTrackingUsageDescript
 
 ```js
 const trackingStatus = await AdSettings.requestTrackingPermission();
-if (trackingStatus === 'authorized' || trackingStatus === 'unavailable')
+if (trackingStatus === 'authorized' || trackingStatus === 'unavailable') {
   AdSettings.setAdvertiserIDCollectionEnabled(true);
+  AdSettings.setAdvertiserTrackingEnabled(true);
+}
+```
+
+> Requires iOS 14. On Android and iOS versions below 14, this will always be no-op.
+
+### setAdvertiserTrackingEnabled
+
+Enables or disables ads tracking. Since the iOS 14 API has been introduced you will need set this flag in order to inform Facebook whether you should receive personalized ads. ( See [Advertising Tracking Enabled For Audience Network](https://developers.facebook.com/docs/audience-network/guides/advertising-tracking-enabled))
+
+```js
+AdSettings.setAdvertiserTrackingEnabled(true);
 ```
 
 ### setAdvertiserIDCollectionEnabled
