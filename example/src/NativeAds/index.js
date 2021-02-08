@@ -1,9 +1,13 @@
 import React, {Component} from 'react';
 import {NativeAdsManager, AdSettings} from 'react-native-fbads';
 import {Container} from 'native-base';
+import {nativeAdPlacementId} from '../Variables';
+
 import NativeAdView from './NativeAdView';
 
 export default class NativeAd extends Component {
+  adsManager = new NativeAdsManager(nativeAdPlacementId);
+
   render() {
     return (
       <Container
@@ -13,7 +17,7 @@ export default class NativeAd extends Component {
           padding: 20,
         }}>
         <NativeAdView
-          adsManager={this.props.adsManager}
+          adsManager={this.adsManager}
           adChoicePosition="bottomRight"
         />
       </Container>

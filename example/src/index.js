@@ -2,14 +2,11 @@ import React, {Component} from 'react';
 import {StyleSheet, Dimensions, TouchableHighlight} from 'react-native';
 import {Container, Text} from 'native-base';
 import {Actions} from 'react-native-router-flux';
-import {AdSettings, NativeAdsManager} from 'react-native-fbads';
-
-import {nativeAdPlacementId} from './Variables';
+import {AdSettings} from 'react-native-fbads';
 
 const {width} = Dimensions.get('window');
 
 export default class Main extends Component {
-  adsManager = new NativeAdsManager(nativeAdPlacementId);
   async componentDidMount() {
     AdSettings.setLogLevel('debug');
     AdSettings.addTestDevice(AdSettings.currentDeviceHash);
@@ -17,12 +14,14 @@ export default class Main extends Component {
     const trackingStatus = await AdSettings.getTrackingStatus();
     if (trackingStatus === 'authorized' || trackingStatus === 'unavailable') {
       AdSettings.setAdvertiserIDCollectionEnabled(true);
+      AdSettings.setAdvertiserTrackingEnabled(true);
       return;
     }
-    console.log('here');
+
     const requestedStatus = await AdSettings.requestTrackingPermission();
     if (requestedStatus === 'authorized' || requestedStatus === 'unavailable') {
       AdSettings.setAdvertiserIDCollectionEnabled(true);
+      AdSettings.setAdvertiserTrackingEnabled(true);
     }
   }
 
@@ -35,7 +34,7 @@ export default class Main extends Component {
         <TouchableHighlight
           underlayColor="#b2bbbc"
           style={styles.button}
-          onPress={() => Actions.nativeAd({adsManager: this.adsManager})}>
+          onPress={() => Actions.nativeAd()}>
           <Text style={styles.buttonText}>Native Ad</Text>
         </TouchableHighlight>
         <TouchableHighlight
