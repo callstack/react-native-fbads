@@ -241,7 +241,7 @@ Banners are available in 3 sizes:
 
 - `standard` (BANNER_HEIGHT_50)
 - `large` (BANNER_HEIGHT_90)
-- `rectangle` (RECTANGLE_HEIGHT_250: (currently only for Android)
+- `rectangle` (RECTANGLE_HEIGHT_250) – currently Android only
 
 ```js
 import { BannerView } from 'react-native-fbads';
