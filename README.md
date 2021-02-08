@@ -395,7 +395,7 @@ if (trackingStatus === 'authorized' || trackingStatus === 'unavailable') {
 Enables or disables personalized ads tracking on iOS 14+. See Facebook docs on [Advertising Tracking Enabled For Audience Network](https://developers.facebook.com/docs/audience-network/guides/advertising-tracking-enabled)
 
 > Requires iOS 14. On Android and iOS versions below 14, this will always be no-op.
-> **Note**: FB won't display adds when this is not set to true.
+> **Important: FB won't display adds unless this is set to `true`.**
 
 ```js
 AdSettings.setAdvertiserTrackingEnabled(true);
