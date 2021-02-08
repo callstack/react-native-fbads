@@ -391,6 +391,7 @@ if (trackingStatus === 'authorized' || trackingStatus === 'unavailable') {
 ```
 
 > Requires iOS 14. On Android and iOS versions below 14, this will always be no-op.
+> **Note**: FB won't display adds when this is not set to true.
 
 ### setAdvertiserTrackingEnabled
 
