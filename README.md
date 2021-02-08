@@ -394,7 +394,7 @@ if (trackingStatus === 'authorized' || trackingStatus === 'unavailable') {
 
 ### setAdvertiserTrackingEnabled
 
-Enables or disables ads tracking. Since the iOS 14 API has been introduced you will need set this flag in order to inform Facebook whether you should receive personalized ads. ( See [Advertising Tracking Enabled For Audience Network](https://developers.facebook.com/docs/audience-network/guides/advertising-tracking-enabled))
+Enables or disables personalized ads tracking on iOS 14+. See Facebook docs on [Advertising Tracking Enabled For Audience Network](https://developers.facebook.com/docs/audience-network/guides/advertising-tracking-enabled)
 
 ```js
 AdSettings.setAdvertiserTrackingEnabled(true);
