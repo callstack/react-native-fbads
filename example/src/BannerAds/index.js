@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, Platform} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {Container} from 'native-base';
 import {BannerView} from 'react-native-fbads';
 import {bannerAdPlacementId} from '../Variables';
@@ -24,16 +24,6 @@ export default class BannerAd extends Component {
             onError={(err) => console.log('error', err)}
           />
         </View>
-        {Platform.OS !== 'ios' ? (
-          <View style={styles.bannerContainer}>
-            <BannerView
-              placementId={bannerAdPlacementId}
-              type="rectangle"
-              onPress={() => console.log('click')}
-              onError={(err) => console.log('error', err)}
-            />
-          </View>
-        ) : null}
       </Container>
     );
   }

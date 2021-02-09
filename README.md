@@ -32,7 +32,7 @@ Follow the instructions on [react-native-fbsdk](https://github.com/facebook/reac
 
 ### Get a Placement ID
 
-Follow [Facebook's instructions](https://www.facebook.com/help/publisher/1195459597167215) to create placement IDs for your ads.
+Follow [Facebook's instructions](https://www.facebook.com/help/publisher/1195459597167215) to create placement IDs for your ads. In order to get test ads modify your placement ID as it shown [here](https://developers.facebook.com/docs/audience-network/guides/test/inserted-code).
 
 ### Add test devices and test users
 
@@ -237,11 +237,10 @@ class MainApp extends React.Component {
 
 BannerView is a component that allows you to display ads in a banner format (know as _AdView_).
 
-Banners are available in 3 sizes:
+Banners are available in 2 sizes:
 
 - `standard` (BANNER_HEIGHT_50)
 - `large` (BANNER_HEIGHT_90)
-- `rectangle` (RECTANGLE_HEIGHT_250) – currently Android only
 
 ```js
 import { BannerView } from 'react-native-fbads';
