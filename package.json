@@ -46,6 +46,7 @@
     "package.json",
     "yarn.lock",
     "dist",
+    "react-native.config.js",
     "ReactNativeAdsFacebook.podspec"
   ]
 }
