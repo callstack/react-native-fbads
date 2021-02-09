@@ -24,9 +24,6 @@ public class BannerViewManager extends SimpleViewManager<BannerView> {
       case 90:
         adSize = AdSize.BANNER_HEIGHT_90;
         break;
-      case 250:
-        adSize = AdSize.RECTANGLE_HEIGHT_250;
-        break;
       case 50:
       default:
         adSize = AdSize.BANNER_HEIGHT_50;

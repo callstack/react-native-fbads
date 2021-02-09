@@ -1,7 +1,7 @@
 import React from 'react';
 import { requireNativeComponent, StyleProp, ViewStyle } from 'react-native';
 
-type AdType = 'large' | 'rectangle' | 'standard';
+type AdType = 'large' | 'standard';
 
 interface NativeBannerViewProps {
   size: number;
@@ -28,8 +28,7 @@ const CTKBannerView = requireNativeComponent<NativeBannerViewProps>(
 
 const sizeForType: Record<AdType, number> = {
   large: 90,
-  rectangle: 250,
-  standard: 50
+  standard: 50,
 };
 
 const getSizeForType = (type: AdType) => sizeForType[type];

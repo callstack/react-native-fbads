@@ -56,8 +56,6 @@
   switch ([height intValue]) {
     case 90:
       return kFBAdSizeHeight90Banner;
-    case 250:
-      return kFBAdSizeHeight250Rectangle;
     case 50:
     default:
       return kFBAdSizeHeight50Banner;
