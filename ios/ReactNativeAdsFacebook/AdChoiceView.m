@@ -30,7 +30,7 @@
     [self createViewIfCan:_placementId:_location: _expandable];
 }
 
-- (void)setLocation:(UIRectCorner *)location
+- (void)setLocation:(UIRectCorner)location
 {
     _location = location;
     [self createViewIfCan:_placementId:_location: _expandable];
@@ -42,7 +42,7 @@
     [self createViewIfCan:_placementId :_location :_expandable];
 }
 
-- (void)createViewIfCan:(NSString *)placementId :(UIRectCorner *) location :(BOOL) expandable
+- (void)createViewIfCan:(NSString *)placementId :(UIRectCorner) location :(BOOL) expandable
 {
     if (!location || !placementId) {
         return;
@@ -51,7 +51,7 @@
     FBNativeAdsManager *_adsManager = [nativeAdManager getFBAdsManager:placementId];
     FBNativeAd *nativeAd = [_adsManager nextNativeAd];
     FBAdChoicesView *adChoicesView = [[FBAdChoicesView alloc] initWithNativeAd:nativeAd expandable:expandable];
-    [adChoicesView updateFrameFromSuperview:*location];
+    [adChoicesView updateFrameFromSuperview:location];
     [self addSubview:adChoicesView];
 }
 

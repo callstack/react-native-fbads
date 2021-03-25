@@ -14,7 +14,7 @@
 @interface AdChoiceView : RCTView
 
 @property (nonatomic, strong) NSString *placementId;
-@property (nonatomic) UIRectCorner *location;
+@property (nonatomic) UIRectCorner location;
 @property (nonatomic) BOOL *expandable;
 
 - (instancetype)initWithBridge:(RCTBridge *)bridge;
