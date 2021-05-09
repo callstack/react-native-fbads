@@ -1,7 +1,8 @@
 import { EventSubscription } from 'fbemitter';
 import React, { ReactNode } from 'react';
 import { findNodeHandle, requireNativeComponent } from 'react-native';
-import { AdIconView, MediaView } from '../index';
+import MediaView from './MediaViewManager';
+import AdIconView from './AdIconViewManager';
 import {
   AdChoicesViewContext,
   AdIconViewContext,
