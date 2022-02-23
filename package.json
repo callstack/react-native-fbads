@@ -13,6 +13,10 @@
     "example": "example"
   },
   "scripts": {
+    "build:plugin": "tsc --build plugin",
+    "clean:plugin": "expo-module clean plugin",
+    "lint:plugin": "eslint plugin/src/*",
+    "prepare": "npm run build:plugin",
     "tsc": "tsc --project .",
     "lint": "tslint --project ."
   },
@@ -22,11 +26,13 @@
     "react-native": "*"
   },
   "dependencies": {
+    "@expo/config-plugins": "^4.0.4",
     "fbemitter": "^2.1.1"
   },
   "devDependencies": {
     "@types/fbemitter": "^2.0.32",
     "@types/react-native": "^0.57.4",
+    "expo-module-scripts": "^2.0.0",
     "tslint": "^5.11.0",
     "tslint-config-airbnb": "^5.11.0",
     "tslint-config-prettier": "^1.15.0",
@@ -46,6 +52,8 @@
     "package.json",
     "dist",
     "react-native.config.js",
-    "ReactNativeAdsFacebook.podspec"
+    "ReactNativeAdsFacebook.podspec",
+    "app.plugin.js",
+    "plugin/build/"
   ]
 }
