@@ -97,16 +97,6 @@ After installing this npm package, add the [config plugin](https://docs.expo.io/
 
 Next, rebuild your app as described in the ["Adding custom native code"](https://docs.expo.io/workflow/customizing/) guide.
 
-#### Example
-
-```json
-{
-  "expo": {
-    "plugins": ["react-native-fbads"]
-  }
-}
-```
-
 ## Usage
 
 ### Interstitial Ads
