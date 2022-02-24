@@ -1,17 +1,21 @@
-import { AndroidConfig, ConfigPlugin, createRunOncePlugin, withAndroidManifest } from "@expo/config-plugins";
-import { getMainApplicationOrThrow, prefixAndroidKeys } from "@expo/config-plugins/build/android/Manifest";
+import {
+  AndroidConfig,
+  ConfigPlugin,
+  createRunOncePlugin,
+  withAndroidManifest,
+} from '@expo/config-plugins';
+const { getMainApplicationOrThrow, prefixAndroidKeys } = AndroidConfig.Manifest;
 
-const INTERSTITIAL_AD_ACTIVITY = 'com.facebook.ads.InterstitialAdActivity'
+const INTERSTITIAL_AD_ACTIVITY = 'com.facebook.ads.InterstitialAdActivity';
 
 export const withFacebookManifest: ConfigPlugin = (config) => {
   return withAndroidManifest(config, (config) => {
-    config.modResults = setFacebookConfig(props, config.modResults);
+    config.modResults = setFacebookConfig(config.modResults);
     return config;
   });
 };
 
 export function setFacebookConfig(
-  props: any,
   androidManifest: AndroidConfig.Manifest.AndroidManifest
 ) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -29,7 +33,7 @@ function ensureFacebookActivity({
   if (Array.isArray(mainApplication.activity)) {
     // Remove all Facebook InterstitialAdActivity first
     mainApplication.activity = mainApplication.activity.filter((activity) => {
-      return activity.$?.["android:name"] !== INTERSTITIAL_AD_ACTIVITY;
+      return activity.$?.['android:name'] !== INTERSTITIAL_AD_ACTIVITY;
     });
   } else {
     mainApplication.activity = [];
@@ -71,7 +75,6 @@ const withReactNativeFbads: ConfigPlugin = (config) => {
   return withFacebookManifest(config);
 };
 
-const pkg = require("react-native-fbads/package.json");
+const pkg = require('react-native-fbads/package.json');
 
 export default createRunOncePlugin(withReactNativeFbads, pkg.name, pkg.version);
-
