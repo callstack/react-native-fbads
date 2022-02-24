@@ -3,10 +3,7 @@ import { getMainApplicationOrThrow, prefixAndroidKeys } from "@expo/config-plugi
 
 const INTERSTITIAL_AD_ACTIVITY = 'com.facebook.ads.InterstitialAdActivity'
 
-export const withFacebookManifest: ConfigPlugin<{} | void> = (
-  config,
-  props
-) => {
+export const withFacebookManifest: ConfigPlugin = (config) => {
   return withAndroidManifest(config, (config) => {
     config.modResults = setFacebookConfig(props, config.modResults);
     return config;
@@ -70,13 +67,8 @@ function getFacebookAdActivity() {
 /**
  * Apply react-native-fbads configuration for Expo SDK 44 projects.
  */
-const withReactNativeFbads: ConfigPlugin<{} | void> = (config, _props = {}) => {
-  // Support passing no props to the plugin.
-  const props = _props || {};
-
-  config = withFacebookManifest(config, props);
-
-  return config;
+const withReactNativeFbads: ConfigPlugin = (config) => {
+  return withFacebookManifest(config);
 };
 
 const pkg = require("react-native-fbads/package.json");
