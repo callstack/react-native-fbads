@@ -11,6 +11,7 @@
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Linking](#linking)
+- [Expo Installation](#expo-installation)
 - [Usage](#usage)
   - [Interstitial Ads](#interstitial-ads)
   - [Native Ads](#native-ads)
