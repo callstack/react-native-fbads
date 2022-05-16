@@ -12,7 +12,7 @@
   "dependencies": {
     "native-base": "^2.8.0",
     "react": "16.13.1",
-    "react-native": "0.63.4",
+    "react-native": "0.64.1",
     "react-native-fbads": "file:..",
     "react-native-fbsdk": "^3.0.0",
     "react-native-gesture-handler": "^1.9.0",
