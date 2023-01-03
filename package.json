@@ -8,6 +8,7 @@
   },
   "homepage": "https://github.com/callstack/react-native-fbads",
   "main": "dist/lib/index.js",
+  "react-native": "src/index.ts",
   "typings": "dist/types/index.d.ts",
   "directories": {
     "example": "example"
